@@ -1,6 +1,6 @@
 # uniapp
 
-A new Flutter project.
+A university App Project
 
 ## University App
 
