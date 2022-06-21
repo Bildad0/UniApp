@@ -20,6 +20,13 @@ dependencies:
   firebase_core: ^1.17.1
   firebase_auth: ^3.3.19
   provider: ^6.0.3
+  flutter_launcher_icons: ^0.9.3
+
+flutter_icons:
+ android: true
+ ios: true
+ image_path: "assets/TUM.logo.png"
+
 
 dev_dependencies:
   flutter_test:
