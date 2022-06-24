@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uniapp/Providers/authservice.dart';
-import 'package:uniapp/Views/auth.dart';
+import 'package:uniapp/Controlers/auth.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           theme: ThemeData(
-              primarySwatch: Colors.blueGrey,
+              primarySwatch: Colors.green,
               visualDensity: VisualDensity.adaptivePlatformDensity),
           home: const AuthenticationWrapper(),
         ));
