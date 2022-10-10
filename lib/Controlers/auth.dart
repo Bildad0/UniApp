@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uniapp/Views/homepage.dart';
+import 'package:uniapp/Views/landingpage.dart';
 import 'package:uniapp/Views/loginpage.dart';
 
 class AuthenticationWrapper extends StatelessWidget {
@@ -12,7 +12,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User?>();
 
     if (firebaseUser != null) {
-      return const HomePage();
+      return const SchoolManagement();
     }
     return const LogIn();
   }

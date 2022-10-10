@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 import 'package:provider/provider.dart';
@@ -87,13 +86,15 @@ class CustomFormState extends State<CustomForm> {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           NeumorphicButton(
             style: NeumorphicStyle(
               color: Colors.green,
               shape: NeumorphicShape.concave,
               boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
+              depth: 8,
+              lightSource: LightSource.topRight,
             ),
             onPressed: () async {
               setState(() {
@@ -115,15 +116,33 @@ class CustomFormState extends State<CustomForm> {
                     width: 30,
                     height: 50,
                     child: JumpingDotsProgressIndicator(
-                      fontSize: 20.0,
+                      fontSize: 15.0,
                       numberOfDots: 4,
-                      dotSpacing: 2,
-                      milliseconds: 3000,
+                      dotSpacing: 1,
+                      milliseconds: 2500,
                       color: Colors.white,
                     ),
                   )
                 : Text('LogIn'.toUpperCase()),
-          )
+          ),
+          const SizedBox(
+            height: 90,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              GestureDetector(
+                child: const Text(
+                  'Forgot Password?',
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
