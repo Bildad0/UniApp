@@ -63,7 +63,11 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      const EditProfilePage();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const EditProfilePage()));
                     },
                     child: Container(
                       width: 40,

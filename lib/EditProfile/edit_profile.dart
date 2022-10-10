@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uniapp/EditProfile/settings.dart';
+import 'package:uniapp/Views/landingpage.dart';
 
 class SettingsUI extends StatelessWidget {
   const SettingsUI({Key? key}) : super(key: key);
@@ -35,7 +36,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Icons.arrow_back,
             color: Colors.green,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => const SchoolManagement()));
+          },
         ),
         actions: [
           IconButton(
@@ -45,7 +49,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             ),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => SettingsPage()));
+                  builder: (BuildContext context) => const SettingsPage()));
             },
           ),
         ],
@@ -59,7 +63,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           child: ListView(
             children: [
               const Text(
-                "Edit Profile",
+                "Profile",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
               ),
               const SizedBox(
@@ -86,7 +90,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           image: const DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
-                                "https://images.pexels.com/photos/3307758/pexels-photo-3307758.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250",
+                                "https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80",
                               ))),
                     ),
                     Positioned(
@@ -116,7 +120,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
               buildTextField("Full Name", "Bildad", false),
               buildTextField("E-mail", "Bildad@gmail.com", false),
-              buildTextField("Password", "********", true),
               buildTextField("Location", "Mombasa, Kenya", false),
               const SizedBox(
                 height: 35,
