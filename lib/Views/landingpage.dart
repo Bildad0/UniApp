@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:uniapp/Views/Chats/chatpage.dart';
 import 'package:uniapp/Views/calender.dart';
 import 'package:uniapp/Views/homepage.dart';
 
@@ -18,7 +19,7 @@ class _SchoolManagementState extends State<SchoolManagement> {
     null,
     null,
     CalendarPage(),
-    null,
+    ChatPage(),
   ];
   @override
   Widget build(BuildContext context) {

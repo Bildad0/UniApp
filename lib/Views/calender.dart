@@ -77,7 +77,7 @@ class _CalendarPageState extends State<CalendarPage> {
                       buildDateColumn("S", 7, false),
                       buildDateColumn("M", 8, false),
                       buildDateColumn("T", 9, false),
-                      buildDateColumn("W", 10, true),
+                      buildDateColumn("W", 10, false),
                       buildDateColumn("T", 11, false),
                       buildDateColumn("F", 12, false),
                       buildDateColumn("S", 13, false),
@@ -194,8 +194,7 @@ class _CalendarPageState extends State<CalendarPage> {
                   children: [
                     const CircleAvatar(
                       radius: 9,
-                      backgroundImage: NetworkImage(
-                          "https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=80"),
+                      backgroundImage: NetworkImage(""),
                     ),
                     const SizedBox(
                       width: 5,
@@ -204,7 +203,7 @@ class _CalendarPageState extends State<CalendarPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text(
-                          "Gabriel Sutton",
+                          "Mr Kennedy Hadulo",
                           style: TextStyle(
                             fontSize: 15,
                           ),
