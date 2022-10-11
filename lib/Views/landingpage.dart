@@ -46,11 +46,11 @@ class _SchoolManagementState extends State<SchoolManagement> {
               ),
               BottomNavigationBarItem(
                 label: "",
-                icon: Icon(Icons.insert_chart),
+                icon: Icon(Icons.menu_book),
               ),
               BottomNavigationBarItem(
                 label: "",
-                icon: Icon(Icons.done),
+                icon: Icon(Icons.account_balance_wallet),
               ),
               BottomNavigationBarItem(
                 label: "",

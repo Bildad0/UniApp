@@ -12,7 +12,7 @@ class ChatDetailPage extends StatefulWidget {
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
   List<ChatMessage> messages = [
-    ChatMessage(messageContent: "Hello, Will", messageType: "receiver"),
+    ChatMessage(messageContent: "Hello, Billy", messageType: "receiver"),
     ChatMessage(messageContent: "How have you been?", messageType: "receiver"),
     ChatMessage(
         messageContent: "Hey Kriss, I am doing fine dude. wbu?",
@@ -59,7 +59,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "Kriss Benwat",
+                        "Bildad Owuor",
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       ),
@@ -130,7 +130,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                       height: 30,
                       width: 30,
                       decoration: BoxDecoration(
-                        color: Colors.lightBlue,
+                        color: Colors.lightGreen,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: const Icon(
@@ -156,7 +156,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   ),
                   FloatingActionButton(
                     onPressed: () {},
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Colors.green,
                     elevation: 0,
                     child: const Icon(
                       Icons.send,
