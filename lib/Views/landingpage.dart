@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:uniapp/Views/Chats/chatpage.dart';
 import 'package:uniapp/Views/calender.dart';
+import 'package:uniapp/Views/feemanagement.dart';
 import 'package:uniapp/Views/homepage.dart';
 
 class SchoolManagement extends StatefulWidget {
@@ -17,7 +18,7 @@ class _SchoolManagementState extends State<SchoolManagement> {
   final List pages = const [
     HomePage(),
     null,
-    null,
+    FeesPage(),
     CalendarPage(),
     ChatPage(),
   ];
