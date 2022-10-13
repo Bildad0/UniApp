@@ -32,7 +32,7 @@ class _SchoolManagementState extends State<SchoolManagement> {
             backgroundColor: const Color(0xFFF0F0F0),
             unselectedItemColor: Colors.grey,
             selectedItemColor: Colors.green,
-            selectedIconTheme: IconThemeData(color: Colors.blueGrey[600]),
+            selectedIconTheme: IconThemeData(color: Colors.green[600]),
             currentIndex: _selectedItemIndex,
             type: BottomNavigationBarType.fixed,
             onTap: (int index) {
@@ -42,23 +42,23 @@ class _SchoolManagementState extends State<SchoolManagement> {
             },
             items: const [
               BottomNavigationBarItem(
-                label: "",
+                label: "Home",
                 icon: Icon(Icons.home),
               ),
               BottomNavigationBarItem(
-                label: "",
+                label: "Notes",
                 icon: Icon(Icons.menu_book),
               ),
               BottomNavigationBarItem(
-                label: "",
+                label: "Fees",
                 icon: Icon(Icons.account_balance_wallet),
               ),
               BottomNavigationBarItem(
-                label: "",
+                label: "Activites",
                 icon: Icon(Icons.calendar_today),
               ),
               BottomNavigationBarItem(
-                label: "",
+                label: "Chat",
                 icon: Icon(Icons.chat_bubble),
               ),
             ],

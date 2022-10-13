@@ -100,7 +100,7 @@ class _ChatPageState extends State<ChatPage> {
                     size: 20,
                   ),
                   filled: true,
-                  fillColor: Colors.grey.shade100,
+                  fillColor: const Color.fromARGB(218, 245, 245, 245),
                   contentPadding: const EdgeInsets.all(8),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),

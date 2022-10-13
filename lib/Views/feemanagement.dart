@@ -59,23 +59,6 @@ class _FeesPageState extends State<FeesPage> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  GestureDetector(
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(width: 1, color: Colors.white),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.blueGrey.withOpacity(0.2),
-                            blurRadius: 12,
-                            spreadRadius: 8,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
                   const SizedBox(
                     width: 20,
                   ),
@@ -83,7 +66,7 @@ class _FeesPageState extends State<FeesPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
                       Text(
-                        "Hi Bildad",
+                        "Here is you financial status",
                         style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.w900,
@@ -94,7 +77,7 @@ class _FeesPageState extends State<FeesPage> {
                         height: 10,
                       ),
                       Text(
-                        "Here is you financial status",
+                        "Balance: Ksh 21,000",
                         style: TextStyle(
                           fontSize: 13,
                           color: Colors.blueGrey,
@@ -126,6 +109,12 @@ class _FeesPageState extends State<FeesPage> {
                 const SizedBox(
                   height: 20,
                 ),
+                buildClassItem(),
+                buildClassItem(),
+                buildClassItem(),
+                buildClassItem(),
+                buildClassItem(),
+                buildClassItem(),
                 buildClassItem(),
                 buildClassItem(),
                 const SizedBox(
@@ -163,7 +152,7 @@ class _FeesPageState extends State<FeesPage> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(
             height: 20,
@@ -220,11 +209,11 @@ class _FeesPageState extends State<FeesPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               Text(
-                "07:00",
+                "T1234",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(
-                "AM",
+                "23/10/2022",
                 style:
                     TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
               ),
@@ -242,24 +231,20 @@ class _FeesPageState extends State<FeesPage> {
               SizedBox(
                 width: MediaQuery.of(context).size.width - 160,
                 child: const Text(
-                  "The Basic of Typography II",
+                  "Transaction details",
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Icon(
-                    Icons.location_on,
-                    color: Colors.grey,
-                    size: 20,
-                  ),
                   const SizedBox(
                     width: 5,
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width - 160,
                     child: const Text(
-                      "Room C1, Faculty of Art & Design Building",
+                      "Mpesa",
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(color: Colors.grey, fontSize: 13),
                     ),
@@ -268,16 +253,11 @@ class _FeesPageState extends State<FeesPage> {
               ),
               Row(
                 children: const [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=80"),
-                    radius: 10,
-                  ),
                   SizedBox(
                     width: 5,
                   ),
                   Text(
-                    "Gabriel Sutton",
+                    "Bildad",
                     style: TextStyle(color: Colors.grey, fontSize: 13),
                   )
                 ],
