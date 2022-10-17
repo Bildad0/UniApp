@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import '../widgets/minicalender.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({Key? key}) : super(key: key);
@@ -9,6 +12,10 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> {
+  var year = DateFormat('y').format(DateTime.now());
+  var month = DateFormat('MMM').format(DateTime.now());
+  var date = DateTime.now().day;
+  var day = DateFormat('EEE').format(DateTime.now());
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -28,17 +35,17 @@ class _CalendarPageState extends State<CalendarPage> {
                     width: 15,
                   ),
                   RichText(
-                    text: const TextSpan(
-                        text: "Oct",
-                        style: TextStyle(
+                    text: TextSpan(
+                        text: "$month  ",
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Color(0XFF263064),
                           fontSize: 22,
                         ),
                         children: [
                           TextSpan(
-                            text: "2022",
-                            style: TextStyle(
+                            text: year,
+                            style: const TextStyle(
                               fontWeight: FontWeight.normal,
                               fontSize: 16,
                             ),
@@ -73,14 +80,8 @@ class _CalendarPageState extends State<CalendarPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      buildDateColumn("S", 7, false),
-                      buildDateColumn("M", 8, false),
-                      buildDateColumn("T", 9, false),
-                      buildDateColumn("W", 10, false),
-                      buildDateColumn("T", 11, false),
-                      buildDateColumn("F", 12, false),
-                      buildDateColumn("S", 13, false),
+                    children: const [
+                      // MiniCalender(),
                     ],
                   ),
                 ),

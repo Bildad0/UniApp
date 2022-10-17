@@ -9,12 +9,12 @@ class FeesPage extends StatefulWidget {
   _FeesPageState createState() => _FeesPageState();
 }
 
-//work on date time
-class Today {
-  var now = DateFormat.yMMMMd('en_US').format(DateTime.now());
-}
 
 class _FeesPageState extends State<FeesPage> {
+  var year = DateFormat('y').format(DateTime.now());
+  var month = DateFormat('MMM').format(DateTime.now());
+  var date = DateTime.now().day;
+  var day = DateFormat('EEE').format(DateTime.now());
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -36,16 +36,16 @@ class _FeesPageState extends State<FeesPage> {
               Container(
                 alignment: Alignment.centerRight,
                 child: RichText(
-                  text: const TextSpan(
-                      text: "Wed",
-                      style: TextStyle(
+                  text: TextSpan(
+                      text: day,
+                      style: const TextStyle(
                           color: Color(0XFF263064),
                           fontSize: 12,
                           fontWeight: FontWeight.w900),
                       children: [
                         TextSpan(
-                          text: " 10 Oct",
-                          style: TextStyle(
+                          text: "  $date $month", //neccessary space for date
+                          style: const TextStyle(
                               color: Color(0XFF263064),
                               fontSize: 12,
                               fontWeight: FontWeight.normal),

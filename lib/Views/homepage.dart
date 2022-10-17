@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -12,11 +14,13 @@ class HomePage extends StatefulWidget {
 }
 
 //work on date time
-class Today {
-  var now = DateFormat.yMMMMd('en_US').format(DateTime.now());
-}
-
 class _HomePageState extends State<HomePage> {
+  //getting current dateand formating as expected
+  var year = DateFormat('y').format(DateTime.now());
+  var month = DateFormat('MMM').format(DateTime.now());
+  var date = DateTime.now().day;
+//end
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -38,16 +42,16 @@ class _HomePageState extends State<HomePage> {
               Container(
                 alignment: Alignment.centerRight,
                 child: RichText(
-                  text: const TextSpan(
-                      text: "Wed",
-                      style: TextStyle(
+                  text: TextSpan(
+                      text: "$date $month   ", //necessary space for date
+                      style: const TextStyle(
                           color: Color(0XFF263064),
                           fontSize: 12,
                           fontWeight: FontWeight.w900),
                       children: [
                         TextSpan(
-                          text: " 10 Oct",
-                          style: TextStyle(
+                          text: year,
+                          style: const TextStyle(
                               color: Color(0XFF263064),
                               fontSize: 12,
                               fontWeight: FontWeight.normal),
@@ -84,8 +88,7 @@ class _HomePageState extends State<HomePage> {
                         ],
                         image: const DecorationImage(
                           fit: BoxFit.cover,
-                          image: NetworkImage(
-                              "https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80"),
+                          image: NetworkImage(""),
                         ),
                       ),
                     ),
