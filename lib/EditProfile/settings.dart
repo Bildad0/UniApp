@@ -1,4 +1,6 @@
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +15,20 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  bool isSwitched = false;
+
+  void toggleSwitch(value) {
+    if (isSwitched == false) {
+      setState(() {
+        isSwitched = true;
+      });
+    } else {
+      setState(() {
+        isSwitched = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,9 +108,63 @@ class _SettingsPageState extends State<SettingsPage> {
             const SizedBox(
               height: 10,
             ),
-            buildNotificationOptionRow("New for you", false),
-            buildNotificationOptionRow("Account activity", false),
-            buildNotificationOptionRow("Opportunity", false),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "New for you",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey[600]),
+                ),
+                Transform.scale(
+                    scale: 0.7,
+                    child: FlutterSwitch(
+                      activeColor: Colors.green,
+                      value: isSwitched,
+                      onToggle: toggleSwitch,
+                    ))
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Account activity",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey[600]),
+                ),
+                Transform.scale(
+                    scale: 0.7,
+                    child: FlutterSwitch(
+                      activeColor: Colors.green,
+                      value: isSwitched,
+                      onToggle: toggleSwitch,
+                    ))
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Opportunity",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey[600]),
+                ),
+                Transform.scale(
+                    scale: 0.7,
+                    child: FlutterSwitch(
+                      activeColor: Colors.green,
+                      value: isSwitched,
+                      onToggle: toggleSwitch,
+                    ))
+              ],
+            ),
             const SizedBox(
               height: 50,
             ),
@@ -119,7 +189,7 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Row buildNotificationOptionRow(String title, bool isActive) {
+  Row accountActivity(String title) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -133,8 +203,35 @@ class _SettingsPageState extends State<SettingsPage> {
         Transform.scale(
             scale: 0.7,
             child: CupertinoSwitch(
-              value: isActive,
-              onChanged: (bool val) {},
+              activeColor: Colors.green,
+              trackColor: Colors.green[50],
+              dragStartBehavior: DragStartBehavior.start,
+              value: isSwitched,
+              onChanged: toggleSwitch,
+            ))
+      ],
+    );
+  }
+
+  Row opportunity(String title) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[600]),
+        ),
+        Transform.scale(
+            scale: 0.7,
+            child: CupertinoSwitch(
+              activeColor: Colors.green,
+              trackColor: Colors.green[50],
+              dragStartBehavior: DragStartBehavior.start,
+              value: isSwitched,
+              onChanged: toggleSwitch,
             ))
       ],
     );
