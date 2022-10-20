@@ -5,7 +5,6 @@ import 'package:uniapp/Views/Chats/chatpage.dart';
 import 'package:uniapp/Views/calender.dart';
 import 'package:uniapp/Views/feemanagement.dart';
 import 'package:uniapp/Views/homepage.dart';
-import 'package:uniapp/widgets/minicalender.dart';
 
 class SchoolManagement extends StatefulWidget {
   const SchoolManagement({Key? key}) : super(key: key);
@@ -18,9 +17,9 @@ class _SchoolManagementState extends State<SchoolManagement> {
   int _selectedItemIndex = 0;
   final List pages = const [
     HomePage(),
-    MiniCalender(), //for testing my calender page
+    null, //for testing my calender page
     FeesPage(),
-    CalendarPage(),
+    MiniCalender(),
     ChatPage(),
   ];
   @override
@@ -48,7 +47,7 @@ class _SchoolManagementState extends State<SchoolManagement> {
               ),
               BottomNavigationBarItem(
                 label: "Notes",
-                icon: Icon(Icons.menu_book),
+                icon: Icon(Icons.school_outlined),
               ),
               BottomNavigationBarItem(
                 label: "Fees",

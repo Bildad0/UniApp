@@ -26,8 +26,8 @@ final _kEventSource = {
         item % 4 + 1, (index) => Event('Event $item | ${index + 1}'))
 }..addAll({
     kToday: const [
-      Event('Today\'s Event 1'),
-      Event('Today\'s Event 2'),
+      Event('Data Science and Algorithm'),
+      Event('General Computer Studies'),
     ],
   });
 
