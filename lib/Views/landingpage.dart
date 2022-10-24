@@ -5,6 +5,7 @@ import 'package:uniapp/Views/Chats/chatpage.dart';
 import 'package:uniapp/Views/calender.dart';
 import 'package:uniapp/Views/feemanagement.dart';
 import 'package:uniapp/Views/homepage.dart';
+import 'package:uniapp/Views/notes.dart';
 
 class SchoolManagement extends StatefulWidget {
   const SchoolManagement({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class _SchoolManagementState extends State<SchoolManagement> {
   int _selectedItemIndex = 0;
   final List pages = const [
     HomePage(),
-    null, //for testing my calender page
+    NotesPage(), //for testing my calender page
     FeesPage(),
     MiniCalender(),
     ChatPage(),
