@@ -19,7 +19,7 @@ class _NotesPageState extends State<NotesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             children: [
@@ -76,7 +76,7 @@ class _NotesPageState extends State<NotesPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
                             Text(
-                              "Hi Bildad",
+                              "Learning Dashboard",
                               style: TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.w900,
@@ -84,20 +84,10 @@ class _NotesPageState extends State<NotesPage> {
                               ),
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 20,
                             ),
                             Text(
-                              "Here is a list of schedule",
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.blueGrey,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Text(
-                              "You need to check...",
+                              "Resent Accessed Courses",
                               style: TextStyle(
                                 fontSize: 13,
                                 color: Colors.blueGrey,
