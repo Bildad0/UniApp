@@ -102,6 +102,26 @@ class _NotesPageState extends State<NotesPage> {
               ),
             ],
           ),
+          const SizedBox(
+            height: 100,
+            width: 500,
+            child: Center(
+              child: Card(
+                shadowColor: Color.fromARGB(255, 177, 195, 226),
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    color: Color.fromARGB(255, 148, 148, 194),
+                  ),
+                ),
+                child: SizedBox(
+                  width: 300,
+                  height: 100,
+                  child: Center(child: Text('Unit Name')),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

@@ -148,7 +148,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 buildTitleRow("TODAY CLASSES", 3),
                 const SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 buildClassItem(),
                 buildClassItem(),
