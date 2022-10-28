@@ -25,15 +25,15 @@ class _NotesPageState extends State<NotesPage> {
             children: [
               Container(
                 decoration: const BoxDecoration(
-                    //color: Color(0xFFD4E7FE),
-                    gradient: LinearGradient(
-                        colors: [
-                          Color(0xFFD4E7FE),
-                          Color(0xFFF0F0F0),
-                        ],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        stops: [0.6, 0.3])),
+                  gradient: LinearGradient(
+                      colors: [
+                        Color(0xFFD4E7FE),
+                        Color(0xFFF0F0F0),
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: [0.6, 0.3]),
+                ),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
                 child: Column(
@@ -64,7 +64,8 @@ class _NotesPageState extends State<NotesPage> {
                               ],
                               image: const DecorationImage(
                                 fit: BoxFit.cover,
-                                image: NetworkImage(""),
+                                image: NetworkImage(
+                                    "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
                               ),
                             ),
                           ),
@@ -84,13 +85,15 @@ class _NotesPageState extends State<NotesPage> {
                               ),
                             ),
                             SizedBox(
-                              height: 20,
+                              height: 30,
                             ),
-                            Text(
-                              "Resent Accessed Courses",
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.blueGrey,
+                            Center(
+                              child: Text(
+                                "Resent Accessed Courses",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.blueGrey,
+                                ),
                               ),
                             ),
                           ],
@@ -102,27 +105,152 @@ class _NotesPageState extends State<NotesPage> {
               ),
             ],
           ),
-          const SizedBox(
+          SizedBox(
             height: 100,
-            width: 500,
-            child: Center(
-              child: Card(
-                shadowColor: Color.fromARGB(255, 177, 195, 226),
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                    color: Color.fromARGB(255, 148, 148, 194),
-                  ),
+            width: 400,
+            child: Card(
+              shadowColor: const Color.fromARGB(255, 177, 195, 226),
+              elevation: 0,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                side: BorderSide(
+                  color: Color.fromARGB(255, 148, 148, 194),
                 ),
-                child: SizedBox(
-                  width: 300,
-                  height: 100,
-                  child: Center(child: Text('Unit Name')),
+              ),
+              child: SizedBox(
+                width: 200,
+                height: 100,
+                child: Column(
+                  children: [
+                    const Text("Computer Architecture"),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      children: const [
+                        Text("Dr. Hadullo"),
+                      ],
+                    )
+                  ],
                 ),
               ),
             ),
-          )
+          ),
+          const Divider(
+            color: Colors.black,
+          ),
+          const CourseOverview(),
         ],
+      ),
+    );
+  }
+}
+
+class CourseOverview extends StatelessWidget {
+  const CourseOverview({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        IntrinsicHeight(
+          child: Row(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(width: 1, color: Colors.white),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.blueGrey.withOpacity(0.2),
+                      blurRadius: 12,
+                      spreadRadius: 8,
+                    )
+                  ],
+                  image: const DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              const VerticalDivider(
+                color: Colors.black,
+                thickness: 2,
+              ),
+              Column(
+                children: const [
+                  Text("Code"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text("Title")
+                ],
+              ),
+              const VerticalDivider(
+                color: Colors.black,
+                thickness: 2,
+              ),
+              Column(
+                children: const [
+                  Text("Progress"),
+                  ProgressBar(),
+                ],
+              )
+            ],
+          ),
+        ),
+        Row(),
+      ],
+    );
+  }
+}
+
+class ProgressBar extends StatefulWidget {
+  const ProgressBar({super.key});
+  @override
+  State<StatefulWidget> createState() {
+    return ProgressBarState();
+  }
+}
+
+class ProgressBarState extends State<ProgressBar> {
+  late bool _loading;
+  late double _progressValue;
+
+  @override
+  void initState() {
+    super.initState();
+    _loading = false;
+    _progressValue = 0.0;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.all(12.0),
+        child: _loading
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  LinearProgressIndicator(
+                    backgroundColor: Colors.cyanAccent,
+                    valueColor: const AlwaysStoppedAnimation<Color>(Colors.red),
+                    value: _progressValue,
+                  ),
+                  Text('${(_progressValue * 100).round()}%'),
+                ],
+              )
+            : const Text(
+                "View",
+                style: TextStyle(fontSize: 25),
+              ),
       ),
     );
   }
