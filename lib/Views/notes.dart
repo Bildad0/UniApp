@@ -119,7 +119,7 @@ class _NotesPageState extends State<NotesPage> {
               ),
               child: SizedBox(
                 width: 200,
-                height: 100,
+                height: 80,
                 child: Column(
                   children: [
                     const Text("Computer Architecture"),
@@ -140,6 +140,47 @@ class _NotesPageState extends State<NotesPage> {
             color: Colors.black,
           ),
           const CourseOverview(),
+          const SizedBox(
+            height: 10,
+          ),
+          const CourseOverview(),
+          const SizedBox(
+            height: 10,
+          ),
+          const CourseOverview(),
+          const SizedBox(
+            height: 10,
+          ),
+          const CourseOverview(),
+          const Divider(
+            color: Colors.black,
+          ),
+          Row(
+            children: const [
+              Center(
+                child: Text(
+                  "Previous Semester Exam Result",
+                  style: TextStyle(color: Colors.green, fontSize: 15),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const ExamResult(),
+          const SizedBox(
+            height: 10,
+          ),
+          const ExamResult(),
+          const SizedBox(
+            height: 10,
+          ),
+          const ExamResult(),
+          const SizedBox(
+            height: 10,
+          ),
+          const ExamResult(),
         ],
       ),
     );
@@ -205,7 +246,6 @@ class CourseOverview extends StatelessWidget {
             ],
           ),
         ),
-        Row(),
       ],
     );
   }
@@ -252,6 +292,73 @@ class ProgressBarState extends State<ProgressBar> {
                 style: TextStyle(fontSize: 25),
               ),
       ),
+    );
+  }
+}
+
+class ExamResult extends StatefulWidget {
+  const ExamResult({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return ExamResultState();
+  }
+}
+
+class ExamResultState extends State<ExamResult> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        IntrinsicHeight(
+          child: Row(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(width: 1, color: Colors.white),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.blueGrey.withOpacity(0.2),
+                      blurRadius: 12,
+                      spreadRadius: 8,
+                    )
+                  ],
+                  image: const DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Column(
+                children: const [
+                  Text("Code"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text("Title")
+                ],
+              ),
+              const VerticalDivider(
+                color: Colors.black,
+                thickness: 2,
+              ),
+              Column(
+                children: const [
+                  Text("Grade"),
+                  Text("A"),
+                ],
+              )
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

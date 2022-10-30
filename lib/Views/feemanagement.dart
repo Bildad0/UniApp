@@ -9,7 +9,6 @@ class FeesPage extends StatefulWidget {
   _FeesPageState createState() => _FeesPageState();
 }
 
-
 class _FeesPageState extends State<FeesPage> {
   var year = DateFormat('y').format(DateTime.now());
   var month = DateFormat('MMM').format(DateTime.now());
@@ -66,7 +65,7 @@ class _FeesPageState extends State<FeesPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
                       Text(
-                        "Here is you financial status",
+                        "Here is your financial status",
                         style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.w900,
