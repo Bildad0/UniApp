@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -152,32 +154,6 @@ class _MiniCalenderState extends State<MiniCalender> {
             ],
           ),
         ),
-        const SchoolNews(),
-      ],
-    );
-  }
-}
-
-class SchoolNews extends StatefulWidget {
-  const SchoolNews({super.key});
-
-  @override
-  State<StatefulWidget> createState() {
-    return SchoolNewsState();
-  }
-}
-
-class SchoolNewsState extends State<SchoolNews> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        SizedBox(
-          height: 25,
-        ),
-        Center(
-          child: Text("Here are some of the school Activities and news"),
-        )
       ],
     );
   }

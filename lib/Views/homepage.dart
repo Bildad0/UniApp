@@ -78,7 +78,8 @@ class _HomePageState extends State<HomePage> {
                         ],
                         image: const DecorationImage(
                           fit: BoxFit.cover,
-                          image: NetworkImage(""),
+                          image: NetworkImage(
+                              "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
                         ),
                       ),
                     ),
@@ -153,12 +154,9 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      buildTaskItem(
-                          3, "The Basic of Typography II", Colors.red),
-                      buildTaskItem(3, "Design Psychology: Principle of...",
-                          Colors.green),
-                      buildTaskItem(3, "Design Psychology: Principle of...",
-                          Colors.green),
+                      buildTaskItem(3, "The Basic of Computer II", Colors.red),
+                      buildTaskItem(3, "Design Principles", Colors.green),
+                      buildTaskItem(3, "Mathematics for Science", Colors.green),
                     ],
                   ),
                 ),
@@ -318,13 +316,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ]),
         ),
-        // const Text(
-        //   "See all",
-        //   style: TextStyle(
-        //       fontSize: 12,
-        //       color: Color(0XFF3E3993),
-        //       fontWeight: FontWeight.bold),
-        // )
       ],
     );
   }
@@ -367,7 +358,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 width: MediaQuery.of(context).size.width - 160,
                 child: const Text(
-                  "The Basic of Typography II",
+                  "The Basic of Computer II",
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -384,7 +375,7 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width - 160,
                     child: const Text(
-                      "Room C1, Faculty of Art & Design Building",
+                      "Room C1, Institute of Computing & Informatics",
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(color: Colors.grey, fontSize: 13),
                     ),
@@ -395,14 +386,14 @@ class _HomePageState extends State<HomePage> {
                 children: const [
                   CircleAvatar(
                     backgroundImage: NetworkImage(
-                        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=80"),
+                        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
                     radius: 10,
                   ),
                   SizedBox(
                     width: 5,
                   ),
                   Text(
-                    "Gabriel Sutton",
+                    "Dr. Mwakondo",
                     style: TextStyle(color: Colors.grey, fontSize: 13),
                   )
                 ],

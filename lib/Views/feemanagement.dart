@@ -117,8 +117,8 @@ class _FeesPageState extends State<FeesPage> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      buildTaskItem("MPESA", Colors.green),
-                      buildTaskItem("BANK", Colors.green),
+                      buildTaskItem("MPESA", Colors.green, "Till: 564773"),
+                      buildTaskItem("BANK", Colors.green, "Account: 12345678"),
                     ],
                   ),
                 )
@@ -130,7 +130,7 @@ class _FeesPageState extends State<FeesPage> {
     );
   }
 
-  Container buildTaskItem(String title, Color color) {
+  Container buildTaskItem(String title, Color color, String paymentMethod) {
     return Container(
       margin: const EdgeInsets.only(right: 15),
       padding: const EdgeInsets.all(12),
@@ -152,6 +152,12 @@ class _FeesPageState extends State<FeesPage> {
               title,
               style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [Text(paymentMethod)],
           ),
         ],
       ),
