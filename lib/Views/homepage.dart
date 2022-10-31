@@ -171,12 +171,84 @@ class _HomePageState extends State<HomePage> {
                           Colors.green),
                     ],
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "NEWS",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                newsCard(),
+                newsCard(),
+                newsCard(),
+                newsCard(),
+                newsCard(),
               ],
             ),
           ),
         )
       ],
+    );
+  }
+
+  Card newsCard() {
+    return Card(
+      color: Colors.blueGrey,
+      elevation: 0,
+      margin: const EdgeInsets.all(5),
+      child: Row(
+        children: [
+          Container(
+            height: 120,
+            width: 120,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1R8l6xir6h1yWG4MqWlKR5V9Y-914Qd55TxVee2V4&s"),
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Column(
+            children: [
+              const Text(
+                "Title about the news",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                "This is a sample news for students.",
+                textAlign: TextAlign.left,
+                overflow: TextOverflow.fade,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: const [
+                  Text(
+                    "Date created",
+                    textAlign: TextAlign.left,
+                  ),
+                  SizedBox(
+                    width: 100,
+                  ),
+                  Text(
+                    "Created by",
+                    textAlign: TextAlign.right,
+                  )
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
