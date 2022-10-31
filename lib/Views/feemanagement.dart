@@ -19,16 +19,6 @@ class _FeesPageState extends State<FeesPage> {
     return Stack(
       children: [
         Container(
-          decoration: const BoxDecoration(
-              //color: Color(0xFFD4E7FE),
-              gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFD4E7FE),
-                    Color(0xFFF0F0F0),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: [0.6, 0.3])),
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
           child: Column(
             children: [

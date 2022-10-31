@@ -24,16 +24,6 @@ class _NotesPageState extends State<NotesPage> {
           Stack(
             children: [
               Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Color(0xFFD4E7FE),
-                        Color(0xFFF0F0F0),
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: [0.6, 0.3]),
-                ),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
                 child: Column(
@@ -110,29 +100,29 @@ class _NotesPageState extends State<NotesPage> {
             width: 400,
             child: Card(
               shadowColor: const Color.fromARGB(255, 177, 195, 226),
-              elevation: 0,
+              elevation: 5,
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 side: BorderSide(
                   color: Color.fromARGB(255, 148, 148, 194),
                 ),
               ),
-              child: SizedBox(
-                width: 200,
-                height: 80,
-                child: Column(
-                  children: [
-                    const Text("Computer Architecture"),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      children: const [
-                        Text("Dr. Hadullo"),
-                      ],
-                    )
-                  ],
-                ),
+              child: Column(
+                children: [
+                  const Text(
+                    "Computer Architecture",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: const [
+                      Text("Dr. Hadullo"),
+                    ],
+                  )
+                ],
               ),
             ),
           ),

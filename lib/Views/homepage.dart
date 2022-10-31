@@ -26,16 +26,6 @@ class _HomePageState extends State<HomePage> {
     return Stack(
       children: [
         Container(
-          decoration: const BoxDecoration(
-              //color: Color(0xFFD4E7FE),
-              gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFD4E7FE),
-                    Color(0xFFF0F0F0),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: [0.6, 0.3])),
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
           child: Column(
             children: [
@@ -195,7 +185,7 @@ class _HomePageState extends State<HomePage> {
   Card newsCard() {
     return Card(
       color: Colors.blueGrey,
-      elevation: 0,
+      elevation: 5,
       margin: const EdgeInsets.all(5),
       child: Row(
         children: [
@@ -328,13 +318,13 @@ class _HomePageState extends State<HomePage> {
                 ),
               ]),
         ),
-        const Text(
-          "See all",
-          style: TextStyle(
-              fontSize: 12,
-              color: Color(0XFF3E3993),
-              fontWeight: FontWeight.bold),
-        )
+        // const Text(
+        //   "See all",
+        //   style: TextStyle(
+        //       fontSize: 12,
+        //       color: Color(0XFF3E3993),
+        //       fontWeight: FontWeight.bold),
+        // )
       ],
     );
   }
