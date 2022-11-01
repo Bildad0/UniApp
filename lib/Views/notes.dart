@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:intl/intl.dart';
 import 'package:uniapp/EditProfile/edit_profile.dart';
@@ -66,6 +68,9 @@ class _NotesPageState extends State<NotesPage> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
+                            SizedBox(
+                              width: 20,
+                            ),
                             Text(
                               "Learning Dashboard",
                               style: TextStyle(
@@ -79,9 +84,9 @@ class _NotesPageState extends State<NotesPage> {
                             ),
                             Center(
                               child: Text(
-                                "Resent Accessed Courses",
+                                "Resently Accessed Courses",
                                 style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 20,
                                   color: Colors.blueGrey,
                                 ),
                               ),
@@ -95,82 +100,180 @@ class _NotesPageState extends State<NotesPage> {
               ),
             ],
           ),
-          SizedBox(
-            height: 100,
-            width: 400,
-            child: Card(
-              shadowColor: const Color.fromARGB(255, 177, 195, 226),
-              elevation: 5,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                side: BorderSide(
-                  color: Color.fromARGB(255, 148, 148, 194),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                SizedBox(
+                  height: 100,
+                  width: 200,
+                  child: Card(
+                    shadowColor: const Color.fromARGB(255, 177, 195, 226),
+                    elevation: 5,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      side: BorderSide(
+                        color: Color.fromARGB(255, 148, 148, 194),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Computer Architecture",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          children: const [
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text("Dr. Hadullo"),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-              child: Column(
-                children: [
-                  const Text(
-                    "Computer Architecture",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                SizedBox(
+                  height: 100,
+                  width: 200,
+                  child: Card(
+                    shadowColor: const Color.fromARGB(255, 177, 195, 226),
+                    elevation: 5,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      side: BorderSide(
+                        color: Color.fromARGB(255, 148, 148, 194),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Computer Architecture",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          children: const [
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text("Dr. Hadullo"),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                  const SizedBox(
-                    height: 5,
+                ),
+                SizedBox(
+                  height: 100,
+                  width: 200,
+                  child: Card(
+                    shadowColor: const Color.fromARGB(255, 177, 195, 226),
+                    elevation: 5,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      side: BorderSide(
+                        color: Color.fromARGB(255, 148, 148, 194),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Computer Architecture",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Column(
+                          children: const [
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Dr. Hadullo",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text("Introduction to computer Architecture"),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                  Row(
-                    children: const [
-                      Text("Dr. Hadullo"),
-                    ],
-                  )
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-          const Divider(
-            color: Colors.black,
-          ),
-          const CourseOverview(),
-          const SizedBox(
-            height: 10,
-          ),
-          const CourseOverview(),
-          const SizedBox(
-            height: 10,
-          ),
-          const CourseOverview(),
-          const SizedBox(
-            height: 10,
-          ),
-          const CourseOverview(),
-          const Divider(
-            color: Colors.black,
-          ),
-          Row(
-            children: const [
-              Center(
-                child: Text(
-                  "Previous Semester Exam Result",
-                  style: TextStyle(color: Colors.green, fontSize: 15),
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: const [
+                Divider(
+                  color: Colors.black,
                 ),
-              ),
-            ],
+                Center(
+                  child: Text(
+                    "This semester Courses",
+                    style: TextStyle(
+                        color: Color(0XFF343E87), fontWeight: FontWeight.bold),
+                  ),
+                ),
+                CourseOverview(),
+                SizedBox(
+                  height: 10,
+                ),
+                CourseOverview(),
+                SizedBox(
+                  height: 10,
+                ),
+                CourseOverview(),
+                SizedBox(
+                  height: 10,
+                ),
+                CourseOverview(),
+                Divider(
+                  color: Colors.black,
+                ),
+                Center(
+                  child: Text(
+                    "Previous Semester Exam Result",
+                    style: TextStyle(
+                        color: Color(0XFF343E87),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ExamResult(),
+                SizedBox(
+                  height: 10,
+                ),
+                ExamResult(),
+                SizedBox(
+                  height: 10,
+                ),
+                ExamResult(),
+                SizedBox(
+                  height: 10,
+                ),
+                ExamResult(),
+              ],
+            ),
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ExamResult(),
-          const SizedBox(
-            height: 10,
-          ),
-          const ExamResult(),
-          const SizedBox(
-            height: 10,
-          ),
-          const ExamResult(),
-          const SizedBox(
-            height: 10,
-          ),
-          const ExamResult(),
         ],
       ),
     );
@@ -220,7 +323,7 @@ class CourseOverview extends StatelessWidget {
                   SizedBox(
                     height: 5,
                   ),
-                  Text("Title")
+                  Text("Introduction to Computer ")
                 ],
               ),
               const VerticalDivider(
@@ -228,6 +331,7 @@ class CourseOverview extends StatelessWidget {
                 thickness: 2,
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: const [
                   Text("Progress"),
                   ProgressBar(),
@@ -262,27 +366,48 @@ class ProgressBarState extends State<ProgressBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        padding: const EdgeInsets.all(12.0),
-        child: _loading
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  LinearProgressIndicator(
-                    backgroundColor: Colors.cyanAccent,
-                    valueColor: const AlwaysStoppedAnimation<Color>(Colors.red),
-                    value: _progressValue,
-                  ),
-                  Text('${(_progressValue * 100).round()}%'),
-                ],
-              )
-            : const Text(
+    return Container(
+      padding: const EdgeInsets.all(12.0),
+      child: _loading
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                LinearProgressIndicator(
+                  backgroundColor: Colors.cyanAccent,
+                  valueColor: const AlwaysStoppedAnimation<Color>(Colors.red),
+                  value: _progressValue,
+                ),
+                Text('${(_progressValue * 100).round()}%'),
+              ],
+            )
+          : GestureDetector(
+              child: const Text(
                 "View",
                 style: TextStyle(fontSize: 25),
               ),
-      ),
+              onTap: () => {
+                setState(() {
+                  _loading = !_loading;
+                  _updateProgress();
+                }),
+              },
+            ),
     );
+  }
+
+  void _updateProgress() {
+    const oneSec = Duration(seconds: 1);
+    Timer.periodic(oneSec, (Timer t) {
+      setState(() {
+        _progressValue = 50;
+        // we "finish" downloading here
+        if (_progressValue.toStringAsFixed(1) == '1.0') {
+          _loading = false;
+          t.cancel();
+          return;
+        }
+      });
+    });
   }
 }
 
@@ -332,7 +457,7 @@ class ExamResultState extends State<ExamResult> {
                   SizedBox(
                     height: 5,
                   ),
-                  Text("Title")
+                  Text("Software Development and management")
                 ],
               ),
               const VerticalDivider(
