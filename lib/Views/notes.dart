@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:intl/intl.dart';
 import 'package:uniapp/EditProfile/edit_profile.dart';
+import 'package:uniapp/Views/unit_overview.dart';
 
 class NotesPage extends StatefulWidget {
   const NotesPage({Key? key}) : super(key: key);
@@ -317,14 +318,23 @@ class CourseOverview extends StatelessWidget {
                 color: Colors.black,
                 thickness: 2,
               ),
-              Column(
-                children: const [
-                  Text("Code"),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text("Introduction to Computer ")
-                ],
+              GestureDetector(
+                onTap: (() => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const UnitPage()))
+                    }),
+                child: Column(
+                  children: const [
+                    Text("Code"),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text("Introduction to Computer ")
+                  ],
+                ),
               ),
               const VerticalDivider(
                 color: Colors.black,
