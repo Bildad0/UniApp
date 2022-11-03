@@ -15,7 +15,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
     ChatMessage(messageContent: "Hello, Billy", messageType: "receiver"),
     ChatMessage(messageContent: "How have you been?", messageType: "receiver"),
     ChatMessage(
-        messageContent: "Hey Kriss, I am doing fine dude. wbu?",
+        messageContent: "Hey billy, I am doing fine dude. wbu?",
         messageType: "sender"),
     ChatMessage(messageContent: "ehhhh, doing OK.", messageType: "receiver"),
     ChatMessage(

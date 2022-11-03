@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:uniapp/Views/notes.dart';
+import 'package:uniapp/widgets/topicwidget.dart';
 
 class UnitPage extends StatefulWidget {
   const UnitPage({super.key});
@@ -24,9 +25,11 @@ class _UnitPageState extends State<UnitPage> {
         leading: GestureDetector(
           onTap: () => {
             Navigator.pop(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => const NotesPage()))
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => const NotesPage(),
+              ),
+            ),
           },
           child: const Icon(
             Icons.arrow_back,
@@ -69,7 +72,8 @@ class _UnitPageState extends State<UnitPage> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-              )
+              ),
+              const TopicWidget(),
             ],
           ),
         ),
