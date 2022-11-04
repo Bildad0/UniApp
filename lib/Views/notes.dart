@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'package:uniapp/EditProfile/edit_profile.dart';
 import 'package:uniapp/Views/unit_overview.dart';
@@ -408,7 +409,7 @@ class ProgressBarState extends State<ProgressBar> {
       child: _loading
           ? Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children: [
                 LinearProgressIndicator(
                   backgroundColor: Colors.cyanAccent,
                   valueColor: const AlwaysStoppedAnimation<Color>(Colors.red),
