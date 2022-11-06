@@ -152,7 +152,17 @@ class _HomePageState extends State<HomePage> {
                   },
                   child: buildClassItem(),
                 ),
-                buildClassItem(),
+                GestureDetector(
+                  onTap: () => {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const EventPage()))
+                  },
+                  child: buildClassItem(),
+                ),
+                // buildClassItem(),
                 const SizedBox(
                   height: 25,
                 ),

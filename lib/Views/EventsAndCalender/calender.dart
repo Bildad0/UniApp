@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import 'package:uniapp/Utils/calender_utils.dart';
+import 'package:uniapp/Views/EventsAndCalender/eventpage.dart';
 
 class MiniCalender extends StatefulWidget {
   const MiniCalender({super.key});
@@ -142,7 +143,11 @@ class _MiniCalenderState extends State<MiniCalender> {
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           child: ListTile(
-                            onTap: () => print('${value[index]}'),
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const EventPage())),
                             title: Text('${value[index]}'),
                           ),
                         );
