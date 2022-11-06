@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:uniapp/Views/landingpage.dart';
+import 'package:uniapp/Views/loginpage.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth;
@@ -15,7 +17,7 @@ class AuthenticationService {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-      return 'Signed In';
+      return "Welcome";
     } on FirebaseAuthException catch (e) {
       return e.message;
     }

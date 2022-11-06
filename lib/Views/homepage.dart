@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:uniapp/Views/EventsAndCalender/eventpage.dart';
 
 import '../EditProfile/edit_profile.dart';
 
@@ -141,7 +142,16 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 15,
                 ),
-                buildClassItem(),
+                GestureDetector(
+                  onTap: () => {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const EventPage()))
+                  },
+                  child: buildClassItem(),
+                ),
                 buildClassItem(),
                 const SizedBox(
                   height: 25,

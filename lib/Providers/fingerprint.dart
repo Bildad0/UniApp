@@ -48,7 +48,7 @@ class _FingerPrintState extends State<FingerPrint> {
             height: 250,
           ),
           const Center(
-            child: Text("Verify Your Identity"),
+            child: Text("Click the button verify your identity"),
           ),
           const SizedBox(
             height: 50,

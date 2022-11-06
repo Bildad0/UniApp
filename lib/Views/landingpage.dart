@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:uniapp/Views/Chats/chatpage.dart';
-import 'package:uniapp/Views/calender.dart';
+import 'package:uniapp/Views/EventsAndCalender/calender.dart';
 import 'package:uniapp/Views/feemanagement.dart';
 import 'package:uniapp/Views/homepage.dart';
 import 'package:uniapp/Views/notes.dart';
