@@ -18,6 +18,8 @@ Future authenticate() async {
       options: const AuthenticationOptions(
         useErrorDialogs: true,
         stickyAuth: true,
+        sensitiveTransaction: false,
+        biometricOnly: true,
       ),
     );
   } on PlatformException {
@@ -52,9 +54,10 @@ class _FingerPrintState extends State<FingerPrint> {
               child: Text(
                 "Welcome Back".toUpperCase(),
                 style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20),
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
               ),
             ),
             const SizedBox(
@@ -66,9 +69,18 @@ class _FingerPrintState extends State<FingerPrint> {
                 height: 50,
                 width: 100,
                 child: ElevatedButton(
-                  style: const ButtonStyle(
-                    //backgroundColor: MaterialStatePropertyAll(Colors.blueGrey),
-                    elevation: MaterialStatePropertyAll(0),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25)),
+                    backgroundColor: Colors.transparent,
+                    side: const BorderSide(
+                      color: Colors.white,
+                      width: 3,
+                      style: BorderStyle.solid,
+                      strokeAlign: StrokeAlign.center,
+                    ),
                   ),
                   onPressed: () async {
                     bool isAuthenticated = await authenticate();
