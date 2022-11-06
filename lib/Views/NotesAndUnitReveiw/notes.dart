@@ -4,7 +4,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'package:uniapp/EditProfile/edit_profile.dart';
-import 'package:uniapp/Views/unit_overview.dart';
+import 'package:uniapp/Views/NotesAndUnitReveiw/unit_overview.dart';
 
 class NotesPage extends StatefulWidget {
   const NotesPage({Key? key}) : super(key: key);

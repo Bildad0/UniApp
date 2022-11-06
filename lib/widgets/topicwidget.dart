@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
-class TopicWidget extends StatelessWidget {
+class TopicWidget extends StatefulWidget {
   const TopicWidget({super.key});
 
+  @override
+  // ignore: library_private_types_in_public_api
+  _TopicWidgetState createState() => _TopicWidgetState();
+}
+
+class _TopicWidgetState extends State<TopicWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,6 +27,7 @@ class TopicWidget extends StatelessWidget {
                   width: 200,
                 ),
                 GestureDetector(
+                  onTap: (() => {}),
                   child: Row(
                     children: const [
                       Icon(
@@ -53,6 +60,7 @@ class TopicWidget extends StatelessWidget {
                   width: 200,
                 ),
                 GestureDetector(
+                  onTap: (() => {}),
                   child: Row(
                     children: const [
                       Icon(
@@ -85,6 +93,7 @@ class TopicWidget extends StatelessWidget {
                   width: 200,
                 ),
                 GestureDetector(
+                  onTap: (() => {}),
                   child: Row(
                     children: const [
                       Icon(

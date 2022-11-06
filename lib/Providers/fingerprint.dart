@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:uniapp/Views/landingpage.dart';
 import 'package:uniapp/Views/loginpage.dart';
@@ -45,31 +44,36 @@ class _FingerPrintState extends State<FingerPrint> {
       body: Column(
         children: [
           const SizedBox(
-            height: 250,
+            height: 200,
           ),
           const Center(
-            child: Text("Click the button verify your identity"),
+            child: Text("Welcome Back"),
           ),
           const SizedBox(
-            height: 50,
+            height: 30,
           ),
-          ElevatedButton(
-            onPressed: () async {
-              bool isAuthenticated = await authenticate();
-              if (isAuthenticated) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const SchoolManagement();
-                    },
-                  ),
-                );
-              } else {
-                const LogIn();
-              }
-            },
-            child: const Icon(Icons.fingerprint),
+          SizedBox(
+            height: 50,
+            width: 100,
+            child: ElevatedButton(
+              style: const ButtonStyle(),
+              onPressed: () async {
+                bool isAuthenticated = await authenticate();
+                if (isAuthenticated) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const SchoolManagement();
+                      },
+                    ),
+                  );
+                } else {
+                  const LogIn();
+                }
+              },
+              child: const Icon(Icons.arrow_forward),
+            ),
           ),
         ],
       ),

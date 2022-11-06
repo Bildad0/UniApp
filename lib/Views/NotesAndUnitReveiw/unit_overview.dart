@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:uniapp/Views/notes.dart';
+import 'package:uniapp/Views/NotesAndUnitReveiw/notes.dart';
 import 'package:uniapp/widgets/topicwidget.dart';
 
 class UnitPage extends StatefulWidget {

@@ -5,7 +5,7 @@ import 'package:uniapp/Views/Chats/chatpage.dart';
 import 'package:uniapp/Views/EventsAndCalender/calender.dart';
 import 'package:uniapp/Views/feemanagement.dart';
 import 'package:uniapp/Views/homepage.dart';
-import 'package:uniapp/Views/notes.dart';
+import 'package:uniapp/Views/NotesAndUnitReveiw/notes.dart';
 
 class SchoolManagement extends StatefulWidget {
   const SchoolManagement({Key? key}) : super(key: key);

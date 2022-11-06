@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uniapp/Views/loginpage.dart';
 
 import '../Providers/authservice.dart';
 
@@ -356,7 +357,13 @@ class _SettingsPageState extends State<SettingsPage> {
                       borderRadius: BorderRadius.circular(20)),
                 ),
                 onPressed: () {
-                  context.read<AuthenticationService>().signOut();
+                  context.read<AuthenticationService>().signOut().then(
+                        (value) => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => const LogIn()),
+                        ),
+                      );
                 },
                 child: const Text("SIGN OUT",
                     style: TextStyle(
