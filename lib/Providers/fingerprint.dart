@@ -14,7 +14,7 @@ Future authenticate() async {
 
   try {
     return await auth.authenticate(
-      localizedReason: 'Scan Fingerprint To login',
+      localizedReason: 'Scan Fingerprint To Login',
       options: const AuthenticationOptions(
         useErrorDialogs: true,
         stickyAuth: true,
@@ -39,43 +39,58 @@ class _FingerPrintState extends State<FingerPrint> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white10,
+        backgroundColor: Colors.blueGrey,
       ),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 200,
-          ),
-          const Center(
-            child: Text("Welcome Back"),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          SizedBox(
-            height: 50,
-            width: 100,
-            child: ElevatedButton(
-              style: const ButtonStyle(),
-              onPressed: () async {
-                bool isAuthenticated = await authenticate();
-                if (isAuthenticated) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const SchoolManagement();
-                      },
-                    ),
-                  );
-                } else {
-                  const LogIn();
-                }
-              },
-              child: const Icon(Icons.arrow_forward),
+      body: Container(
+        color: Colors.blueGrey,
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 200,
             ),
-          ),
-        ],
+            Center(
+              child: Text(
+                "Welcome Back".toUpperCase(),
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(180, 60, 0, 60),
+              child: SizedBox(
+                height: 50,
+                width: 100,
+                child: ElevatedButton(
+                  style: const ButtonStyle(
+                    //backgroundColor: MaterialStatePropertyAll(Colors.blueGrey),
+                    elevation: MaterialStatePropertyAll(0),
+                  ),
+                  onPressed: () async {
+                    bool isAuthenticated = await authenticate();
+                    if (isAuthenticated) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const SchoolManagement();
+                          },
+                        ),
+                      );
+                    } else {
+                      const LogIn();
+                    }
+                  },
+                  child: const Icon(Icons.arrow_forward),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
