@@ -136,12 +136,19 @@ class _NotesPageState extends State<NotesPage> {
                           const SizedBox(
                             height: 5,
                           ),
-                          Row(
+                          Column(
                             children: const [
                               SizedBox(
                                 width: 10,
                               ),
-                              Text("Dr. Hadullo"),
+                              Text(
+                                "Dr. Hadullo",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Introduction to computer Architecture"),
                             ],
                           )
                         ],
@@ -179,12 +186,19 @@ class _NotesPageState extends State<NotesPage> {
                           const SizedBox(
                             height: 5,
                           ),
-                          Row(
+                          Column(
                             children: const [
                               SizedBox(
                                 width: 10,
                               ),
-                              Text("Dr. Hadullo"),
+                              Text(
+                                "Dr. Hadullo",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Introduction to computer Architecture"),
                             ],
                           )
                         ],

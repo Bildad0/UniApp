@@ -97,7 +97,15 @@ class _FingerPrintState extends State<FingerPrint> {
                       const LogIn();
                     }
                   },
-                  child: const Icon(Icons.arrow_forward),
+                  child: Row(
+                    children: const [
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Icon(Icons.chevron_right),
+                      Icon(Icons.chevron_right),
+                    ],
+                  ),
                 ),
               ),
             ),
