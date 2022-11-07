@@ -100,9 +100,12 @@ class _FingerPrintState extends State<FingerPrint> {
                   child: Row(
                     children: const [
                       SizedBox(
-                        width: 20,
+                        width: 10,
                       ),
-                      Icon(Icons.chevron_right),
+                      Text(
+                        "Home",
+                        style: TextStyle(color: Colors.white),
+                      ),
                       Icon(Icons.chevron_right),
                     ],
                   ),

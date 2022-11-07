@@ -100,8 +100,7 @@ class _TopicWidgetState extends State<TopicWidget> {
                   child: Row(
                     children: const [
                       Icon(
-                        Icons.folder,
-                        semanticLabel: "pdf",
+                        Icons.file_download_sharp,
                         color: Color.fromARGB(255, 43, 84, 155),
                       ),
                       SizedBox(
@@ -142,7 +141,7 @@ class _TopicWidgetState extends State<TopicWidget> {
                   child: Row(
                     children: const [
                       Icon(
-                        Icons.folder,
+                        Icons.file_download_sharp,
                         color: Color.fromARGB(255, 43, 84, 155),
                       ),
                       SizedBox(
@@ -183,7 +182,7 @@ class _TopicWidgetState extends State<TopicWidget> {
                   child: Row(
                     children: const [
                       Icon(
-                        Icons.folder,
+                        Icons.file_download_sharp,
                         semanticLabel: "pdf",
                         color: Color.fromARGB(255, 43, 84, 155),
                       ),
@@ -225,7 +224,7 @@ class _TopicWidgetState extends State<TopicWidget> {
                   child: Row(
                     children: const [
                       Icon(
-                        Icons.folder,
+                        Icons.file_download_sharp,
                         semanticLabel: "pdf",
                         color: Color.fromARGB(255, 43, 84, 155),
                       ),

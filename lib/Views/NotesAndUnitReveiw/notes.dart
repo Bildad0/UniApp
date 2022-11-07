@@ -400,9 +400,7 @@ class CourseOverview extends StatelessWidget {
 class ProgressBar extends StatefulWidget {
   const ProgressBar({super.key});
   @override
-  State<StatefulWidget> createState() {
-    return ProgressBarState();
-  }
+  ProgressBarState createState() => ProgressBarState();
 }
 
 class ProgressBarState extends State<ProgressBar> {

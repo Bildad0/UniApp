@@ -35,6 +35,8 @@ dependencies:
   advance_pdf_viewer: ^2.0.1
   flutter_animation_progress_bar: ^2.3.1
   flutter_pdfview: ^1.2.5
+  talkjs_flutter: ^0.2.1
+  url_launcher: ^6.1.6
 
 flutter_icons:
  android: true

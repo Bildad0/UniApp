@@ -3,8 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:uniapp/Views/EventsAndCalender/eventpage.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../EditProfile/edit_profile.dart';
+
+final Uri _url = Uri.parse(
+    'https://medium.com/@owbildard/types-of-customers-you-will-meet-in-your-business-and-how-to-handle-them-9125d7ad45a5');
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -187,17 +191,31 @@ class _HomePageState extends State<HomePage> {
                   "NEWS",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                newsCard(),
-                newsCard(),
-                newsCard(),
-                newsCard(),
-                newsCard(),
+                GestureDetector(
+                  onTap: _launchUrl,
+                  child: newsCard(),
+                ),
+
+                GestureDetector(
+                  onTap: _launchUrl,
+                  child: newsCard(),
+                ),
+                GestureDetector(
+                  onTap: _launchUrl,
+                  child: newsCard(),
+                ),
               ],
             ),
           ),
         )
       ],
     );
+  }
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
   }
 
   Card newsCard() {
@@ -239,16 +257,16 @@ class _HomePageState extends State<HomePage> {
                 height: 10,
               ),
               Row(
-                children: const [
+                children: [
                   Text(
-                    "Date created",
+                    "$date  $month  $year",
                     textAlign: TextAlign.left,
                   ),
-                  SizedBox(
-                    width: 100,
+                  const SizedBox(
+                    width: 55,
                   ),
-                  Text(
-                    "Created by",
+                  const Text(
+                    "Created by: Bildad",
                     textAlign: TextAlign.right,
                   )
                 ],
