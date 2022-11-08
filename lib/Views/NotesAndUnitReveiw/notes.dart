@@ -259,53 +259,60 @@ class _NotesPageState extends State<NotesPage> {
               ],
             ),
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: const [
-                Divider(
-                  color: Colors.black,
-                ),
-                Center(
-                  child: Text(
-                    "This semester Courses",
-                    style: TextStyle(
-                        color: Color(0XFF343E87), fontWeight: FontWeight.bold),
+          Container(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: const [
+                  Divider(
+                    color: Colors.black,
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                CourseOverview(),
-                CourseOverview(),
-                CourseOverview(),
-                CourseOverview(),
-                Divider(
-                  color: Colors.black,
-                ),
-                Center(
-                  child: Text(
-                    "Previous Semester Exam Result",
-                    style: TextStyle(
-                        color: Color(0XFF343E87),
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold),
+                  Center(
+                    child: Text(
+                      "This semester Courses",
+                      style: TextStyle(
+                          color: Color(0XFF343E87),
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                ExamResult(),
-                ExamResult(),
-                ExamResult(),
-                ExamResult(),
-                ExamResult(),
-                Divider(
-                  color: Colors.black,
-                ),
-              ],
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CourseOverview(),
+                  CourseOverview(),
+                  CourseOverview(),
+                  CourseOverview(),
+                  Divider(
+                    color: Colors.black,
+                  ),
+                  Center(
+                    child: Text(
+                      "Previous Semester Exam Result",
+                      style: TextStyle(
+                          color: Color(0XFF343E87),
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ExamResult(),
+                  ExamResult(),
+                  ExamResult(),
+                  ExamResult(),
+                  ExamResult(),
+                ],
+              ),
             ),
           ),
+          // SingleChildScrollView(
+          //   scrollDirection: Axis.vertical,
+          //   child: Column(
+          //     children: const [],
+          //   ),
+          // ),
         ],
       ),
     );
@@ -418,17 +425,13 @@ class ProgressBarState extends State<ProgressBar> {
                   valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
                   value: _progressValue,
                 ),
-                Expanded(
-                  child: Text('${(_progressValue * 100).round()}%'),
-                ),
+                Text('${(_progressValue * 100).round()}%'),
               ],
             )
           : GestureDetector(
-              child: const Expanded(
-                child: Text(
-                  "View",
-                  style: TextStyle(fontSize: 25),
-                ),
+              child: const Text(
+                "View",
+                style: TextStyle(fontSize: 25),
               ),
               onTap: () => {
                 setState(() {
@@ -488,7 +491,7 @@ class ExamResultState extends State<ExamResult> {
                 ),
               ),
               const SizedBox(
-                height: 10,
+                width: 10,
               ),
               const VerticalDivider(
                 color: Colors.white,
