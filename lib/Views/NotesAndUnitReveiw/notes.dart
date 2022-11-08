@@ -273,18 +273,12 @@ class _NotesPageState extends State<NotesPage> {
                         color: Color(0XFF343E87), fontWeight: FontWeight.bold),
                   ),
                 ),
-                CourseOverview(),
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 CourseOverview(),
-                SizedBox(
-                  height: 10,
-                ),
                 CourseOverview(),
-                SizedBox(
-                  height: 10,
-                ),
+                CourseOverview(),
                 CourseOverview(),
                 Divider(
                   color: Colors.black,
@@ -302,18 +296,13 @@ class _NotesPageState extends State<NotesPage> {
                   height: 20,
                 ),
                 ExamResult(),
-                SizedBox(
-                  height: 10,
-                ),
                 ExamResult(),
-                SizedBox(
-                  height: 10,
-                ),
                 ExamResult(),
-                SizedBox(
-                  height: 10,
-                ),
                 ExamResult(),
+                ExamResult(),
+                Divider(
+                  color: Colors.black,
+                ),
               ],
             ),
           ),
@@ -357,8 +346,8 @@ class CourseOverview extends StatelessWidget {
                 width: 10,
               ),
               const VerticalDivider(
-                color: Colors.black,
-                thickness: 2,
+                color: Colors.white,
+                thickness: 10,
               ),
               GestureDetector(
                 onTap: (() => {
@@ -379,8 +368,8 @@ class CourseOverview extends StatelessWidget {
                 ),
               ),
               const VerticalDivider(
-                color: Colors.black,
-                thickness: 2,
+                color: Colors.white,
+                thickness: 10,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -499,7 +488,11 @@ class ExamResultState extends State<ExamResult> {
                 ),
               ),
               const SizedBox(
-                width: 10,
+                height: 10,
+              ),
+              const VerticalDivider(
+                color: Colors.white,
+                thickness: 10,
               ),
               Column(
                 children: const [
@@ -511,8 +504,8 @@ class ExamResultState extends State<ExamResult> {
                 ],
               ),
               const VerticalDivider(
-                color: Colors.black,
-                thickness: 2,
+                color: Colors.white,
+                thickness: 10,
               ),
               Column(
                 children: const [

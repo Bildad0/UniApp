@@ -37,6 +37,7 @@ dependencies:
   flutter_pdfview: ^1.2.5
   talkjs_flutter: ^0.2.1
   url_launcher: ^6.1.6
+  firebase_messaging: ^14.0.4
 
 flutter_icons:
  android: true

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:talkjs_flutter/talkjs_flutter.dart';
-import '../../Models/chart_message_model.dart';
+//import '../../Models/chart_message_model.dart';
 
 class ChatDetailPage extends StatefulWidget {
   const ChatDetailPage({super.key});
@@ -57,7 +57,10 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
         backgroundColor: Colors.white,
         flexibleSpace: SafeArea(
           child: Container(
-            padding: const EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.only(
+              right: 16,
+              left: 16,
+            ),
             child: Row(
               children: [
                 IconButton(
@@ -115,12 +118,6 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           ],
         ),
       ),
-
-      //currently using a massaging Talkjs API will build own massaging page
-      // body: ChatBox(
-      //   session: session,
-      //   conversation: conversation,
-      // )
 
       // body: Stack(
       //   children: [
