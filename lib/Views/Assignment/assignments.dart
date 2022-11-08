@@ -27,6 +27,9 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
       ),
       body: Container(
         color: Colors.white,
+        child: Stack(
+          children: const [Text("Hi")],
+        ),
       ),
     );
   }

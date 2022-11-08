@@ -17,17 +17,10 @@ class TopicWidget extends StatefulWidget {
 
 class _TopicWidgetState extends State<TopicWidget> {
   String remotePDFpath = "";
-  String corruptedPathPDF = "";
 
   @override
   void initState() {
     super.initState();
-
-    createFileOfPdfUrl().then((f) {
-      setState(() {
-        corruptedPathPDF = f.path;
-      });
-    });
 
     createFileOfPdfUrl().then((f) {
       setState(() {
@@ -40,8 +33,7 @@ class _TopicWidgetState extends State<TopicWidget> {
     Completer<File> completer = Completer();
     //print("Start download file from internet!");
     try {
-      const url =
-          "https://www.computer-pdf.com/pdf/0879-learning-c-language.pdf";
+      const url = "https://www.africau.edu/images/default/sample.pdf";
       final filename = url.substring(url.lastIndexOf("/") + 1);
       var request = await HttpClient().getUrl(Uri.parse(url));
       var response = await request.close();
@@ -79,20 +71,11 @@ class _TopicWidgetState extends State<TopicWidget> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    if (remotePDFpath.isNotEmpty &&
-                        !corruptedPathPDF.isNotEmpty) {
+                    if (remotePDFpath.isNotEmpty) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => PDFScreen(path: remotePDFpath),
-                        ),
-                      );
-                    } else if (corruptedPathPDF.isNotEmpty) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              PDFScreen(path: corruptedPathPDF),
                         ),
                       );
                     }

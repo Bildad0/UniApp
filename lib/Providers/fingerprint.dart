@@ -18,8 +18,8 @@ Future authenticate() async {
       options: const AuthenticationOptions(
         useErrorDialogs: true,
         stickyAuth: true,
-        sensitiveTransaction: false,
-        biometricOnly: true,
+        sensitiveTransaction: true,
+        biometricOnly: false,
       ),
     );
   } on PlatformException {
