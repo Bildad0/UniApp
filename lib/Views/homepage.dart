@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:uniapp/Views/Assignment/assignments.dart';
 import 'package:uniapp/Views/EventsAndCalender/eventpage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -178,7 +179,17 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      buildTaskItem(3, "The Basic of Computer II", Colors.red),
+                      GestureDetector(
+                        onTap: () => {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const AssignmentsPage()))
+                        },
+                        child: buildTaskItem(
+                            3, "The Basic of Computer II", Colors.red),
+                      ),
                       buildTaskItem(3, "Design Principles", Colors.green),
                       buildTaskItem(3, "Mathematics for Science", Colors.green),
                     ],

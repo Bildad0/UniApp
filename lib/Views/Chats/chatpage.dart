@@ -15,17 +15,20 @@ class _ChatPageState extends State<ChatPage> {
     ChatUsers(
         name: "Bildad Owuor",
         messageText: "Awesome Setup",
-        imageURL: "",
+        imageURL:
+            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
         time: "Now"),
     ChatUsers(
         name: "victor Otieno",
         messageText: "That's Great",
-        imageURL: "images/userImage2.jpeg",
+        imageURL:
+            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
         time: "Yesterday"),
     ChatUsers(
         name: "Edgar Marangi",
         messageText: "Hey where are you?",
-        imageURL: "images/userImage3.jpeg",
+        imageURL:
+            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
         time: "31 Mar"),
     ChatUsers(
         name: "Philip Edward",

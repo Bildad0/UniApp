@@ -29,8 +29,10 @@ class EventPageState extends State<EventPage> {
                   ),
                   GestureDetector(
                     onTap: () => {Navigator.pop(context)},
-                    child:
-                        const Icon(Icons.arrow_back, color: Color(0XFF343E87)),
+                    child: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.green,
+                    ),
                   ),
                 ],
               ),
