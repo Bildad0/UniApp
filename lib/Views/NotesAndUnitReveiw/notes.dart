@@ -400,29 +400,35 @@ class ProgressBarState extends State<ProgressBar> {
   void initState() {
     super.initState();
     _loading = false;
-    _progressValue = 0.0;
+    _progressValue = 50.0;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(12.0),
+      //padding: const EdgeInsets.all(12.0),
       child: _loading
           ? Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 LinearProgressIndicator(
-                  backgroundColor: Colors.cyanAccent,
-                  valueColor: const AlwaysStoppedAnimation<Color>(Colors.red),
+                  minHeight: 5,
+                  color: Colors.black,
+                  backgroundColor: Colors.white,
+                  valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
                   value: _progressValue,
                 ),
-                Text('${(_progressValue * 100).round()}%'),
+                Expanded(
+                  child: Text('${(_progressValue * 100).round()}%'),
+                ),
               ],
             )
           : GestureDetector(
-              child: const Text(
-                "View",
-                style: TextStyle(fontSize: 25),
+              child: const Expanded(
+                child: Text(
+                  "View",
+                  style: TextStyle(fontSize: 25),
+                ),
               ),
               onTap: () => {
                 setState(() {
@@ -439,12 +445,6 @@ class ProgressBarState extends State<ProgressBar> {
     Timer.periodic(oneSec, (Timer t) {
       setState(() {
         _progressValue = 50;
-        // we "finish" downloading here
-        if (_progressValue.toStringAsFixed(1) == '1.0') {
-          _loading = false;
-          t.cancel();
-          return;
-        }
       });
     });
   }
