@@ -120,7 +120,7 @@ class _RegisterUnitsState extends State<RegisterUnits> {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.green),
                     ),
-                    onPressed: () => {},
+                    onPressed: () => {Navigator.pop(context)},
                     child: const Text("Submit")),
                 const SizedBox(
                   width: 20,

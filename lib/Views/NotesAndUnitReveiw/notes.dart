@@ -428,10 +428,23 @@ class ProgressBarState extends State<ProgressBar> {
 
   @override
   Widget build(BuildContext context) {
+    double progressValue = 50;
     return Container(
       padding: const EdgeInsets.all(12.0),
       child: _loading
-          ? const LinearProgressIndicator()
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                LinearProgressIndicator(
+                  minHeight: 5,
+                  color: Colors.black,
+                  backgroundColor: Colors.white,
+                  valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
+                  value: progressValue,
+                ),
+                Text('${(progressValue * 100).round()}%'),
+              ],
+            )
           : GestureDetector(
               child: const Text(
                 "View",
