@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class RegisterUnits extends StatefulWidget {
   const RegisterUnits({super.key});
@@ -13,6 +14,7 @@ class RegisterUnits extends StatefulWidget {
 class _RegisterUnitsState extends State<RegisterUnits> {
   @override
   Widget build(BuildContext context) {
+    String? register;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -40,6 +42,92 @@ class _RegisterUnitsState extends State<RegisterUnits> {
               )
             ],
           ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                Radio(
+                    value: "Register",
+                    groupValue: register,
+                    onChanged: (value) {
+                      setState(() {
+                        register = value.toString();
+                      });
+                    }),
+                const Text("Introduction to computer Science"),
+              ],
+            ),
+            Row(
+              children: [
+                Radio(
+                    value: "Register",
+                    groupValue: register,
+                    onChanged: (value) {
+                      setState(() {
+                        register = value.toString();
+                      });
+                    }),
+                const Text("Software design and Implimentation"),
+              ],
+            ),
+            Row(
+              children: [
+                Radio(
+                    value: "Register",
+                    groupValue: register,
+                    onChanged: (value) {
+                      setState(() {
+                        register = value.toString();
+                      });
+                    }),
+                const Text("Installation and customization"),
+              ],
+            ),
+            Row(
+              children: [
+                Radio(
+                    value: "Register",
+                    groupValue: register,
+                    onChanged: (value) {
+                      setState(() {
+                        register = value.toString();
+                      });
+                    }),
+                const Text("Network protocals and configuration"),
+              ],
+            ),
+            Row(
+              children: [
+                Radio(
+                    value: "Register",
+                    groupValue: register,
+                    onChanged: (value) {
+                      setState(() {
+                        register = value.toString();
+                      });
+                    }),
+                const Text("Communication skills"),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.green),
+                    ),
+                    onPressed: () => {},
+                    child: const Text("Submit")),
+                const SizedBox(
+                  width: 20,
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );

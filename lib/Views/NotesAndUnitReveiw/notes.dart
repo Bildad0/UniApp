@@ -287,9 +287,10 @@ class _NotesPageState extends State<NotesPage> {
                                     builder: (BuildContext context) =>
                                         const RegisterUnits()))
                           },
-                          child: const Text(
+                          child: Text(
                             "Register",
-                            style: TextStyle(color: Colors.blueGrey),
+                            style: TextStyle(
+                                color: Colors.blueAccent.withOpacity(1.0)),
                           ),
                         ),
                       ],
