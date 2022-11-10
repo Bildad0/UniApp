@@ -4,6 +4,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'package:uniapp/EditProfile/edit_profile.dart';
+import 'package:uniapp/Views/NotesAndUnitReveiw/registerunits.dart';
 import 'package:uniapp/Views/NotesAndUnitReveiw/unit_overview.dart';
 
 class NotesPage extends StatefulWidget {
@@ -264,29 +265,47 @@ class _NotesPageState extends State<NotesPage> {
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
-                children: const [
-                  Divider(
+                children: [
+                  const Divider(
                     color: Colors.black,
                   ),
                   Center(
-                    child: Text(
-                      "This semester Courses",
-                      style: TextStyle(
-                          color: Color(0XFF343E87),
-                          fontWeight: FontWeight.bold),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "This semester Courses",
+                          style: TextStyle(
+                              color: Color(0XFF343E87),
+                              fontWeight: FontWeight.bold),
+                        ),
+                        GestureDetector(
+                          onTap: () => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const RegisterUnits()))
+                          },
+                          child: const Text(
+                            "Register",
+                            style: TextStyle(color: Colors.blueGrey),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  CourseOverview(),
-                  CourseOverview(),
-                  CourseOverview(),
-                  CourseOverview(),
-                  Divider(
+                  const CourseOverview(),
+                  const CourseOverview(),
+                  const CourseOverview(),
+                  const CourseOverview(),
+                  const Divider(
                     color: Colors.black,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       "Previous Semester Exam Result",
                       style: TextStyle(
@@ -295,24 +314,18 @@ class _NotesPageState extends State<NotesPage> {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  ExamResult(),
-                  ExamResult(),
-                  ExamResult(),
-                  ExamResult(),
-                  ExamResult(),
+                  const ExamResult(),
+                  const ExamResult(),
+                  const ExamResult(),
+                  const ExamResult(),
+                  const ExamResult(),
                 ],
               ),
             ),
           ),
-          // SingleChildScrollView(
-          //   scrollDirection: Axis.vertical,
-          //   child: Column(
-          //     children: const [],
-          //   ),
-          // ),
         ],
       ),
     );
@@ -328,6 +341,7 @@ class CourseOverview extends StatelessWidget {
       children: [
         IntrinsicHeight(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 width: 40,
@@ -378,13 +392,16 @@ class CourseOverview extends StatelessWidget {
                 color: Colors.white,
                 thickness: 10,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  Text("Progress"),
-                  ProgressBar(),
-                ],
-              )
+              SizedBox(
+                height: 65,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text("Progress"),
+                    ProgressBar(),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -401,33 +418,19 @@ class ProgressBar extends StatefulWidget {
 
 class ProgressBarState extends State<ProgressBar> {
   late bool _loading;
-  late double _progressValue;
 
   @override
   void initState() {
     super.initState();
     _loading = false;
-    _progressValue = 50.0;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      //padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(12.0),
       child: _loading
-          ? Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                LinearProgressIndicator(
-                  minHeight: 5,
-                  color: Colors.black,
-                  backgroundColor: Colors.white,
-                  valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
-                  value: _progressValue,
-                ),
-                Text('${(_progressValue * 100).round()}%'),
-              ],
-            )
+          ? const LinearProgressIndicator()
           : GestureDetector(
               child: const Text(
                 "View",
@@ -436,21 +439,18 @@ class ProgressBarState extends State<ProgressBar> {
               onTap: () => {
                 setState(() {
                   _loading = !_loading;
-                  _updateProgress();
                 }),
               },
             ),
     );
   }
 
-  void _updateProgress() {
-    const oneSec = Duration(seconds: 1);
-    Timer.periodic(oneSec, (Timer t) {
-      setState(() {
-        _progressValue = 50;
-      });
-    });
-  }
+  // void _updateProgress() {
+  //   const oneSec = Duration(seconds: 1);
+  //   Timer.periodic(oneSec, (Timer t) {
+  //     setState(() {});
+  //   });
+  // }
 }
 
 class ExamResult extends StatefulWidget {
@@ -469,6 +469,7 @@ class ExamResultState extends State<ExamResult> {
       children: [
         IntrinsicHeight(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 width: 40,

@@ -71,7 +71,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   },
                   icon: const Icon(
                     Icons.arrow_back,
-                    color: Colors.black,
+                    color: Colors.green,
                   ),
                 ),
                 Center(
