@@ -365,8 +365,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                       );
                 },
-                child: const Text("SIGN OUT",
-                    style: TextStyle(
+                child: Text("log out".toUpperCase(),
+                    style: const TextStyle(
                         fontSize: 16, letterSpacing: 2.2, color: Colors.black)),
               ),
             )

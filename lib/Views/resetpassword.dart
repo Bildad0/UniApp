@@ -20,76 +20,84 @@ class ResetPasswordState extends State<ResetPassword> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.white10,
+        backgroundColor: Colors.blueGrey,
         elevation: 0,
       ),
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Center(
-                child: Text("Reset your password".toUpperCase()),
-              ),
-              const SizedBox(
-                height: 100,
-              ),
-              Card(
-                elevation: 5,
-                color: Colors.white30,
-                child: SizedBox(
-                  height: 300,
-                  width: 300,
-                  child: Form(
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 70,
-                        ),
-                        Neumorphic(
-                          margin: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-                          child: TextFormField(
-                            controller: emailcontroler,
-                            textAlign: TextAlign.start,
-                            decoration: const InputDecoration(
-                                border: InputBorder.none,
-                                icon: Icon(Icons.email),
-                                iconColor: Colors.white,
-                                alignLabelWithHint: true,
-                                labelText: "Email"),
+      body: Container(
+        color: Colors.blueGrey,
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                Center(
+                  child: Text(
+                    "Reset your password".toUpperCase(),
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+                const SizedBox(
+                  height: 100,
+                ),
+                Card(
+                  elevation: 5,
+                  color: Colors.white30,
+                  child: SizedBox(
+                    height: 300,
+                    width: 300,
+                    child: Form(
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 70,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        ElevatedButton(
-                          onPressed: () async {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    //will impliment sent then navigate back to login
-                                    const LogIn(),
-                              ),
-                            );
-                            await Future.delayed(const Duration(seconds: 6),
-                                () {
-                              context
-                                  .read<AuthenticationService>()
-                                  .resetPassword(
-                                    email: emailcontroler.text.trim(),
-                                  );
-                            });
-                          },
-                          child: Text("Submit".toUpperCase()),
-                        ),
-                      ],
+                          Neumorphic(
+                            margin: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                            child: TextFormField(
+                              controller: emailcontroler,
+                              textAlign: TextAlign.start,
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  icon: Icon(Icons.email),
+                                  iconColor: Colors.white,
+                                  alignLabelWithHint: true,
+                                  labelText: "Email"),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.green),
+                            onPressed: () async {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      //will impliment sent then navigate back to login
+                                      const LogIn(),
+                                ),
+                              );
+                              await Future.delayed(const Duration(seconds: 7),
+                                  () {
+                                context
+                                    .read<AuthenticationService>()
+                                    .resetPassword(
+                                      email: emailcontroler.text.trim(),
+                                    );
+                              });
+                            },
+                            child: Text("Submit".toUpperCase()),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

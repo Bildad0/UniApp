@@ -39,127 +39,129 @@ class CustomFormState extends State<CustomForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white10,
+        backgroundColor: Colors.blueGrey,
+        automaticallyImplyLeading: false,
         elevation: 0,
+        centerTitle: true,
       ),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 100,
-          ),
-          //add a logo here for the school
+      body: Container(
+        color: Colors.blueGrey,
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 100,
+            ),
+            //add a logo here for the school
 
-          Card(
-            color: Colors.white10,
-            margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-            elevation: 5,
-            child: Form(
-              autovalidateMode: AutovalidateMode.disabled,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Neumorphic(
-                    margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                    child: TextFormField(
-                      // validator: (value) => _errorText,
-                      controller: emailcontroler,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        labelText: "Email",
-                        icon: Icon(Icons.email_rounded),
-                      ),
+            Card(
+              color: Colors.white10,
+              margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              elevation: 5,
+              child: Form(
+                autovalidateMode: AutovalidateMode.disabled,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: 40,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Neumorphic(
-                    margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    child: TextFormField(
-                      obscureText: true,
-                      // validator: (value) => _errorText,
-                      controller: passwordcontroler,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        labelText: "Password",
-                        icon: Icon(Icons.lock_person),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  NeumorphicButton(
-                    style: NeumorphicStyle(
-                      color: Colors.green,
-                      shape: NeumorphicShape.concave,
-                      boxShape: NeumorphicBoxShape.roundRect(
-                          BorderRadius.circular(10)),
-                      //depth: 8,
-                      lightSource: LightSource.topRight,
-                    ),
-                    onPressed: () async {
-                      setState(() {
-                        isLoading = true;
-                      });
-
-                      await Future.delayed(const Duration(seconds: 6), () {
-                        setState(() {
-                          isLoading = !isLoading;
-                        });
-                        context.read<AuthenticationService>().signIn(
-                              email: emailcontroler.text.trim(),
-                              password: passwordcontroler.text.trim(),
-                            );
-                      });
-                    },
-                    child: isLoading
-                        ? SizedBox(
-                            width: 30,
-                            height: 30,
-                            child: JumpingDotsProgressIndicator(
-                              fontSize: 15.0,
-                              numberOfDots: 3,
-                              dotSpacing: 1,
-                              milliseconds: 2500,
-                              color: Colors.white,
-                            ),
-                          )
-                        : Text('LogIn'.toUpperCase()),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Center(
-                    child: GestureDetector(
-                      onTap: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const ResetPassword()))
-                      },
-                      child: const Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
+                    Neumorphic(
+                      margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                      child: TextFormField(
+                        // validator: (value) => _errorText,
+                        controller: emailcontroler,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          labelText: "Email",
+                          icon: Icon(Icons.email_rounded),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                ],
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Neumorphic(
+                      margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                      child: TextFormField(
+                        obscureText: true,
+                        // validator: (value) => _errorText,
+                        controller: passwordcontroler,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          labelText: "Password",
+                          icon: Icon(Icons.lock_person),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    NeumorphicButton(
+                      style: NeumorphicStyle(
+                        color: Colors.green,
+                        shape: NeumorphicShape.concave,
+                        boxShape: NeumorphicBoxShape.roundRect(
+                            BorderRadius.circular(10)),
+                        //depth: 8,
+                        lightSource: LightSource.topRight,
+                      ),
+                      onPressed: () async {
+                        setState(() {
+                          isLoading = true;
+                        });
+
+                        await Future.delayed(const Duration(seconds: 6), () {
+                          setState(() {
+                            isLoading = !isLoading;
+                          });
+                          context.read<AuthenticationService>().signIn(
+                                email: emailcontroler.text.trim(),
+                                password: passwordcontroler.text.trim(),
+                              );
+                        });
+                      },
+                      child: isLoading
+                          ? const SizedBox(
+                              width: 30,
+                              height: 30,
+                              child: CircularProgressIndicator(
+                                color: Colors.blueGrey,
+                                backgroundColor: Colors.white,
+                              ),
+                            )
+                          : Text('LogIn'.toUpperCase()),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Center(
+                      child: GestureDetector(
+                        onTap: () => {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const ResetPassword()))
+                        },
+                        child: const Text(
+                          'Forgot Password?',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
