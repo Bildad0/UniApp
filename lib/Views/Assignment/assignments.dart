@@ -17,6 +17,7 @@ class _AssignmentsPageState extends State<AssignmentsPage> {
   @override
   Widget build(BuildContext context) {
     FilePickerResult? result;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

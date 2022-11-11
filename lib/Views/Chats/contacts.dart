@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:contacts_service/contacts_service.dart';
+import 'package:uniapp/Views/Chats/chart_details_page.dart';
 import 'package:uniapp/Views/landingpage.dart';
 
 class ContactsPage extends StatefulWidget {
@@ -50,24 +51,45 @@ class _ContactsPageState extends State<ContactsPage> {
           //Build a list view of all contacts, displaying their avatar and
           // display name
           ? ListView.builder(
+              cacheExtent: 100,
               itemCount: _contacts!.length,
+              padding: const EdgeInsets.all(8),
               itemBuilder: (BuildContext context, int index) {
                 Contact? contact = _contacts!.elementAt(index);
-                return ListTile(
-                  contentPadding:
-                      const EdgeInsets.symmetric(vertical: 2, horizontal: 18),
-                  leading: (contact.avatar != null &&
-                          contact.avatar!.isNotEmpty)
-                      ? const CircleAvatar(
-                          //backgroundImage: NetworkImage(contact.avatar),
+                return GestureDetector(
+                  onTap: () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const ConversationPage();
+                    }))
+                  },
+                  child: ListTile(
+                    contentPadding:
+                        const EdgeInsets.symmetric(vertical: 2, horizontal: 18),
+                    leading: (contact.avatar != null &&
+                            contact.avatar!.isNotEmpty)
+                        ? const CircleAvatar(
+                            backgroundImage: NetworkImage('contact.avatar'),
                           )
-                      : CircleAvatar(
-                          backgroundColor: Theme.of(context).backgroundColor,
-                          child: Text(contact.initials()),
+                        : CircleAvatar(
+                            backgroundColor: Theme.of(context).backgroundColor,
+                            child: Text(contact.initials()),
+                          ),
+                    title: Row(
+                      children: [
+                        Column(
+                          children: [
+                            Text(contact.displayName ?? ''),
+                          ],
                         ),
-                  title: Text(contact.displayName ?? ''),
-                  //This can be further expanded to showing contacts detail
-                  // onPressed().
+                        const SizedBox(
+                          width: 50,
+                        ),
+                      ],
+                    ),
+                    //This can be further expanded to showing contacts detail
+                    // onPressed().
+                  ),
                 );
               },
             )
