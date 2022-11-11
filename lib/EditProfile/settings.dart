@@ -5,6 +5,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:provider/provider.dart';
 import 'package:uniapp/Utils/API/firebase_auth.dart';
 import 'package:uniapp/Views/loginpage.dart';
+import 'package:uniapp/main.dart';
 import 'package:uniapp/widgets/customeform.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -361,7 +362,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         (value) => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) => CustomForm()),
+                              builder: (BuildContext context) => const MyApp()),
                         ),
                       );
                 },
