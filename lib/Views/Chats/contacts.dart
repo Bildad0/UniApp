@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:uniapp/Views/Chats/chatpage.dart';
+import 'package:uniapp/Views/homepage.dart';
 
 class ContactsPage extends StatefulWidget {
   const ContactsPage({super.key});
@@ -34,7 +35,7 @@ class _ContactsPageState extends State<ContactsPage> {
         leading: GestureDetector(
             onTap: () => {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const ChatPage();
+                    return const HomePage();
                   }))
                 },
             child: const Icon(
@@ -72,7 +73,7 @@ class _ContactsPageState extends State<ContactsPage> {
             )
           : Center(
               child: CircularProgressIndicator(
-                strokeWidth: 2,
+              strokeWidth: 2,
               color: Colors.green.withOpacity(0.6),
               backgroundColor: Colors.grey,
             )),

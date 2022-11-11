@@ -10,6 +10,7 @@ class AuthenticationService {
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
+  
 
   Future<AuthStatus> resetPassword({required String email}) async {
     await _firebaseAuth

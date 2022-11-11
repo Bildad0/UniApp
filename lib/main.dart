@@ -5,8 +5,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uniapp/Providers/authservice.dart';
+
 import 'package:uniapp/Controlers/auth.dart';
+import 'package:uniapp/Utils/API/firebase_auth.dart';
 
 Future<void> main() async {
   FlutterError.onError = (details) {
@@ -41,7 +42,8 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
         providers: [
           Provider<AuthenticationService>(
-            create: (_) => AuthenticationService(FirebaseAuth.instance),
+            create: (_) => AuthenticationService(
+                FirebaseAuth.instance, AuthStatus.successful),
           ),
           StreamProvider(
             create: (context) =>

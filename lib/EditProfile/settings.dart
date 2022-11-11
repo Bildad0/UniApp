@@ -1,11 +1,11 @@
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:provider/provider.dart';
+import 'package:uniapp/Utils/API/firebase_auth.dart';
 import 'package:uniapp/Views/loginpage.dart';
-
-import '../Providers/authservice.dart';
+import 'package:uniapp/widgets/customeform.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -361,7 +361,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         (value) => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) => const LogIn()),
+                              builder: (BuildContext context) => CustomForm()),
                         ),
                       );
                 },
