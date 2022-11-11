@@ -94,25 +94,11 @@ class _ChatPageState extends State<ChatPage> {
                           final PermissionStatus permissionStatus =
                               await _getPermission();
                           if (permissionStatus == PermissionStatus.granted) {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) =>
-                                    CupertinoAlertDialog(
-                                      title: const Text('Contacts'),
-                                      content:
-                                          const Text('Access Contact List'),
-                                      actions: <Widget>[
-                                        CupertinoDialogAction(
-                                            child: const Text('OK'),
-                                            onPressed: () => {
-                                                  Navigator.push(context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) {
-                                                    return const ContactsPage();
-                                                  }))
-                                                })
-                                      ],
-                                    ));
+                            // ignore: use_build_context_synchronously
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const ContactsPage();
+                            }));
                           } else {
                             //If permissions have been denied show standard cupertino alert dialog
                             showDialog(

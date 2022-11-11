@@ -29,6 +29,7 @@ class _ContactsPageState extends State<ContactsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green,
         automaticallyImplyLeading: false,
         leading: GestureDetector(
             onTap: () => {
