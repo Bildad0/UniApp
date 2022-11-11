@@ -40,7 +40,7 @@ class ResetPasswordState extends State<ResetPassword> {
                 ),
                 Card(
                   elevation: 5,
-                  color: Colors.white30,
+                  color: Colors.white10,
                   child: SizedBox(
                     height: 300,
                     width: 300,
@@ -87,7 +87,10 @@ class ResetPasswordState extends State<ResetPassword> {
                                     );
                               });
                             },
-                            child: Text("Submit".toUpperCase()),
+                            child: Text(
+                              "Submit".toUpperCase(),
+                              style: const TextStyle(color: Colors.black),
+                            ),
                           ),
                         ],
                       ),

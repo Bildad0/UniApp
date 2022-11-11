@@ -25,6 +25,7 @@ dependencies:
   progress_indicators: ^1.0.0
   flutter_neumorphic: ^3.2.0
   animations: ^2.0.7
+  flutter_contacts:
   table_calendar: ^3.0.7
   custom_switch: ^0.0.1
   flutter_switch: ^0.3.2
@@ -41,6 +42,8 @@ dependencies:
   file_picker: ^5.2.2
   path_provider: ^2.0.11
   flutter_local_notifications: ^12.0.3
+  contacts_service: ^0.6.3
+  permission_handler: ^10.2.0
 
 flutter_icons:
  android: true

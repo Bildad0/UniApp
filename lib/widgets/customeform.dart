@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:progress_indicators/progress_indicators.dart';
 import 'package:provider/provider.dart';
 import 'package:uniapp/Providers/authservice.dart';
 import 'package:uniapp/Views/resetpassword.dart';
@@ -49,10 +49,9 @@ class CustomFormState extends State<CustomForm> {
         child: Column(
           children: [
             const SizedBox(
-              height: 100,
+              height: 80,
             ),
             //add a logo here for the school
-
             Card(
               color: Colors.white10,
               margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
@@ -63,7 +62,7 @@ class CustomFormState extends State<CustomForm> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(
-                      height: 40,
+                      height: 60,
                     ),
                     Neumorphic(
                       margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
@@ -98,6 +97,7 @@ class CustomFormState extends State<CustomForm> {
                     ),
                     NeumorphicButton(
                       style: NeumorphicStyle(
+                        depth: 0,
                         color: Colors.green,
                         shape: NeumorphicShape.concave,
                         boxShape: NeumorphicBoxShape.roundRect(
@@ -109,7 +109,6 @@ class CustomFormState extends State<CustomForm> {
                         setState(() {
                           isLoading = true;
                         });
-
                         await Future.delayed(const Duration(seconds: 6), () {
                           setState(() {
                             isLoading = !isLoading;
