@@ -29,7 +29,7 @@ class _ContactsPageState extends State<ContactsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.green.withOpacity(0.7),
         automaticallyImplyLeading: false,
         leading: GestureDetector(
             onTap: () => {
@@ -70,7 +70,12 @@ class _ContactsPageState extends State<ContactsPage> {
                 );
               },
             )
-          : const Center(child: CircularProgressIndicator()),
+          : Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+              color: Colors.green.withOpacity(0.6),
+              backgroundColor: Colors.grey,
+            )),
     );
   }
 }
