@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:contacts_service/contacts_service.dart';
-import 'package:uniapp/Views/Chats/chatpage.dart';
-import 'package:uniapp/Views/homepage.dart';
+import 'package:uniapp/Views/landingpage.dart';
 
 class ContactsPage extends StatefulWidget {
   const ContactsPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ContactsPageState createState() => _ContactsPageState();
 }
 
@@ -35,7 +35,7 @@ class _ContactsPageState extends State<ContactsPage> {
         leading: GestureDetector(
             onTap: () => {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const HomePage();
+                    return const SchoolManagement();
                   }))
                 },
             child: const Icon(

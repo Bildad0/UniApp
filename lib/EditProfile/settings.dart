@@ -264,7 +264,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
             ),
-            buildAccountOptionRow(context, "Privacy and security"),
+            //buildAccountOptionRow(context, "Privacy and security"),
             const SizedBox(
               height: 40,
             ),
@@ -422,53 +422,6 @@ class _SettingsPageState extends State<SettingsPage> {
               onChanged: toggleSwitch,
             ))
       ],
-    );
-  }
-
-  GestureDetector buildAccountOptionRow(BuildContext context, String title) {
-    return GestureDetector(
-      onTap: () {
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text(title),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    accountActivity("Enable Fingerprint"),
-                  ],
-                ),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text("Close")),
-                ],
-              );
-            });
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.grey[600],
-              ),
-            ),
-            const Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.grey,
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
