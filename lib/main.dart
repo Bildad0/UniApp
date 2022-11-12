@@ -17,13 +17,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   if (Platform.isAndroid) {
-    await Firebase.initializeApp(
-        name: "UniApp",
-        options: const FirebaseOptions(
-            apiKey: 'AIzaSyCiL9ATYW2dI62_OjHJ4WYcNimzT69JwDo',
-            appId: '1:708691986820:android:f2cd7f96b2a51c26cdf5d1',
-            messagingSenderId: '708691986820',
-            projectId: 'uniapp-bacf3'));
+    await Firebase.initializeApp();
   }
   runApp(const MyApp());
 }

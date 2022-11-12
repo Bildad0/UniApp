@@ -56,6 +56,7 @@ class _ConversationPageState extends State<ConversationPage> {
                 Column(
                   children: const [
                     Text(
+                      
                       "Bildad",
                       style: TextStyle(color: Colors.black),
                     ),

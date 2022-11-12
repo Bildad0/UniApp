@@ -30,6 +30,13 @@
             {
               "client_id": "708691986820-0gnutlbs534m5e6bca25fhg4lc0vvm24.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "708691986820-6dqtpc53mbc262js2ac8tj45okrlvoq5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.uniapp"
+              }
             }
           ]
         }
