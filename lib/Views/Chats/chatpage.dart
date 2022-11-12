@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:uniapp/Views/Chats/chart_details_page.dart';
+import 'package:uniapp/Views/Chats/chat_details_page.dart';
 import '../../Models/chart_user_model.dart';
 import '../../widgets/conversation_list.dart';
 import 'contacts.dart';
@@ -105,7 +105,8 @@ class _ChatPageState extends State<ChatPage> {
                                 context: context,
                                 builder: (BuildContext context) =>
                                     CupertinoAlertDialog(
-                                      title: const Text('Permissions error'),
+                                      insetAnimationDuration:
+                                          const Duration(seconds: 20),
                                       content: const Text(
                                           'Please enable contacts access '
                                           'permission in system settings'),

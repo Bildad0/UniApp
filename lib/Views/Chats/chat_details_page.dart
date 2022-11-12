@@ -25,9 +25,8 @@ class ConversationPage extends StatefulWidget {
 
 class _ConversationPageState extends State<ConversationPage> {
   List<types.Message> _messages = [];
-
   final _user = const types.User(id: '');
-
+  var date = DateTime.now().toString();
   @override
   void initState() {
     super.initState();
@@ -56,7 +55,6 @@ class _ConversationPageState extends State<ConversationPage> {
                 Column(
                   children: const [
                     Text(
-                      
                       "Bildad",
                       style: TextStyle(color: Colors.black),
                     ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:contacts_service/contacts_service.dart';
-import 'package:uniapp/Views/Chats/chart_details_page.dart';
+import 'package:uniapp/Views/Chats/chat_details_page.dart';
 import 'package:uniapp/Views/landingpage.dart';
 
 class ContactsPage extends StatefulWidget {

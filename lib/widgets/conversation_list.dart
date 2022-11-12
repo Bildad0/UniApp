@@ -2,5 +2,5 @@
 
 import 'package:flutter/material.dart';
 
-import '../Views/Chats/chart_details_page.dart';
+import '../Views/Chats/chat_details_page.dart';
 

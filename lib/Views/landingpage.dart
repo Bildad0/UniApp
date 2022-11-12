@@ -18,9 +18,9 @@ class _SchoolManagementState extends State<SchoolManagement> {
   int _selectedItemIndex = 0;
   final List pages = const [
     HomePage(),
+    MiniCalender(),
     NotesPage(), //for testing my calender page
     FeesPage(),
-    MiniCalender(),
     ChatPage(),
   ];
   @override
@@ -47,16 +47,16 @@ class _SchoolManagementState extends State<SchoolManagement> {
                 icon: Icon(Icons.home),
               ),
               BottomNavigationBarItem(
+                label: "Activites",
+                icon: Icon(Icons.calendar_today),
+              ),
+              BottomNavigationBarItem(
                 label: "Notes",
                 icon: Icon(Icons.school_outlined),
               ),
               BottomNavigationBarItem(
                 label: "Fees",
                 icon: Icon(Icons.account_balance_wallet),
-              ),
-              BottomNavigationBarItem(
-                label: "Activites",
-                icon: Icon(Icons.calendar_today),
               ),
               BottomNavigationBarItem(
                 label: "Chat",
