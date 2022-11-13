@@ -1,4 +1,16 @@
 import 'dart:convert';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_functions/cloud_functions.dart';
+
+final storage = FirebaseStorage.instance;
+
+FirebaseApp secondaryApp = Firebase.app('UniApp');
+FirebaseDatabase database = FirebaseDatabase.instanceFor(app: secondaryApp);
+
+DatabaseReference ref = FirebaseDatabase.instance
+    .ref('https://uniapp-bacf3-default-rtdb.firebaseio.com/');
 
 class Students {
   final int studentId;
@@ -19,7 +31,10 @@ class Students {
       json['student_year_of_study'],
     );
   }
-  static fromJson(json) {
+  static fromJson(json) async {
     //returns body from firebase api call
+    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('users');
+    final results = await callable();
+    return results;
   }
 }

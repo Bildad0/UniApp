@@ -1,0 +1,31 @@
+{
+  "name": "uniapp",
+  "version": "1.0.0",
+  "description": "A university student's Activity mobile App",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bildad0/UniApp.git"
+  },
+  "keywords": [
+    "flutter",
+    "mobile",
+    "App"
+  ],
+  "author": "Bildad Owuor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bildad0/UniApp/issues"
+  },
+  "homepage": "https://github.com/Bildad0/UniApp#readme",
+  "dependencies": {
+    "firebase-admin": "^11.2.1"
+  }
+}

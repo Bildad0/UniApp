@@ -1,7 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+
 final storage = FirebaseStorage.instance;
+
+FirebaseApp secondaryApp = Firebase.app('UniApp');
+FirebaseDatabase database = FirebaseDatabase.instanceFor(app: secondaryApp);
 
 DatabaseReference ref = FirebaseDatabase.instance.ref();
 

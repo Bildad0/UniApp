@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +10,7 @@ import 'package:provider/provider.dart';
 
 import 'package:uniapp/Controlers/auth.dart';
 import 'package:uniapp/Utils/API/firebase_auth.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 Future<void> main() async {
   FlutterError.onError = (details) {
@@ -17,8 +20,16 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   if (Platform.isAndroid) {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      name: "UniApp",
+      options: const FirebaseOptions(
+          apiKey: 'AIzaSyCiL9ATYW2dI62_OjHJ4WYcNimzT69JwDo',
+          appId: '1:708691986820:android:f2cd7f96b2a51c26cdf5d1',
+          messagingSenderId: '708691986820',
+          projectId: 'uniapp-bacf3'),
+    );
   }
+
   runApp(const MyApp());
 }
 
@@ -37,7 +48,9 @@ class _MyAppState extends State<MyApp> {
         providers: [
           Provider<AuthenticationService>(
             create: (_) => AuthenticationService(
-                FirebaseAuth.instance, AuthStatus.successful),
+              FirebaseAuth.instance,
+              AuthStatus.successful,
+            ),
           ),
           StreamProvider(
             create: (context) =>

@@ -74,12 +74,14 @@ class _NotesPageState extends State<NotesPage> {
                             SizedBox(
                               width: 20,
                             ),
-                            Text(
-                              "Learning Dashboard",
-                              style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w900,
-                                color: Color(0XFF343E87),
+                            Center(
+                              child: Text(
+                                "Learning Dashboard",
+                                style: TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w900,
+                                  color: Color(0XFF343E87),
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -103,167 +105,172 @@ class _NotesPageState extends State<NotesPage> {
               ),
             ],
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                SizedBox(
-                  height: 100,
-                  width: 200,
-                  child: GestureDetector(
-                    onTap: (() => {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const UnitPage()))
-                        }),
-                    child: Card(
-                      shadowColor: const Color.fromARGB(255, 177, 195, 226),
-                      elevation: 5,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        side: BorderSide(
-                          color: Color.fromARGB(255, 148, 148, 194),
-                        ),
-                      ),
-                      child: Column(
-                        children: [
-                          const Text(
-                            "Computer Architecture",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Column(
-                            children: const [
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Dr. Hadullo",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text("Introduction to computer Architecture"),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 100,
-                  width: 200,
-                  child: GestureDetector(
-                    onTap: (() => {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const UnitPage()))
-                        }),
-                    child: Card(
-                      shadowColor: const Color.fromARGB(255, 177, 195, 226),
-                      elevation: 5,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        side: BorderSide(
-                          color: Color.fromARGB(255, 148, 148, 194),
-                        ),
-                      ),
-                      child: Column(
-                        children: [
-                          const Text(
-                            "Computer Architecture",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Column(
-                            children: const [
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Dr. Hadullo",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text("Introduction to computer Architecture"),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 100,
-                  width: 200,
-                  child: GestureDetector(
-                    onTap: (() => {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const UnitPage()))
-                        }),
-                    child: Card(
-                      shadowColor: const Color.fromARGB(255, 177, 195, 226),
-                      elevation: 5,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        side: BorderSide(
-                          color: Color.fromARGB(255, 148, 148, 194),
-                        ),
-                      ),
-                      child: Column(
-                        children: [
-                          const Text(
-                            "Computer Architecture",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Column(
-                            children: const [
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Dr. Hadullo",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text("Introduction to computer Architecture"),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
           Container(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  SizedBox(
+                    height: 100,
+                    width: 200,
+                    child: GestureDetector(
+                      onTap: (() => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const UnitPage()))
+                          }),
+                      child: Card(
+                        shadowColor: const Color.fromARGB(255, 177, 195, 226),
+                        elevation: 5,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          side: BorderSide(
+                            color: Color.fromARGB(255, 148, 148, 194),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            const Text(
+                              "Computer Architecture",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Column(
+                              children: const [
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "Dr. Hadullo",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text("Introduction to computer Architecture"),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 100,
+                    width: 200,
+                    child: GestureDetector(
+                      onTap: (() => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const UnitPage()))
+                          }),
+                      child: Card(
+                        shadowColor: const Color.fromARGB(255, 177, 195, 226),
+                        elevation: 5,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          side: BorderSide(
+                            color: Color.fromARGB(255, 148, 148, 194),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            const Text(
+                              "Computer Architecture",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Column(
+                              children: const [
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "Dr. Hadullo",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text("Introduction to computer Architecture"),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 100,
+                    width: 200,
+                    child: GestureDetector(
+                      onTap: (() => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const UnitPage(),
+                              ),
+                            ),
+                          }),
+                      child: Card(
+                        shadowColor: const Color.fromARGB(255, 177, 195, 226),
+                        elevation: 5,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          side: BorderSide(
+                            color: Color.fromARGB(255, 148, 148, 194),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            const Text(
+                              "Computer Architecture",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Column(
+                              children: const [
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "Dr. Hadullo",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text("Introduction to computer Architecture"),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               child: Column(
                 children: [
                   const Divider(
