@@ -1,0 +1,89 @@
+{
+  "project_info": {
+    "project_number": "708691986820",
+    "firebase_url": "https://uniapp-bacf3-default-rtdb.firebaseio.com",
+    "project_id": "uniapp-bacf3",
+    "storage_bucket": "uniapp-bacf3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708691986820:android:05a2cfd3e5b93a50cdf5d1",
+        "android_client_info": {
+          "package_name": "com.example.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708691986820-0gnutlbs534m5e6bca25fhg4lc0vvm24.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUcJcnsNdFqBf9MZJh571jDQcsUz_OqK4"
+        },
+        {
+          "current_key": "AIzaSyA1IL7IgUV3E9m8_yZmfnBFdWDjFulN-4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708691986820-0gnutlbs534m5e6bca25fhg4lc0vvm24.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "708691986820-6dqtpc53mbc262js2ac8tj45okrlvoq5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.uniapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708691986820:android:f2cd7f96b2a51c26cdf5d1",
+        "android_client_info": {
+          "package_name": "com.example.uniapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708691986820-0gnutlbs534m5e6bca25fhg4lc0vvm24.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUcJcnsNdFqBf9MZJh571jDQcsUz_OqK4"
+        },
+        {
+          "current_key": "AIzaSyA1IL7IgUV3E9m8_yZmfnBFdWDjFulN-4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708691986820-0gnutlbs534m5e6bca25fhg4lc0vvm24.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "708691986820-6dqtpc53mbc262js2ac8tj45okrlvoq5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.uniapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
