@@ -26,7 +26,7 @@ uploadFeeAndImage(Fee fee, bool isUpdating, Function feeUploaded) async {
     _uploadFee(fee, isUpdating, feeUploaded);
     print("if fee is not null so upload it to firebase");
   } else {
-    print("fee not uploade");
+    print("fee not uploaded");
     _uploadFee(fee, isUpdating, feeUploaded);
   }
 }

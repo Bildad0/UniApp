@@ -1,4 +1,8 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'dart:io';
+
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '/api/teacher_api.dart';
 import '/model/allmodels.dart';
@@ -21,9 +25,8 @@ class TeacherForm extends StatefulWidget {
 class _TeacherFormState extends State<TeacherForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
   final List _subingredients = [];
-  Teacher? _currentTeacher;
+  late Teacher teacher;
   late String _imageUrl;
   late File _imageFile;
   TextEditingController subingredientController = TextEditingController();
@@ -31,17 +34,16 @@ class _TeacherFormState extends State<TeacherForm> {
   @override
   void initState() {
     super.initState();
-    TeacherNotifier teacherNotifier =
+    final TeacherNotifier teacherNotifier =
         Provider.of<TeacherNotifier>(context, listen: false);
-
     if (teacherNotifier.currentTeacher != null) {
-      _currentTeacher = teacherNotifier.currentTeacher;
+      teacher = teacherNotifier.currentTeacher;
     } else {
-      _currentTeacher = Teacher();
+      teacher = Teacher();
     }
 
-    _subingredients.addAll(_currentTeacher!.subIngredients);
-    _imageUrl = _currentTeacher!.image;
+    _subingredients.addAll(teacher.subIngredients);
+    _imageUrl = teacher.image;
   }
 
   _showImage() {
@@ -125,7 +127,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: _currentTeacher?.name,
+      initialValue: teacher.name,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
@@ -139,7 +141,7 @@ class _TeacherFormState extends State<TeacherForm> {
         return 'Name is required';
       },
       onSaved: (value) {
-        _currentTeacher?.name = value!;
+        teacher.name = value!;
       },
     );
   }
@@ -152,7 +154,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: _currentTeacher?.phone,
+      initialValue: teacher.phone,
       keyboardType: TextInputType.text,
       maxLength: 13,
       style: const TextStyle(fontSize: 15, color: Colors.black),
@@ -167,7 +169,7 @@ class _TeacherFormState extends State<TeacherForm> {
         return 'Phone is required';
       },
       onSaved: (value) {
-        _currentTeacher?.phone = value!;
+        teacher.phone = value!;
       },
     );
   }
@@ -180,7 +182,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: _currentTeacher?.address,
+      initialValue: teacher.address,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
@@ -194,7 +196,7 @@ class _TeacherFormState extends State<TeacherForm> {
         return 'Addressis required';
       },
       onSaved: (value) {
-        _currentTeacher?.address = value!;
+        teacher.address = value!;
       },
     );
   }
@@ -207,7 +209,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: _currentTeacher?.email,
+      initialValue: teacher.email,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (val) {
@@ -218,7 +220,7 @@ class _TeacherFormState extends State<TeacherForm> {
             : "Please Enter Correct Email";
       },
       onSaved: (value) {
-        _currentTeacher?.email = value!;
+        teacher.email = value!;
       },
     );
   }
@@ -231,7 +233,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: _currentTeacher?.category,
+      initialValue: teacher.category,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
@@ -246,7 +248,7 @@ class _TeacherFormState extends State<TeacherForm> {
         return null;
       },
       onSaved: (value) {
-        _currentTeacher?.category = value!;
+        teacher.category = value!;
       },
     );
   }
@@ -275,7 +277,7 @@ class _TeacherFormState extends State<TeacherForm> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => Professors(),
+        builder: (BuildContext context) => const Professors(),
       ),
     );
   }
@@ -299,18 +301,18 @@ class _TeacherFormState extends State<TeacherForm> {
 
     print('form saved');
 
-    _currentTeacher?.subIngredients = _subingredients;
+    teacher.subIngredients = _subingredients;
 
     uploadTeacherAndImage(
-        _currentTeacher!, widget.isUpdating, _imageFile, _onTeacherUploaded);
+        teacher, widget.isUpdating, _imageFile, _onTeacherUploaded);
 
-    print("name: ${_currentTeacher?.name}");
-    print("email: ${_currentTeacher?.email}");
-    print("phone: ${_currentTeacher?.phone}");
-    print("address: ${_currentTeacher?.address}");
+    print("name: ${teacher.name}");
+    print("email: ${teacher.email}");
+    print("phone: ${teacher.phone}");
+    print("address: ${teacher.address}");
 
-    print("category: ${_currentTeacher?.category}");
-    print("subingredients: ${_currentTeacher?.subIngredients.toString()}");
+    print("category: ${teacher.category}");
+    print("subingredients: ${teacher.subIngredients.toString()}");
     print("_imageFile ${_imageFile.toString()}");
     print("_imageUrl $_imageUrl");
   }
@@ -322,7 +324,7 @@ class _TeacherFormState extends State<TeacherForm> {
       key: _scaffoldKey,
       appBar: AppBar(
         leading: IconButton(
-            icon: new Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
             highlightColor: Colors.pink,
@@ -330,11 +332,11 @@ class _TeacherFormState extends State<TeacherForm> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => Professors(),
+                  builder: (BuildContext context) => const Professors(),
                 ),
               );
             }),
-        title: const Text("SMS App"),
+        title: const Text("Professors"),
         centerTitle: true,
         backgroundColor: Colors.brown,
       ),
@@ -436,12 +438,11 @@ class _TeacherFormState extends State<TeacherForm> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           teacherNotifier.currentTeacher;
-
           _saveTeacher();
         },
-        child: const Icon(Icons.save),
         foregroundColor: Colors.white,
         backgroundColor: Colors.brown[400],
+        child: const Icon(Icons.save),
       ),
     );
   }

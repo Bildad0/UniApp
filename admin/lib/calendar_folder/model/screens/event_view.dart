@@ -13,6 +13,8 @@ import '/notifier/auth_notifier.dart';
 final AuthNotifier _auth = AuthNotifier();
 
 class EventsView extends StatefulWidget {
+  const EventsView({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return EventsViewState();

@@ -37,21 +37,23 @@ class _ProfessorsState extends State<Professors> {
         elevation: 0,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: Colors.white,
+            color: Colors.green,
             iconSize: 40,
             highlightColor: Colors.green.withOpacity(0.6),
             onPressed: () {
-              Navigator.pop(context);
-              // Navigator.pushReplacement(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (BuildContext context) => AfterLogin(),
-              //   ),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const AfterLogin(),
+                ),
+              );
             }),
-        title: const Text("Professors"),
+        title: const Text(
+          "Professors",
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.white10,
       ),
 //body:_children[_currentIndex],
       body: Container(
@@ -100,30 +102,28 @@ class _ProfessorsState extends State<Professors> {
                             ],
                           ),
                         ),
-                        Container(
-                          child: Card(
-                            color: Colors.blue[400],
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                IconButton(
-                                    icon: const Icon(Icons.view_column),
-                                    color: Colors.white,
-                                    iconSize: 20,
-                                    highlightColor: Colors.pink,
-                                    onPressed: () {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              Feed(),
-                                        ),
-                                      );
-                                    }),
-                                const Text("View Professors",
-                                    style: TextStyle(color: Colors.white))
-                              ],
-                            ),
+                        Card(
+                          color: Colors.blue[400],
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              IconButton(
+                                  icon: const Icon(Icons.view_column),
+                                  color: Colors.white,
+                                  iconSize: 20,
+                                  highlightColor: Colors.pink,
+                                  onPressed: () {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            Feed(),
+                                      ),
+                                    );
+                                  }),
+                              const Text("View Professors",
+                                  style: TextStyle(color: Colors.white))
+                            ],
                           ),
                         ),
                       ],

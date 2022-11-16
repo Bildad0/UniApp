@@ -1,12 +1,18 @@
+// ignore_for_file: constant_identifier_names, unnecessary_null_comparison
+
+import 'package:admin/screens/afterlogin.dart';
+
 import '/api/teacher_api.dart';
 import '/model/user.dart';
 import '/notifier/auth_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-enum AuthMode { Signup, Login }
+enum AuthMode { Signup, Login, Logout }
 
 class Login extends StatefulWidget {
+  const Login({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _LoginState();
@@ -16,6 +22,9 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailcontroler = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+
   AuthMode _authMode = AuthMode.Login;
 
   MyUser? _user;
@@ -29,9 +38,9 @@ class _LoginState extends State<Login> {
   }
 
   void _submitForm() {
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
+    // if (!_formKey.currentState!.validate()) {
+    //   return;
+    // }
 
     _formKey.currentState?.save();
 
@@ -40,13 +49,16 @@ class _LoginState extends State<Login> {
 
     if (_authMode == AuthMode.Login) {
       login(_user!, authNotifier);
-    } else {
+    } else if (_authMode == AuthMode.Signup) {
       signup(_user!, authNotifier);
+    } else if (_authMode == AuthMode.Logout) {
+      signout(authNotifier);
     }
   }
 
   Widget _buildDisplayNameField() {
     return TextFormField(
+      controller: _usernameController,
       decoration: InputDecoration(
         labelText: 'Username',
         fillColor: Colors.black,
@@ -67,37 +79,42 @@ class _LoginState extends State<Login> {
 
         return 'Display Name is required';
       },
-      // onSaved: (String value) {
-      //
-      // },
+      onSaved: (value) {
+        _user!.displayName = _usernameController.text;
+      },
     );
   }
 
   Widget _buildEmailField() {
     return TextFormField(
-        decoration: InputDecoration(
-          labelText: 'Email',
-          fillColor: Colors.black,
-          hintText: "admin@gmail.com",
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-          contentPadding: const EdgeInsets.all(3),
-        ),
-        keyboardType: TextInputType.emailAddress,
-        //  initialValue: 'admin@gmail.com',
-        style: const TextStyle(fontSize: 15, color: Colors.black),
-        cursorColor: Colors.black,
-        validator: ((value) {
-          if (value != null) {
-            if (!RegExp(
-                    r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-                .hasMatch(value)) {
-              return 'Please enter a valid email address';
-            }
-            return null;
+      controller: _emailcontroler,
+      decoration: InputDecoration(
+        labelText: 'Email',
+        fillColor: Colors.black,
+        hintText: "admin@gmail.com",
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+        contentPadding: const EdgeInsets.all(3),
+      ),
+      keyboardType: TextInputType.emailAddress,
+      //  initialValue: 'admin@gmail.com',
+      style: const TextStyle(fontSize: 15, color: Colors.black),
+      cursorColor: Colors.black,
+      validator: ((value) {
+        if (_emailcontroler.text != null) {
+          if (!RegExp(
+                  r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+              .hasMatch(_emailcontroler.text)) {
+            return 'Please enter a valid email address';
           }
+          return null;
+        }
 
-          return 'Email is required';
-        }));
+        return 'Email is required';
+      }),
+      onSaved: (value) {
+        _user!.email = _emailcontroler.text;
+      },
+    );
   }
 
   Widget _buildPasswordField() {
@@ -122,9 +139,9 @@ class _LoginState extends State<Login> {
 
         return 'Password is required';
       },
-      // onSaved: (String value) {
-      //
-      // },
+      onSaved: (value) {
+        _user!.password = _passwordController.text;
+      },
     );
   }
 
@@ -207,6 +224,11 @@ class _LoginState extends State<Login> {
                               ? AuthMode.Signup
                               : AuthMode.Login;
                         });
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AfterLogin()));
                       },
                     ),
                   ),

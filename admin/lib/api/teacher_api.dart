@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, invalid_return_type_for_catch_error, avoid_print
 
 import 'dart:io';
 
@@ -17,17 +17,11 @@ login(MyUser user, AuthNotifier authNotifier) async {
       .signInWithEmailAndPassword(email: user.email, password: user.password)
       .catchError((error) => print(error.code));
 
-  if (authResult != null) {
-    User? firebaseUser = authResult.user;
-
-    if (firebaseUser != null) {
-      print("Log In: $firebaseUser"); // snapshot.docs.forEach((document) {
-      //   Student student = Student.fromMap(document.data());
-      //   _studentList.add(student);
-      // });
-      authNotifier.setUser(firebaseUser);
-    }
-  }
+  User? firebaseUser = authResult.user;
+  final userid = firebaseUser?.uid;
+  final currentUser =
+      FirebaseFirestore.instance.collection("user").where("uid=$userid");
+  return currentUser;
 }
 
 signup(MyUser user, AuthNotifier authNotifier) async {
@@ -36,22 +30,18 @@ signup(MyUser user, AuthNotifier authNotifier) async {
           email: user.email, password: user.password)
       .catchError((error) => print(error.code));
 
-  if (authResult != null) {
-    await FirebaseAuth.instance.currentUser
-        ?.updateProfile(displayName: user.displayName);
+  await FirebaseAuth.instance.currentUser
+      ?.updateProfile(displayName: user.displayName);
 
-    User? firebaseUser = authResult.user;
+  User? firebaseUser = authResult.user;
 
-    if (firebaseUser != null) {
-      await firebaseUser.updateProfile();
+  if (firebaseUser != null) {
+    await firebaseUser.updateProfile();
 
-      await firebaseUser.reload();
+    await firebaseUser.reload();
 
-      print("Sign up: $firebaseUser");
-
-      User? currentUser = FirebaseAuth.instance.currentUser;
-      authNotifier.setUser(currentUser!);
-    }
+    User? currentUser = FirebaseAuth.instance.currentUser;
+    authNotifier.setUser(currentUser!);
   }
 }
 
@@ -67,7 +57,6 @@ initializeCurrentUser(AuthNotifier authNotifier) async {
   User? firebaseUser = await FirebaseAuth.instance.currentUser;
 
   if (firebaseUser != null) {
-    print(firebaseUser);
     authNotifier.setUser(firebaseUser);
   }
 }
@@ -78,23 +67,31 @@ getTeachers(TeacherNotifier teacherNotifier) async {
       .orderBy("createdAt", descending: true)
       .get();
 
-  List<Teacher> _teacherList = [];
+  List<Teacher> teacherList = [];
+  // ignore: unnecessary_null_comparison
+  if (snapshot != null) {
+    for (int i = 0; i < snapshot.docs.length; i++) {
+      Teacher teacher = snapshot.docs as Teacher;
+      teacherList.add(teacher);
+    }
+  } else {
+    return "We are having problem loading your Information";
+  }
+
+  // List<Teacher> _teacherList = [];
 
   // snapshot.docs.forEach((document) {
   //   Teacher teacher = Teacher.fromMap(document.data());
   //   _teacherList.add(teacher);
   // });
 
-  teacherNotifier.teacherList = _teacherList;
+  teacherNotifier.teacherList = teacherList;
 }
 
 uploadTeacherAndImage(Teacher teacher, bool isUpdating, File localFile,
     Function teacherUploaded) async {
   if (localFile != null) {
-    print("uploading image");
-
     var fileExtension = path.extension(localFile.path);
-    print(fileExtension);
 
     var uuid = Uuid().v4();
 
@@ -102,17 +99,12 @@ uploadTeacherAndImage(Teacher teacher, bool isUpdating, File localFile,
         .ref()
         .child('teachers/images/$uuid$fileExtension');
     UploadTask uploadTask = firebaseStorageRef.putFile(localFile);
-    print('aaa');
-    print(uploadTask);
     var imageUrl = await (await uploadTask).ref.getDownloadURL();
     String url = imageUrl.toString();
-    print(url);
     // Guardar el post en la bbdd
 
-    print("download url: $url");
     _uploadTeacher(teacher, isUpdating, teacherUploaded, imageUrl: url);
   } else {
-    print('...skipping image upload');
     _uploadTeacher(teacher, isUpdating, teacherUploaded);
   }
 }
@@ -132,15 +124,12 @@ _uploadTeacher(Teacher teacher, bool isUpdating, Function teacherUploaded,
     await teacherRef.doc(teacher.id).update(teacher.toMap());
 
     teacherUploaded(teacher);
-    print('updated teacher with id: ${teacher.id}');
   } else {
     teacher.createdAt = Timestamp.now();
 
     DocumentReference documentRef = await teacherRef.add(teacher.toMap());
 
     teacher.id = documentRef.id;
-
-    print('uploaded food successfully: ${teacher.toString()}');
 
     await documentRef.set(teacher.toMap(), SetOptions(merge: true));
 
@@ -149,16 +138,12 @@ _uploadTeacher(Teacher teacher, bool isUpdating, Function teacherUploaded,
 }
 
 deleteTeacher(Teacher teacher, Function teacherDeleted) async {
-  if (teacher.image != null) {
-    Reference storageReference =
-        FirebaseStorage.instance.refFromURL(teacher.image);
+  Reference storageReference =
+      FirebaseStorage.instance.refFromURL(teacher.image);
 
-    // print(storageReference.path);
+  // print(storageReference.path);
 
-    await storageReference.delete();
-
-    print('image deleted');
-  }
+  await storageReference.delete();
 
   await FirebaseFirestore.instance
       .collection('Teachers')

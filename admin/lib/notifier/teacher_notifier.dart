@@ -6,11 +6,9 @@ import 'package:flutter/cupertino.dart';
 class TeacherNotifier with ChangeNotifier {
   List<Teacher> _teacherList = [];
   late Teacher _currentTeacher;
-
+  Teacher get currentTeacher => _currentTeacher;
   UnmodifiableListView<Teacher> get teacherList =>
       UnmodifiableListView(_teacherList);
-
-  Teacher get currentTeacher => _currentTeacher;
 
   set teacherList(List<Teacher> teacherList) {
     _teacherList = teacherList;
@@ -28,7 +26,7 @@ class TeacherNotifier with ChangeNotifier {
   }
 
   deleteTeacher(Teacher teacher) {
-    _teacherList.removeWhere((_teacher) => _teacher.id == teacher.id);
+    _teacherList.removeWhere((teacher) => teacher.id == teacher.id);
     notifyListeners();
   }
 }

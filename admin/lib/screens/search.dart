@@ -9,6 +9,8 @@ import 'afterlogin.dart';
 late Student myuser;
 
 class CloudFirestoreSearch extends StatefulWidget {
+  const CloudFirestoreSearch({super.key});
+
   @override
   _CloudFirestoreSearchState createState() => _CloudFirestoreSearchState();
 }
@@ -20,20 +22,15 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: new Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
             highlightColor: Colors.pink,
             onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => AfterLogin(),
-                ),
-              );
+              Navigator.pop(context);
             }),
         backgroundColor: Colors.brown,
-        title: Text("Search Students"),
+        title: const Text("Search Students"),
         centerTitle: true,
         // title: Card(
         //   child: TextField(
@@ -88,38 +85,36 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
                           //return buildResultCard(data);
 
                           return Card(
-                            child: Container(
-                              child: Row(
-                                children: <Widget>[
-                                  GestureDetector(
-                                    onTap: () => Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              StudentSearchResult(data: data)),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Image.network(
-                                          data['image'],
-                                          width: 150,
-                                          height: 100,
-                                          fit: BoxFit.fill,
+                            child: Row(
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: () => Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            StudentSearchResult(data: data)),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Image.network(
+                                        data['image'],
+                                        width: 150,
+                                        height: 100,
+                                        fit: BoxFit.fill,
+                                      ),
+                                      const SizedBox(
+                                        width: 25,
+                                      ),
+                                      Text(
+                                        data['registrationNo'],
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 20,
                                         ),
-                                        SizedBox(
-                                          width: 25,
-                                        ),
-                                        Text(
-                                          data['registrationNo'],
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 20,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ) // Text("k"),
-                                ],
-                              ),
+                                      ),
+                                    ],
+                                  ),
+                                ) // Text("k"),
+                              ],
                             ),
                           );
                         },

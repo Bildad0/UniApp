@@ -19,13 +19,11 @@ Future<void> main() async {
     if (kReleaseMode) exit(1);
   };
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    //name: "UniApp",
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-  if (Platform.isAndroid) {
-    await Firebase.initializeApp(
-      name: "UniApp",
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-  }
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
@@ -52,7 +50,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Coding ',
+      title: 'Admin App',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
             .copyWith(secondary: Colors.lightBlue),
@@ -60,7 +58,7 @@ class MyApp extends StatelessWidget {
       home: Consumer<AuthNotifier>(
         //AuthNotifier is here in order to  access the user which is in AuthNotifier
         builder: (context, notifier, child) {
-          return notifier.user == null ? AfterLogin() : Login();
+          return notifier.user == null ? const AfterLogin() : Login();
         },
       ),
     );

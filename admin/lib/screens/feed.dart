@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import '/api/teacher_api.dart';
 import '/notifier/auth_notifier.dart';
 import '/notifier/teacher_notifier.dart';
@@ -34,7 +36,7 @@ class _FeedState extends State<Feed> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: new Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
             highlightColor: Colors.pink,
@@ -42,22 +44,22 @@ class _FeedState extends State<Feed> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => Professors(),
+                  builder: (BuildContext context) => const Professors(),
                 ),
               );
             }),
-        title: Text("List of Professors"),
+        title: const Text("List of Professors"),
         centerTitle: true,
         backgroundColor: Colors.brown,
       ),
-      body: new RefreshIndicator(
+      body: RefreshIndicator(
+        onRefresh: _refreshList,
         child: ListView.separated(
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
               leading: Image.network(
-                teacherNotifier.teacherList[index].image != null
-                    ? teacherNotifier.teacherList[index].image
-                    : 'https://www.testingxperts.com/wp-content/uploads/2019/02/placeholder-img.jpg',
+                teacherNotifier.teacherList[index].image ??
+                    'https://www.testingxperts.com/wp-content/uploads/2019/02/placeholder-img.jpg',
                 width: 120,
                 fit: BoxFit.fitWidth,
               ),
@@ -75,12 +77,11 @@ class _FeedState extends State<Feed> {
           },
           itemCount: teacherNotifier.teacherList.length,
           separatorBuilder: (BuildContext context, int index) {
-            return Divider(
+            return const Divider(
               color: Colors.black,
             );
           },
         ),
-        onRefresh: _refreshList,
       ),
     );
   }

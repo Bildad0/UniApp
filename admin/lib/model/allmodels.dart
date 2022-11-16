@@ -107,12 +107,12 @@ class Fee {
 }
 
 class Student {
- late String id;
+  late String id;
   late String rollNo;
   late String name;
   late String fName;
   late String image;
- late String address;
+  late String address;
   late String phone;
   late String registrationNo;
 
@@ -125,7 +125,6 @@ class Student {
     id = data['id'];
     rollNo = data['rollNo'];
     name = data['name'];
-
     fName = data['fName'];
     image = data['image'];
     address = data['address'];

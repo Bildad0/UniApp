@@ -1,3 +1,5 @@
+import 'package:admin/screens/login.dart';
+
 import '/calendar_folder/model/screens/event_creator.dart';
 
 import '/screens/fees.dart';
@@ -9,26 +11,31 @@ import 'package:flutter/material.dart';
 import '/screens/search.dart';
 
 class AfterLogin extends StatefulWidget {
+  const AfterLogin({super.key});
+
   @override
   _AfterLoginState createState() => _AfterLoginState();
 }
 
 class _AfterLoginState extends State<AfterLogin> {
+  AuthMode _authMode = AuthMode.Logout;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("UniApp"),
+        elevation: 0,
+        title: const Text("UniApp"),
         centerTitle: true,
-        actions: <Widget>[],
+        actions: const [],
         backgroundColor: Colors.brown,
       ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/school.jpg"),
+            image: const AssetImage("assets/school.jpg"),
             fit: BoxFit.cover,
-            colorFilter: new ColorFilter.mode(
+            colorFilter: ColorFilter.mode(
                 Colors.black.withOpacity(0.3), BlendMode.dstATop),
           ),
         ),
@@ -59,7 +66,7 @@ class _AfterLoginState extends State<AfterLogin> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (BuildContext context) =>
-                                            Professors(),
+                                            const Professors(),
                                       ),
                                     );
                                   }),
@@ -84,7 +91,7 @@ class _AfterLoginState extends State<AfterLogin> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          CloudFirestoreSearch(),
+                                          const CloudFirestoreSearch(),
                                     ),
                                   );
                                 }),
@@ -186,6 +193,24 @@ class _AfterLoginState extends State<AfterLogin> {
                             const Text("Events",
                                 style: TextStyle(color: Colors.white))
                           ],
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.fromLTRB(100, 110, 0, 20),
+                        child: Center(
+                          child: ElevatedButton(
+                            onPressed: () => {
+                              setState(() {
+                                _authMode = AuthMode.Logout;
+                              }),
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Login())),
+                            },
+                            child: const Text("Logout"),
+                          ),
                         ),
                       ),
                     ],
