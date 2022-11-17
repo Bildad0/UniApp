@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:admin/screens/login.dart';
 
 import '/calendar_folder/model/screens/event_creator.dart';
@@ -18,8 +20,6 @@ class AfterLogin extends StatefulWidget {
 }
 
 class _AfterLoginState extends State<AfterLogin> {
-  AuthMode _authMode = AuthMode.Logout;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,7 +114,7 @@ class _AfterLoginState extends State<AfterLogin> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          Students(),
+                                          const Students(),
                                     ),
                                   );
                                 }),
@@ -201,9 +201,6 @@ class _AfterLoginState extends State<AfterLogin> {
                           child: ElevatedButton(
                             onPressed: () async {
                               AuthMode.Logout;
-                              // setState(() {
-                              //   _authMode = AuthMode.Logout;
-                              // });
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(

@@ -12,6 +12,7 @@ class CloudFirestoreSearch extends StatefulWidget {
   const CloudFirestoreSearch({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _CloudFirestoreSearchState createState() => _CloudFirestoreSearchState();
 }
 
@@ -32,17 +33,6 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
         backgroundColor: Colors.brown,
         title: const Text("Search Students"),
         centerTitle: true,
-        // title: Card(
-        //   child: TextField(
-        //     decoration: InputDecoration(
-        //        icon: Icon(Icons.search), hintText: 'search by reg no'),
-        //     onChanged: (val) {
-        //       setState(() {
-        //         name = val;
-        //       });
-        //     },
-        //   ),
-        // ),
       ),
       body: Column(
         children: [
@@ -82,8 +72,6 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
                         itemCount: snapshot.data?.docs.length,
                         itemBuilder: (context, index) {
                           DocumentSnapshot data = snapshot.data!.docs[index];
-                          //return buildResultCard(data);
-
                           return Card(
                             child: Row(
                               children: <Widget>[
@@ -95,12 +83,6 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
                                   ),
                                   child: Row(
                                     children: [
-                                      Image.network(
-                                        data['image'],
-                                        width: 150,
-                                        height: 100,
-                                        fit: BoxFit.fill,
-                                      ),
                                       const SizedBox(
                                         width: 25,
                                       ),

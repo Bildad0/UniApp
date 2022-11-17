@@ -1,4 +1,4 @@
-// ignore_for_file: constant_identifier_names, unnecessary_null_comparison
+// ignore_for_file: constant_identifier_names, unnecessary_null_comparison, avoid_print
 
 import 'package:admin/screens/afterlogin.dart';
 
@@ -38,9 +38,9 @@ class _LoginState extends State<Login> {
   }
 
   void _submitForm() {
-    // if (!_formKey.currentState!.validate()) {
-    //   return;
-    // }
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
 
     _formKey.currentState?.save();
 
@@ -69,18 +69,18 @@ class _LoginState extends State<Login> {
       style: const TextStyle(fontSize: 15, color: Colors.black),
       cursorColor: Colors.black,
       validator: (value) {
-        if (value != null) {
-          if (value.length < 5 || value.length > 12) {
-            return 'Display Name must be betweem 5 and 12 characters';
-          }
-
-          return null;
+        if (value == null) {
+          return 'Display Name is required';
         }
 
-        return 'Display Name is required';
+        if (value.length < 5 || value.length > 12) {
+          return 'Display Name must be betweem 5 and 12 characters';
+        }
+
+        return null;
       },
       onSaved: (value) {
-        _user.displayName = _usernameController.text;
+        _user.displayName = value!;
       },
     );
   }
@@ -100,19 +100,19 @@ class _LoginState extends State<Login> {
       style: const TextStyle(fontSize: 15, color: Colors.black),
       cursorColor: Colors.black,
       validator: ((value) {
-        if (_emailcontroler.text != null) {
-          if (!RegExp(
-                  r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-              .hasMatch(_emailcontroler.text)) {
-            return 'Please enter a valid email address';
-          }
-          return null;
+        if (value == null) {
+          return 'Email is required';
+        }
+        if (!RegExp(
+                r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+            .hasMatch(value)) {
+          return 'Please enter a valid email address';
         }
 
-        return 'Email is required';
+        return null;
       }),
       onSaved: (value) {
-        _user.email = _emailcontroler.text;
+        _user.email = value!;
       },
     );
   }
@@ -129,18 +129,19 @@ class _LoginState extends State<Login> {
       cursorColor: Colors.white,
       obscureText: true,
       controller: _passwordController,
-      validator: (value) {
-        if (value != null) {
-          if (value.length < 5 || value.length > 20) {
-            return 'Password must be betweem 5 and 20 characters';
-          }
-          return null;
+      validator: ((value) {
+        if (value == null) {
+          return 'Password is required';
         }
 
-        return 'Password is required';
-      },
+        if (value.length < 6) {
+          return 'Password must be more than 6 and characters';
+        }
+
+        return null;
+      }),
       onSaved: (value) {
-        _user.password = _passwordController.text;
+        _user.password = value!;
       },
     );
   }
@@ -192,7 +193,7 @@ class _LoginState extends State<Login> {
               child: Column(
                 children: <Widget>[
                   const Text(
-                    "Please SignIn",
+                    "SignIn",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 36, color: Colors.black),
                   ),

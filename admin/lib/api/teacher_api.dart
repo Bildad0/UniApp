@@ -51,11 +51,11 @@ signout(AuthNotifier authNotifier) async {
       .signOut()
       .catchError((error) => print(error.code));
 
-  //authNotifier.setUser(null);
+  //authNotifier.setUser();
 }
 
 initializeCurrentUser(AuthNotifier authNotifier) async {
-  User? firebaseUser = await FirebaseAuth.instance.currentUser;
+  User? firebaseUser = FirebaseAuth.instance.currentUser;
 
   if (firebaseUser != null) {
     authNotifier.setUser(firebaseUser);

@@ -1,20 +1,19 @@
+// ignore_for_file: unnecessary_null_comparison, avoid_print, library_private_types_in_public_api
+
 import 'dart:io';
 
-import '/api/teacher_api.dart';
 import '/api/student_api.dart';
 import '/model/allmodels.dart';
-import '/notifier/teacher_notifier.dart';
 import '/notifier/student_notifier.dart';
 import '/screens/students.dart';
 import 'package:flutter/material.dart';
-import '/screens/professors.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class StudentForm extends StatefulWidget {
   final bool isUpdating;
 
-  StudentForm({required this.isUpdating});
+  const StudentForm({super.key, required this.isUpdating});
 
   @override
   _StudentFormState createState() => _StudentFormState();
@@ -45,7 +44,7 @@ class _StudentFormState extends State<StudentForm> {
 
   _showImage() {
     if (_imageFile == null && _imageUrl == null) {
-      return Text("");
+      return const Text("");
     } else if (_imageFile != null) {
       print('showing image from local file');
 
@@ -59,35 +58,7 @@ class _StudentFormState extends State<StudentForm> {
           ),
           TextButton(
             style: TextButton.styleFrom(
-              padding: EdgeInsets.all(16),
-              backgroundColor: Colors.black54,
-            ),
-            child: Text(
-              'Change Image',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w400),
-            ),
-            onPressed: () => _getLocalImage(),
-          )
-        ],
-      );
-    } else if (_imageUrl != null) {
-      print('showing image from url');
-
-      return Stack(
-        alignment: AlignmentDirectional.bottomCenter,
-        children: <Widget>[
-          Image.network(
-            _imageUrl,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
-            height: 250,
-          ),
-          TextButton(
-            style: TextButton.styleFrom(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               backgroundColor: Colors.black54,
             ),
             child: const Text(
@@ -101,7 +72,33 @@ class _StudentFormState extends State<StudentForm> {
           )
         ],
       );
+    } else {
+      print('showing image from url');
     }
+
+    return Stack(
+      alignment: AlignmentDirectional.bottomCenter,
+      children: <Widget>[
+        Image.network(
+          _imageUrl,
+          width: MediaQuery.of(context).size.width,
+          fit: BoxFit.cover,
+          height: 250,
+        ),
+        TextButton(
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.all(16),
+            backgroundColor: Colors.black54,
+          ),
+          child: const Text(
+            'Change Image',
+            style: TextStyle(
+                color: Colors.white, fontSize: 22, fontWeight: FontWeight.w400),
+          ),
+          onPressed: () => _getLocalImage(),
+        )
+      ],
+    );
   }
 
   _getLocalImage() async {
@@ -121,25 +118,25 @@ class _StudentFormState extends State<StudentForm> {
         labelText: 'Enter Name',
         fillColor: Colors.black,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-        contentPadding: EdgeInsets.all(3),
+        contentPadding: const EdgeInsets.all(3),
       ),
       initialValue: _currentStudent.name,
       keyboardType: TextInputType.text,
-      style: TextStyle(fontSize: 15, color: Colors.black),
-      // validator: (String value) {
-      //   if (value.isEmpty) {
-      //     return 'Name is required';
-      //   }
+      style: const TextStyle(fontSize: 15, color: Colors.black),
+      validator: (value) {
+        if (value == null) {
+          return 'Name is required';
+        }
 
-      //   if (value.length < 3 || value.length > 20) {
-      //     return 'Name must be more than 3 and less than 20';
-      //   }
+        if (value.length < 3 || value.length > 20) {
+          return 'Name must be more than 3 and less than 20';
+        }
 
-      //   return null;
-      // },
-      // onSaved: (String value) {
-      //   _currentStudent.name = value;
-      // },
+        return null;
+      },
+      onSaved: (value) {
+        _currentStudent.name = value!;
+      },
     );
   } // _buildRollNoField()
 
@@ -149,21 +146,21 @@ class _StudentFormState extends State<StudentForm> {
         labelText: 'Enter Roll Number',
         fillColor: Colors.black,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-        contentPadding: EdgeInsets.all(3),
+        contentPadding: const EdgeInsets.all(3),
       ),
       initialValue: _currentStudent.rollNo,
       keyboardType: TextInputType.text,
-      style: TextStyle(fontSize: 15, color: Colors.black),
-      // validator: (String value) {
-      //   if (value.isEmpty) {
-      //     return 'Roll number is required';
-      //   }
+      style: const TextStyle(fontSize: 15, color: Colors.black),
+      validator: (value) {
+        if (value == null) {
+          return 'Roll number is required';
+        }
 
-      //   return null;
-      // },
-      // onSaved: (String value) {
-      //   _currentStudent.rollNo = value;
-      // },
+        return null;
+      },
+      onSaved: (value) {
+        _currentStudent.rollNo = value!;
+      },
     );
   }
 
@@ -173,21 +170,21 @@ class _StudentFormState extends State<StudentForm> {
         labelText: 'Enter Registration Number',
         fillColor: Colors.black,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-        contentPadding: EdgeInsets.all(3),
+        contentPadding: const EdgeInsets.all(3),
       ),
       initialValue: _currentStudent.registrationNo,
       keyboardType: TextInputType.text,
-      style: TextStyle(fontSize: 15, color: Colors.black),
-      // validator: (String value) {
-      //   if (value.isEmpty) {
-      //     return 'Registration number is required';
-      //   }
+      style: const TextStyle(fontSize: 15, color: Colors.black),
+      validator: (value) {
+        if (value == null) {
+          return 'Registration number is required';
+        }
 
-      //   return null;
-      // },
-      // onSaved: (String value) {
-      //   _currentStudent.registrationNo = value;
-      // },
+        return null;
+      },
+      onSaved: (value) {
+        _currentStudent.registrationNo = value!;
+      },
     );
   }
 
@@ -197,26 +194,26 @@ class _StudentFormState extends State<StudentForm> {
         labelText: 'Enter Phone Number',
         fillColor: Colors.black,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-        contentPadding: EdgeInsets.all(3),
+        contentPadding: const EdgeInsets.all(3),
       ),
       initialValue: _currentStudent.phone,
       keyboardType: TextInputType.text,
       maxLength: 13,
-      style: TextStyle(fontSize: 15, color: Colors.black),
-      // validator: (String value) {
-      //   if (value.isEmpty) {
-      //     return 'Phone is required';
-      //   }
+      style: const TextStyle(fontSize: 15, color: Colors.black),
+      validator: (value) {
+        if (value == null) {
+          return 'Phone is required';
+        }
 
-      //   if (value.length == 13) {
-      //     return 'phone must be 13';
-      //   }
+        if (value.length == 13) {
+          return 'phone must be 13';
+        }
 
-      //   return null;
-      // },
-      // onSaved: (String value) {
-      //   _currentStudent.phone = value;
-      // },
+        return null;
+      },
+      onSaved: (value) {
+        _currentStudent.phone = value!;
+      },
     );
   }
 
@@ -226,25 +223,25 @@ class _StudentFormState extends State<StudentForm> {
         labelText: 'Address',
         fillColor: Colors.black,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-        contentPadding: EdgeInsets.all(3),
+        contentPadding: const EdgeInsets.all(3),
       ),
       initialValue: _currentStudent.address,
       keyboardType: TextInputType.text,
-      style: TextStyle(fontSize: 15),
-      // validator: (String value) {
-      //   if (value.isEmpty) {
-      //     return 'Address is required';
-      //   }
+      style: const TextStyle(fontSize: 15),
+      validator: (value) {
+        if (value == null) {
+          return 'Address is required';
+        }
 
-      //   if (value.length < 3 || value.length > 20) {
-      //     return 'Address must be more than 3 and less than 20';
-      //   }
+        if (value.length < 3 || value.length > 20) {
+          return 'Address must be more than 3 and less than 20';
+        }
 
-      //   return null;
-      // },
-      // onSaved: (String value) {
-      //   _currentStudent.address = value;
-      // },
+        return null;
+      },
+      onSaved: (value) {
+        _currentStudent.address = value!;
+      },
     );
   }
 
@@ -254,25 +251,25 @@ class _StudentFormState extends State<StudentForm> {
         labelText: 'Enter  Father name',
         fillColor: Colors.white10,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-        contentPadding: EdgeInsets.all(3),
+        contentPadding: const EdgeInsets.all(3),
       ),
       initialValue: _currentStudent.fName,
       keyboardType: TextInputType.text,
-      style: TextStyle(fontSize: 15, color: Colors.black),
-      // validator: (String value) {
-      //   if (value.isEmpty) {
-      //     return 'Father name is required';
-      //   }
+      style: const TextStyle(fontSize: 15, color: Colors.black),
+      validator: (value) {
+        if (value == null) {
+          return 'Father name is required';
+        }
 
-      //   if (value.length < 3 || value.length > 20) {
-      //     return 'Father name must be more than 3 and less than 20';
-      //   }
+        if (value.length < 3 || value.length > 20) {
+          return 'Father name must be more than 3 and less than 20';
+        }
 
-      //   return null;
-      // },
-      // onSaved: (String value) {
-      //   _currentStudent.fName = value;
-      // },
+        return null;
+      },
+      onSaved: (value) {
+        _currentStudent.fName = value!;
+      },
     );
   }
 
@@ -319,7 +316,7 @@ class _StudentFormState extends State<StudentForm> {
       key: _scaffoldKey,
       appBar: AppBar(
         leading: IconButton(
-            icon: new Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
             highlightColor: Colors.pink,
@@ -331,7 +328,7 @@ class _StudentFormState extends State<StudentForm> {
                 ),
               );
             }),
-        title: Text("Add Students"),
+        title: const Text("Add Students"),
         centerTitle: true,
         backgroundColor: Colors.brown,
       ),
@@ -345,14 +342,14 @@ class _StudentFormState extends State<StudentForm> {
                     child: SingleChildScrollView(
                         child: Column(
                       children: <Widget>[
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Form(
                             autovalidateMode: AutovalidateMode.always,
                             key: _formKey,
                             child: Column(
                               children: <Widget>[
                                 _showImage(),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 Text(
                                   widget.isUpdating
                                       ? "Edit Student Form"
@@ -361,7 +358,7 @@ class _StudentFormState extends State<StudentForm> {
                                   style: TextStyle(
                                       fontSize: 25, color: Colors.brown[400]),
                                 ),
-                                SizedBox(height: 12),
+                                const SizedBox(height: 12),
                                 _imageFile == null && _imageUrl == null
                                     ? ButtonTheme(
                                         child: ElevatedButton(
@@ -377,21 +374,21 @@ class _StudentFormState extends State<StudentForm> {
                                           ),
                                         ),
                                       )
-                                    : SizedBox(height: 0),
+                                    : const SizedBox(height: 0),
 
                                 //  _buildRegistrationField(),
 
                                 _buildRollNoField(),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 _buildRegisterationNoField(),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 _buildNameField(),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 _buildfNameField(),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
 
                                 _buildAddressField(),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 _buildPhoneField(),
 
                                 //   _buildedu(),
@@ -408,9 +405,9 @@ class _StudentFormState extends State<StudentForm> {
 
           _saveStudent();
         },
-        child: Icon(Icons.save),
         foregroundColor: Colors.white,
         backgroundColor: Colors.brown[400],
+        child: const Icon(Icons.save),
       ),
     );
   }

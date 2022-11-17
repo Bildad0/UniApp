@@ -1,15 +1,16 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: no_leading_underscores_for_local_identifiers, library_private_types_in_public_api, avoid_print
 
 import '/api/teacher_api.dart';
 import '/notifier/auth_notifier.dart';
 import '/notifier/teacher_notifier.dart';
 import '/screens/detail.dart';
-import '/screens/teacher_form.dart';
 import 'package:flutter/material.dart';
 import '/screens/professors.dart';
 import 'package:provider/provider.dart';
 
 class Feed extends StatefulWidget {
+  const Feed({super.key});
+
   @override
   _FeedState createState() => _FeedState();
 }
@@ -58,8 +59,7 @@ class _FeedState extends State<Feed> {
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
               leading: Image.network(
-                teacherNotifier.teacherList[index].image ??
-                    'https://www.testingxperts.com/wp-content/uploads/2019/02/placeholder-img.jpg',
+                teacherNotifier.teacherList[index].image,
                 width: 120,
                 fit: BoxFit.fitWidth,
               ),
@@ -70,7 +70,7 @@ class _FeedState extends State<Feed> {
                     teacherNotifier.teacherList[index];
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (BuildContext context) {
-                  return FoodDetail();
+                  return const FoodDetail();
                 }));
               },
             );

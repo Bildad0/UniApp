@@ -117,7 +117,7 @@ class _ProfessorsState extends State<Professors> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (BuildContext context) =>
-                                            Feed(),
+                                            const Feed(),
                                       ),
                                     );
                                   }),

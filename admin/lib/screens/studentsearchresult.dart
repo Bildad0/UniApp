@@ -1,20 +1,16 @@
-import '/api/teacher_api.dart';
-import '/api/student_api.dart';
+// ignore_for_file: library_private_types_in_public_api, no_leading_underscores_for_local_identifiers, avoid_unnecessary_containers
+
 import '/model/allmodels.dart';
-import '/notifier/teacher_notifier.dart';
 import '/notifier/student_notifier.dart';
-import '/screens/student_form.dart';
 import '/screens/search.dart';
 
 import 'package:flutter/material.dart';
-import '/screens/professors.dart';
 import 'package:provider/provider.dart';
 
-import 'teacher_form.dart';
-
 class StudentSearchResult extends StatefulWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final data;
-  StudentSearchResult({this.data});
+  const StudentSearchResult({super.key, this.data});
   @override
   _StudentSearchResultState createState() => _StudentSearchResultState();
 }
@@ -32,7 +28,7 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: new Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
             highlightColor: Colors.pink,
@@ -40,11 +36,12 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => CloudFirestoreSearch(),
+                  builder: (BuildContext context) =>
+                      const CloudFirestoreSearch(),
                 ),
               );
             }),
-        title: Text("Student"),
+        title: const Text("Student"),
         centerTitle: true,
         backgroundColor: Colors.brown,
       ),
@@ -57,55 +54,54 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
                 child: Column(
                   children: <Widget>[
                     Image.network(
-                      widget.data['image'] != null
-                          ? widget.data['image']
-                          : 'https://www.testingxperts.com/wp-content/uploads/2019/02/placeholder-img.jpg',
+                      widget.data['image'] ??
+                          'https://www.testingxperts.com/wp-content/uploads/2019/02/placeholder-img.jpg',
                       width: MediaQuery.of(context).size.width,
                       height: 250,
                       fit: BoxFit.fitWidth,
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     Text(
                       widget.data['name'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 40,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Father Name:",
+                        const Text("Father Name:",
                             style: TextStyle(
                               fontSize: 18,
                             )),
-                        SizedBox(width: 6),
+                        const SizedBox(width: 6),
                         Text(
                           widget.data['fName'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Roll No:",
+                        const Text("Roll No:",
                             style: TextStyle(
                               fontSize: 18,
                             )),
-                        SizedBox(width: 6),
+                        const SizedBox(width: 6),
                         Text(
                           widget.data['rollNo'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -122,41 +118,41 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Phone:",
+                        const Text("Phone:",
                             style: TextStyle(
                               fontSize: 18,
                             )),
-                        SizedBox(width: 6),
+                        const SizedBox(width: 6),
                         Text(
                           widget.data['phone'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Address:",
+                        const Text("Address:",
                             style: TextStyle(
                               fontSize: 18,
                             )),
-                        SizedBox(width: 6),
+                        const SizedBox(width: 6),
                         Text(
                           widget.data['address'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),

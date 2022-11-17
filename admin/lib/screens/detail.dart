@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers, prefer_typing_uninitialized_variables, library_private_types_in_public_api
+
 import '/api/teacher_api.dart';
 import '/model/allmodels.dart';
 import '/notifier/teacher_notifier.dart';
@@ -10,7 +12,7 @@ import 'teacher_form.dart';
 
 class FoodDetail extends StatefulWidget {
   final data;
-  FoodDetail({this.data});
+  const FoodDetail({super.key, this.data});
 
   @override
   _FoodDetailState createState() => _FoodDetailState();
@@ -29,7 +31,7 @@ class _FoodDetailState extends State<FoodDetail> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: new Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
             highlightColor: Colors.pink,
@@ -37,11 +39,11 @@ class _FoodDetailState extends State<FoodDetail> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => Professors(),
+                  builder: (BuildContext context) => const Professors(),
                 ),
               );
             }),
-        title: Text("Details"),
+        title: const Text("Details"),
         centerTitle: true,
         backgroundColor: Colors.brown,
       ),
@@ -50,86 +52,82 @@ class _FoodDetailState extends State<FoodDetail> {
         child: Card(
           child: SingleChildScrollView(
             child: Center(
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Image.network(
-                      teacherNotifier.currentTeacher.image != null
-                          ? teacherNotifier.currentTeacher.image
-                          : 'https://www.testingxperts.com/wp-content/uploads/2019/02/placeholder-img.jpg',
-                      width: MediaQuery.of(context).size.width,
-                      height: 250,
-                      fit: BoxFit.fitWidth,
+              child: Column(
+                children: <Widget>[
+                  Image.network(
+                    teacherNotifier.currentTeacher.image,
+                    width: MediaQuery.of(context).size.width,
+                    height: 250,
+                    fit: BoxFit.fitWidth,
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    teacherNotifier.currentTeacher.name,
+                    style: const TextStyle(
+                      fontSize: 40,
                     ),
-                    SizedBox(height: 24),
-                    Text(
-                      teacherNotifier.currentTeacher.name,
-                      style: TextStyle(
-                        fontSize: 40,
-                      ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Description: ${teacherNotifier.currentTeacher.category}',
+                    style: const TextStyle(
+                      fontSize: 18,
                     ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Description: ${teacherNotifier.currentTeacher.category}',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'phone: ${teacherNotifier.currentTeacher.phone}',
+                    style: const TextStyle(
+                      fontSize: 18,
                     ),
-                    SizedBox(height: 20),
-                    Text(
-                      'phone: ${teacherNotifier.currentTeacher.phone}',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Email: ${teacherNotifier.currentTeacher.email}',
+                    style: const TextStyle(
+                      fontSize: 18,
                     ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Email: ${teacherNotifier.currentTeacher.email}',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Address: ${teacherNotifier.currentTeacher.address}',
+                    style: const TextStyle(
+                      fontSize: 18,
                     ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Address: ${teacherNotifier.currentTeacher.address}',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                    SizedBox(height: 20),
+                  ),
+                  const SizedBox(height: 20),
 
-                    Text(
-                      "Skills",
-                      style: TextStyle(
-                          fontSize: 18, decoration: TextDecoration.underline),
-                    ),
-                    SizedBox(height: 16),
-                    GridView.count(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      padding: EdgeInsets.all(8),
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 4,
-                      mainAxisSpacing: 4,
-                      children: teacherNotifier.currentTeacher.subIngredients
-                          .map(
-                            (ingredient) => Card(
-                              color: Colors.black54,
-                              child: Center(
-                                child: Text(
-                                  ingredient,
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
-                                ),
+                  const Text(
+                    "Skills",
+                    style: TextStyle(
+                        fontSize: 18, decoration: TextDecoration.underline),
+                  ),
+                  const SizedBox(height: 16),
+                  GridView.count(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    padding: const EdgeInsets.all(8),
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 4,
+                    mainAxisSpacing: 4,
+                    children: teacherNotifier.currentTeacher.subIngredients
+                        .map(
+                          (ingredient) => Card(
+                            color: Colors.black54,
+                            child: Center(
+                              child: Text(
+                                ingredient,
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 16),
                               ),
                             ),
-                          )
-                          .toList(),
-                    ),
+                          ),
+                        )
+                        .toList(),
+                  ),
 
-                    //   Text(widget.data['name']),
-                  ],
-                ),
+                  //   Text(widget.data['name']),
+                ],
               ),
             ),
           ),
@@ -143,23 +141,24 @@ class _FoodDetailState extends State<FoodDetail> {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (BuildContext context) {
-                  return TeacherForm(
+                  return const TeacherForm(
                     isUpdating: true,
                   );
                 }),
               );
             },
-            child: Icon(Icons.edit),
+            backgroundColor: Colors.green,
             foregroundColor: Colors.white,
+            child: const Icon(Icons.edit),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           FloatingActionButton(
             heroTag: 'button2',
             onPressed: () => deleteTeacher(
                 teacherNotifier.currentTeacher, _onTeacherDeleted),
-            child: Icon(Icons.delete),
-            backgroundColor: Colors.brown,
+            backgroundColor: Colors.green,
             foregroundColor: Colors.white,
+            child: const Icon(Icons.delete),
           ),
         ],
       ),

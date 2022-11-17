@@ -10,7 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Students extends StatefulWidget {
+  const Students({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _StudentsState createState() => _StudentsState();
 }
 
@@ -44,7 +47,7 @@ class _StudentsState extends State<Students> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: new Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
             highlightColor: Colors.pink,
@@ -52,20 +55,20 @@ class _StudentsState extends State<Students> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => AfterLogin(),
+                  builder: (BuildContext context) => const AfterLogin(),
                 ),
               );
             }),
-        title: Text("Students"),
+        title: const Text("Students"),
         centerTitle: true,
         backgroundColor: Colors.brown,
       ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/school.jpg"),
+            image: const AssetImage("assets/school.jpg"),
             fit: BoxFit.cover,
-            colorFilter: new ColorFilter.mode(
+            colorFilter: ColorFilter.mode(
                 Colors.black.withOpacity(0.2), BlendMode.dstATop),
           ),
         ),
@@ -82,7 +85,7 @@ class _StudentsState extends State<Students> {
                     child: Column(
                       children: [
                         IconButton(
-                            icon: new Icon(Icons.person_add),
+                            icon: const Icon(Icons.person_add),
                             color: Colors.white,
                             iconSize: 20,
                             highlightColor: Colors.pink,
@@ -91,7 +94,7 @@ class _StudentsState extends State<Students> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        StudentForm(
+                                        const StudentForm(
                                           isUpdating: false,
                                         )),
                               );
