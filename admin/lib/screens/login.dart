@@ -27,7 +27,7 @@ class _LoginState extends State<Login> {
 
   AuthMode _authMode = AuthMode.Login;
 
-  MyUser? _user;
+  late MyUser _user;
 
   @override
   void initState() {
@@ -48,9 +48,9 @@ class _LoginState extends State<Login> {
         Provider.of<AuthNotifier>(context, listen: false);
 
     if (_authMode == AuthMode.Login) {
-      login(_user!, authNotifier);
+      login(_user, authNotifier);
     } else if (_authMode == AuthMode.Signup) {
-      signup(_user!, authNotifier);
+      signup(_user, authNotifier);
     } else if (_authMode == AuthMode.Logout) {
       signout(authNotifier);
     }
@@ -80,7 +80,7 @@ class _LoginState extends State<Login> {
         return 'Display Name is required';
       },
       onSaved: (value) {
-        _user!.displayName = _usernameController.text;
+        _user.displayName = _usernameController.text;
       },
     );
   }
@@ -112,7 +112,7 @@ class _LoginState extends State<Login> {
         return 'Email is required';
       }),
       onSaved: (value) {
-        _user!.email = _emailcontroler.text;
+        _user.email = _emailcontroler.text;
       },
     );
   }
@@ -140,7 +140,7 @@ class _LoginState extends State<Login> {
         return 'Password is required';
       },
       onSaved: (value) {
-        _user!.password = _passwordController.text;
+        _user.password = _passwordController.text;
       },
     );
   }

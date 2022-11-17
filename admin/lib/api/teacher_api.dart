@@ -2,15 +2,16 @@
 
 import 'dart:io';
 
-import '/model/allmodels.dart';
-import '/model/user.dart';
-import '/notifier/auth_notifier.dart';
-import '/notifier/teacher_notifier.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
+
+import '/model/allmodels.dart';
+import '/model/user.dart';
+import '/notifier/auth_notifier.dart';
+import '/notifier/teacher_notifier.dart';
 
 login(MyUser user, AuthNotifier authNotifier) async {
   UserCredential authResult = await FirebaseAuth.instance

@@ -199,14 +199,15 @@ class _AfterLoginState extends State<AfterLogin> {
                         padding: const EdgeInsets.fromLTRB(100, 110, 0, 20),
                         child: Center(
                           child: ElevatedButton(
-                            onPressed: () => {
-                              setState(() {
-                                _authMode = AuthMode.Logout;
-                              }),
+                            onPressed: () async {
+                              AuthMode.Logout;
+                              // setState(() {
+                              //   _authMode = AuthMode.Logout;
+                              // });
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Login())),
+                                      builder: (context) => const Login()));
                             },
                             child: const Text("Logout"),
                           ),

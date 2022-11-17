@@ -17,7 +17,16 @@ getStudents(StudentNotifier studentNotifier) async {
       .orderBy("createdAt", descending: true)
       .get();
 
-  List<Student> _studentList = [];
+  List<Student> studentList = [];
+
+  if (snapshot != null) {
+    for (int i = 0; i < snapshot.docs.length; i++) {
+      Student student = snapshot.docs as Student;
+      studentList.add(student);
+    }
+  } else {
+    return "We are having problem loading your Information";
+  }
 
 //I will get user data fromthe database
 
@@ -26,7 +35,7 @@ getStudents(StudentNotifier studentNotifier) async {
   //   _studentList.add(student);
   // });
 
-  studentNotifier.studentList = _studentList;
+  studentNotifier.studentList = studentList;
 }
 
 uploadStudentAndImage(Student student, bool isUpdating, File localFile,
