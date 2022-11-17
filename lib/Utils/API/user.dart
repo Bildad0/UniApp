@@ -5,10 +5,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 final storage = FirebaseStorage.instance;
 
-FirebaseApp secondaryApp = Firebase.app('UniApp');
-FirebaseDatabase database = FirebaseDatabase.instanceFor(app: secondaryApp);
+
 
 DatabaseReference ref = FirebaseDatabase.instance.ref();
+
 
 // await ref.set({
 //   "name": "John",

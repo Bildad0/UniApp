@@ -24,6 +24,7 @@ class _AfterLoginState extends State<AfterLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         title: const Text("UniApp"),
         centerTitle: true,
@@ -49,31 +50,29 @@ class _AfterLoginState extends State<AfterLogin> {
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                     ),
-                    children: <Widget>[
-                      Container(
-                        child: Card(
-                          color: Colors.red[400],
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              IconButton(
-                                  icon: const Icon(Icons.person_add),
-                                  color: Colors.white,
-                                  iconSize: 40,
-                                  highlightColor: Colors.pink,
-                                  onPressed: () {
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            const Professors(),
-                                      ),
-                                    );
-                                  }),
-                              const Text("Professors",
-                                  style: TextStyle(color: Colors.white))
-                            ],
-                          ),
+                    children: [
+                      Card(
+                        color: Colors.red[400],
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            IconButton(
+                                icon: const Icon(Icons.person_add),
+                                color: Colors.white,
+                                iconSize: 40,
+                                highlightColor: Colors.pink,
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          const Professors(),
+                                    ),
+                                  );
+                                }),
+                            const Text("Professors",
+                                style: TextStyle(color: Colors.white))
+                          ],
                         ),
                       ),
                       Card(

@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     projectId: 'uniapp-bacf3',
     databaseURL: 'https://uniapp-bacf3-default-rtdb.firebaseio.com',
     storageBucket: 'uniapp-bacf3.appspot.com',
-    iosClientId: '708691986820-6dqtpc53mbc262js2ac8tj45okrlvoq5.apps.googleusercontent.com',
+    iosClientId:
+        '708691986820-6dqtpc53mbc262js2ac8tj45okrlvoq5.apps.googleusercontent.com',
     iosBundleId: 'com.example.uniapp',
   );
 
@@ -81,7 +82,8 @@ class DefaultFirebaseOptions {
     projectId: 'uniapp-bacf3',
     databaseURL: 'https://uniapp-bacf3-default-rtdb.firebaseio.com',
     storageBucket: 'uniapp-bacf3.appspot.com',
-    iosClientId: '708691986820-6dqtpc53mbc262js2ac8tj45okrlvoq5.apps.googleusercontent.com',
+    iosClientId:
+        '708691986820-6dqtpc53mbc262js2ac8tj45okrlvoq5.apps.googleusercontent.com',
     iosBundleId: 'com.example.uniapp',
   );
 }

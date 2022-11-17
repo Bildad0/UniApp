@@ -19,7 +19,7 @@ Future authenticate() async {
         useErrorDialogs: true,
         stickyAuth: true,
         sensitiveTransaction: true,
-        biometricOnly: false,
+        biometricOnly: true,
       ),
     );
   } on PlatformException {
@@ -93,7 +93,7 @@ class _FingerPrintState extends State<FingerPrint> {
                           },
                         ),
                       );
-                    } else {
+                    } else if (!isAuthenticated) {
                       const LogIn();
                     }
                   },

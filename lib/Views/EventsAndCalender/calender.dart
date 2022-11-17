@@ -143,11 +143,13 @@ class _MiniCalenderState extends State<MiniCalender> {
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           child: ListTile(
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        const EventPage())),
+                            onTap: () async {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          const EventPage()));
+                            },
                             title: Text('${value[index]}'),
                           ),
                         );

@@ -7,10 +7,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:uniapp/Controlers/auth.dart';
 import 'package:uniapp/Utils/API/firebase_auth.dart';
-import 'package:cloud_functions/cloud_functions.dart';
+
+import 'firebase_options.dart';
 
 Future<void> main() async {
   FlutterError.onError = (details) {
@@ -18,17 +18,10 @@ Future<void> main() async {
     if (kReleaseMode) exit(1);
   };
   WidgetsFlutterBinding.ensureInitialized();
-
-  if (Platform.isAndroid) {
-    await Firebase.initializeApp(
-      name: "UniApp",
-      options: const FirebaseOptions(
-          apiKey: 'AIzaSyCiL9ATYW2dI62_OjHJ4WYcNimzT69JwDo',
-          appId: '1:708691986820:android:f2cd7f96b2a51c26cdf5d1',
-          messagingSenderId: '708691986820',
-          projectId: 'uniapp-bacf3'),
-    );
-  }
+  await Firebase.initializeApp(
+    name: "UniApp",
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(const MyApp());
 }
@@ -59,6 +52,7 @@ class _MyAppState extends State<MyApp> {
           )
         ],
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           builder: (context, widget) {
             Widget error = const Text('...rendering error...');
             if (widget is Scaffold || widget is Navigator) {

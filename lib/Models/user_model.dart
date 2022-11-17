@@ -33,8 +33,6 @@ class Students {
   }
   static fromJson(json) async {
     //returns body from firebase api call
-    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('users');
-    final results = await callable();
-    return results;
+   
   }
 }

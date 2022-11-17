@@ -25,16 +25,16 @@ class CustomFormState extends State<CustomForm> {
 
   late bool isLoading = false;
 
-  // String? get _errorText {
-  //   final mailtext = emailcontroler.text;
-  //   final passtext = passwordcontroler.text;
-  //   if (passtext == '' || mailtext == '') {
-  //     return 'can\'t be empty';
-  //   } else if (passtext.length < 6) {
-  //     return 'Password is too short';
-  //   }
-  //   return null;
-  // }
+  String? get _errorText {
+    final mailtext = emailcontroler.text;
+    final passtext = passwordcontroler.text;
+    if (passtext == '' || mailtext == '') {
+      return 'can\'t be empty';
+    } else if (passtext.length < 6) {
+      return 'Password is too short';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class CustomFormState extends State<CustomForm> {
                     Neumorphic(
                       margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                       child: TextFormField(
-                        // validator: (value) => _errorText,
+                        validator: (value) => _errorText,
                         controller: emailcontroler,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -84,7 +84,7 @@ class CustomFormState extends State<CustomForm> {
                       margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: TextFormField(
                         obscureText: true,
-                        // validator: (value) => _errorText,
+                        validator: (value) => _errorText,
                         controller: passwordcontroler,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -119,6 +119,7 @@ class CustomFormState extends State<CustomForm> {
                                 password: passwordcontroler.text.trim(),
                               );
                         });
+                        // userData(email: emailcontroler.text.trim());
                       },
                       child: isLoading
                           ? const SizedBox(

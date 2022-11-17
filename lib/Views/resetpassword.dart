@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:uniapp/Utils/API/firebase_auth.dart';
 import 'package:uniapp/Views/landingpage.dart';
 import 'package:uniapp/Views/loginpage.dart';
+import 'package:uniapp/main.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
@@ -70,14 +71,6 @@ class ResetPasswordState extends State<ResetPassword> {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.green),
                             onPressed: () async {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      //will impliment sent then navigate back to login
-                                      const LogIn(),
-                                ),
-                              );
                               await Future.delayed(const Duration(seconds: 7),
                                   () {
                                 context
@@ -86,6 +79,14 @@ class ResetPasswordState extends State<ResetPassword> {
                                       email: emailcontroler.text.trim(),
                                     );
                               });
+                              // ignore: use_build_context_synchronously
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const MyApp(),
+                                ),
+                              );
                             },
                             child: Text(
                               "Submit".toUpperCase(),

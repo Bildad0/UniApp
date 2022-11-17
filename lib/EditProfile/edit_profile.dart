@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:uniapp/EditProfile/settings.dart';
 import 'package:uniapp/Views/landingpage.dart';
@@ -24,6 +25,11 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+
+  final user = FirebaseAuth.instance.currentUser;
+
+
+
   bool showPassword = false;
   @override
   Widget build(BuildContext context) {

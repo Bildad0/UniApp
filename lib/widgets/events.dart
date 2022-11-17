@@ -231,7 +231,7 @@ class _EventWidgetState extends State<EventWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text(
-                          "Faculty of Art & Design Building",
+                          "Institute of computing and informatics",
                           style: TextStyle(
                             fontSize: 15,
                           ),
@@ -240,7 +240,7 @@ class _EventWidgetState extends State<EventWidget> {
                           height: 5,
                         ),
                         Text(
-                          "Room C1, 1st floor",
+                          "Room I and J",
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 12,

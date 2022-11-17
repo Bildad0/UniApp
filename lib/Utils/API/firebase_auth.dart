@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth;
@@ -28,14 +29,6 @@ class AuthenticationService {
         .catchError(
             (e) => _status = AuthExceptionHandler.handleAuthException(e));
     return _status;
-
-    // try {
-    //   await _firebaseAuth.signInWithEmailAndPassword(
-    //       email: email, password: password);
-    //   return _status.successful;
-    // } on FirebaseAuthException catch (e) {
-    //   return e.message;
-    // }
   }
 }
 
@@ -69,26 +62,30 @@ class AuthExceptionHandler {
     }
     return status;
   }
-
-  static String generateErrorMessage(error) {
-    String errorMessage;
-    switch (error) {
-      case AuthStatus.invalidEmail:
-        errorMessage = "Your email address appears to be malformed.";
-        break;
-      case AuthStatus.weakPassword:
-        errorMessage = "Your password should be at least 6 characters.";
-        break;
-      case AuthStatus.wrongPassword:
-        errorMessage = "Your email or password is wrong.";
-        break;
-      case AuthStatus.emailAlreadyExists:
-        errorMessage =
-            "The email address is already in use by another account.";
-        break;
-      default:
-        errorMessage = "An error occured. Please try again later.";
-    }
-    return errorMessage;
-  }
 }
+
+// userData({required String email}) async {
+//   final user = FirebaseAuth.instance.currentUser;
+
+//   if (user != null) {
+//     // Name, email address, and profile photo URL
+//     final name = user.displayName;
+//     final email = user.email;
+//     final photoUrl = user.photoURL;
+
+//     // Check if user's email is verified
+//     final emailVerified = user.emailVerified;
+
+//     // The user's ID, unique to the Firebase project. Do NOT use this value to
+//     // authenticate with your backend server, if you have one. Use
+//     // User.getIdToken() instead.
+//     final uid = user.uid;
+//   }
+//   // final ref = FirebaseDatabase.instance.ref('');
+//   // final snapshot = await ref.child('users/$email').get();
+//   // if (snapshot.exists) {
+//   //   print(snapshot.value);
+//   // } else {
+//   //   print("Sorry We are having trouble loading your data contact Admin");
+//   // }
+// }
