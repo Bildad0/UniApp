@@ -33,7 +33,7 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
             iconSize: 40,
             highlightColor: Colors.pink,
             onPressed: () {
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) =>

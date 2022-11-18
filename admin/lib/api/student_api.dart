@@ -1,15 +1,14 @@
+// ignore_for_file: unnecessary_null_comparison, avoid_print
+
 import 'dart:io';
 
-import '/model/allmodels.dart';
-import '/model/user.dart';
-import '/notifier/auth_notifier.dart';
-import '/notifier/teacher_notifier.dart';
-import '/notifier/student_notifier.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
 import 'package:uuid/uuid.dart';
+
+import '/model/allmodels.dart';
+import '/notifier/student_notifier.dart';
 
 getStudents(StudentNotifier studentNotifier) async {
   QuerySnapshot snapshot = await FirebaseFirestore.instance
@@ -46,7 +45,7 @@ uploadStudentAndImage(Student student, bool isUpdating, File localFile,
     var fileExtension = path.extension(localFile.path);
     print(fileExtension);
 
-    var uuid = Uuid().v4();
+    var uuid = const Uuid().v4();
 
     final Reference firebaseStorageRef = FirebaseStorage.instance
         .ref()
@@ -98,16 +97,14 @@ _uploadStudent(Student student, bool isUpdating, Function studentUploaded,
 }
 
 deleteStudent(Student student, Function studentDeleted) async {
-  if (student.image != null) {
-    Reference storageReference =
-        FirebaseStorage.instance.refFromURL(student.image);
+  Reference storageReference =
+      FirebaseStorage.instance.refFromURL(student.image);
 
-    // print(storageReference.path);
+  //print(storageReference.path);
 
-    await storageReference.delete();
+  await storageReference.delete();
 
-    print('image deleted');
-  }
+  print('image deleted');
 
   await FirebaseFirestore.instance
       .collection('Students')
