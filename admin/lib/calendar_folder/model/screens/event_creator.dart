@@ -1,11 +1,8 @@
-import '/calendar_folder/model/screens/event_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import '/notifier/auth_notifier.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-import '/calendar_folder/model/event_model.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import '/screens/afterlogin.dart';
 import 'package:intl/intl.dart';
@@ -19,9 +16,11 @@ class EventData {
 }
 
 class EventCreator extends StatefulWidget {
+  const EventCreator({super.key});
+
   @override
   State<StatefulWidget> createState() {
-    return new EventCreatorState();
+    return EventCreatorState();
   }
 }
 
@@ -29,24 +28,26 @@ class EventCreatorState extends State<EventCreator> {
   late DateTime _dateTime;
   final dateFormat = DateFormat("MMMM d, yyyy 'at' h:mma");
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  EventData _eventData = new EventData();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final EventData _eventData = EventData();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _notesControler = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     // ignore: unnecessary_new
     final titleWidget = new TextFormField(
       keyboardType: TextInputType.text,
-      decoration: new InputDecoration(
+      decoration: InputDecoration(
           hintText: 'Event Name',
           labelText: 'Event Title',
-          contentPadding: EdgeInsets.all(16.0),
+          contentPadding: const EdgeInsets.all(16.0),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
           )),
       style: Theme.of(context).textTheme.bodyText1,
-      // validator: _validateTitle,
-      // onSaved: (String value) => this._eventData.title = value,
+      validator: _validateTitle(_titleController.text),
+      onSaved: (value) => _eventData.title = _titleController.text,
     );
 
     final notesWidget = TextFormField(
@@ -55,16 +56,16 @@ class EventCreatorState extends State<EventCreator> {
       decoration: InputDecoration(
           hintText: 'Detail',
           labelText: 'Enter detail here',
-          contentPadding: EdgeInsets.all(16.0),
+          contentPadding: const EdgeInsets.all(16.0),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0))),
       style: Theme.of(context).textTheme.headline1,
-      // onSaved: (String value) => _eventData.summary = value,
+      onSaved: (value) => _eventData.summary = _notesControler.text,
     );
 
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: new Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
             highlightColor: Colors.pink,
@@ -72,25 +73,23 @@ class EventCreatorState extends State<EventCreator> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => AfterLogin(),
+                  builder: (BuildContext context) => const AfterLogin(),
                 ),
               );
             }),
-        title: new Text('Create New Event'),
+        title: const Text('Create New Event'),
         backgroundColor: Colors.brown[400],
         actions: <Widget>[
           Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.all(15.0),
-            // child: new InkWell(
-            //   child: new Text(
-            //     'SAVE',
-            //     style: TextStyle(
-            //       fontSize: 20.0),
-            //   ),
-            //   onTap: () => _saveNewEvent(context),
-
-            // ),
+            padding: const EdgeInsets.all(15.0),
+            child: InkWell(
+              child: const Text(
+                'SAVE',
+                style: TextStyle(fontSize: 20.0),
+              ),
+              onTap: () => _saveNewEvent(context),
+            ),
           ),
           const SizedBox(height: 16.0),
           //notesWidget,
@@ -113,17 +112,17 @@ class EventCreatorState extends State<EventCreator> {
                     initialDatePickerMode: DatePickerMode.day,
                     inputType: InputType.date,
                     format: DateFormat('EEEE, dd MMMM, yyyy'),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: InputBorder.none,
                       prefixIcon: Icon(Icons.calendar_today_sharp),
                     ),
-                    // validator: _validateDate,
-                    // onSaved: (DateTime value) => _eventData.time = value,
+                    validator: _validateDate(_dateTime),
+                    onSaved: (value) => {_eventData.time = _dateTime},
                   ),
                   notesWidget,
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   IconButton(
-                      icon: new Icon(Icons.save),
+                      icon: const Icon(Icons.save),
                       color: Colors.black,
                       iconSize: 40,
                       highlightColor: Colors.pink,
@@ -132,7 +131,8 @@ class EventCreatorState extends State<EventCreator> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) => AfterLogin()),
+                              builder: (BuildContext context) =>
+                                  const AfterLogin()),
                         );
                       }),
                 ],
@@ -142,7 +142,7 @@ class EventCreatorState extends State<EventCreator> {
     );
   }
 
-  String? _validateTitle(String value) {
+  _validateTitle(String value) {
     if (value.isEmpty) {
       return 'Please enter a valid title.';
     } else {
@@ -150,7 +150,7 @@ class EventCreatorState extends State<EventCreator> {
     }
   }
 
-  String? _validateDate(DateTime value) {
+  _validateDate(DateTime value) {
     if ((value != null) &&
         (value.day >= 1 && value.day <= 31) &&
         (value.month >= 1 && value.month <= 12) &&

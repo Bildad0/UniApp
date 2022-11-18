@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import '/calendar_folder/model/event_model.dart';
+import '../../../model/event_model.dart';
 import '/calendar_folder/model/screens/event_creator.dart';
 import '/notifier/auth_notifier.dart';
 

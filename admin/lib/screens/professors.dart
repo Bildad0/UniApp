@@ -68,7 +68,7 @@ class _ProfessorsState extends State<Professors> {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+            children: [
               Column(
                 children: <Widget>[
                   SizedBox(
@@ -131,7 +131,7 @@ class _ProfessorsState extends State<Professors> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
             ],

@@ -8,7 +8,7 @@ import '/notifier/auth_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-enum AuthMode { Signup, Login, Logout }
+enum AuthMode { Signup, Login }
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -27,7 +27,7 @@ class _LoginState extends State<Login> {
 
   AuthMode _authMode = AuthMode.Login;
 
-  late MyUser _user;
+  final MyUser _user = MyUser();
 
   @override
   void initState() {
@@ -49,10 +49,8 @@ class _LoginState extends State<Login> {
 
     if (_authMode == AuthMode.Login) {
       login(_user, authNotifier);
-    } else if (_authMode == AuthMode.Signup) {
+    } else {
       signup(_user, authNotifier);
-    } else if (_authMode == AuthMode.Logout) {
-      signout(authNotifier);
     }
   }
 
@@ -80,7 +78,7 @@ class _LoginState extends State<Login> {
         return null;
       },
       onSaved: (value) {
-        _user.displayName = value!;
+        _user.displayName = _usernameController.text;
       },
     );
   }
@@ -112,7 +110,7 @@ class _LoginState extends State<Login> {
         return null;
       }),
       onSaved: (value) {
-        _user.email = value!;
+        _user.email = _emailcontroler.text;
       },
     );
   }
@@ -141,7 +139,7 @@ class _LoginState extends State<Login> {
         return null;
       }),
       onSaved: (value) {
-        _user.password = value!;
+        _user.password = _passwordController.text;
       },
     );
   }
@@ -225,11 +223,6 @@ class _LoginState extends State<Login> {
                               ? AuthMode.Signup
                               : AuthMode.Login;
                         });
-
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const AfterLogin()));
                       },
                     ),
                   ),
@@ -241,7 +234,16 @@ class _LoginState extends State<Login> {
                           //padding:,
                           ),
                       //padding:
-                      onPressed: () => _submitForm(),
+                      onPressed: () => {
+                        print(_emailcontroler.text),
+                        print(_passwordController.text),
+                        print(_usernameController.text),
+                        _submitForm(),
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => const AfterLogin()))
+                      },
                       child: Text(
                         _authMode == AuthMode.Login ? 'Login' : 'Signup',
                         style:

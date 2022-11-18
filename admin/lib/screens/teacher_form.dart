@@ -1,8 +1,6 @@
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: unnecessary_null_comparison, avoid_print
 
 import 'dart:io';
-
-import 'package:firebase_auth/firebase_auth.dart';
 
 import '/api/teacher_api.dart';
 import '/model/allmodels.dart';
@@ -26,7 +24,7 @@ class _TeacherFormState extends State<TeacherForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final List _subingredients = [];
-  Teacher? teacher;
+  Teacher teacher = Teacher();
   late String _imageUrl;
   late File _imageFile;
   TextEditingController subingredientController = TextEditingController();
@@ -42,8 +40,8 @@ class _TeacherFormState extends State<TeacherForm> {
       teacher = Teacher();
     }
 
-    _subingredients.addAll(teacher!.subIngredients);
-    _imageUrl = teacher!.image;
+    _subingredients.addAll(teacher.subIngredients);
+    _imageUrl = teacher.image;
   }
 
   _showImage() {
@@ -127,7 +125,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: teacher!.name,
+      initialValue: teacher.name,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
@@ -141,7 +139,7 @@ class _TeacherFormState extends State<TeacherForm> {
         return 'Name is required';
       },
       onSaved: (value) {
-        teacher!.name = value!;
+        teacher.name = value!;
       },
     );
   }
@@ -154,7 +152,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: teacher!.phone,
+      initialValue: teacher.phone,
       keyboardType: TextInputType.text,
       maxLength: 13,
       style: const TextStyle(fontSize: 15, color: Colors.black),
@@ -169,7 +167,7 @@ class _TeacherFormState extends State<TeacherForm> {
         return 'Phone is required';
       },
       onSaved: (value) {
-        teacher!.phone = value!;
+        teacher.phone = value!;
       },
     );
   }
@@ -182,7 +180,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: teacher!.address,
+      initialValue: teacher.address,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
@@ -196,7 +194,7 @@ class _TeacherFormState extends State<TeacherForm> {
         return 'Addressis required';
       },
       onSaved: (value) {
-        teacher!.address = value!;
+        teacher.address = value!;
       },
     );
   }
@@ -209,7 +207,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: teacher!.email,
+      initialValue: teacher.email,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (val) {
@@ -220,7 +218,7 @@ class _TeacherFormState extends State<TeacherForm> {
             : "Please Enter Correct Email";
       },
       onSaved: (value) {
-        teacher!.email = value!;
+        teacher.email = value!;
       },
     );
   }
@@ -233,7 +231,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: teacher!.category,
+      initialValue: teacher.category,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
@@ -248,7 +246,7 @@ class _TeacherFormState extends State<TeacherForm> {
         return null;
       },
       onSaved: (value) {
-        teacher!.category = value!;
+        teacher.category = value!;
       },
     );
   }
@@ -301,18 +299,18 @@ class _TeacherFormState extends State<TeacherForm> {
 
     print('form saved');
 
-    teacher!.subIngredients = _subingredients;
+    teacher.subIngredients = _subingredients;
 
     uploadTeacherAndImage(
-        teacher!, widget.isUpdating, _imageFile, _onTeacherUploaded);
+        teacher, widget.isUpdating, _imageFile, _onTeacherUploaded);
 
-    print("name: ${teacher!.name}");
-    print("email: ${teacher!.email}");
-    print("phone: ${teacher!.phone}");
-    print("address: ${teacher!.address}");
+    print("name: ${teacher.name}");
+    print("email: ${teacher.email}");
+    print("phone: ${teacher.phone}");
+    print("address: ${teacher.address}");
 
-    print("category: ${teacher!.category}");
-    print("subingredients: ${teacher!.subIngredients.toString()}");
+    print("category: ${teacher.category}");
+    print("subingredients: ${teacher.subIngredients.toString()}");
     print("_imageFile ${_imageFile.toString()}");
     print("_imageUrl $_imageUrl");
   }

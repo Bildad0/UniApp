@@ -1,7 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:admin/screens/login.dart';
+import 'package:provider/provider.dart';
 
+import '../api/teacher_api.dart';
+import '../notifier/auth_notifier.dart';
 import '/calendar_folder/model/screens/event_creator.dart';
 
 import '/screens/fees.dart';
@@ -200,7 +203,11 @@ class _AfterLoginState extends State<AfterLogin> {
                         child: Center(
                           child: ElevatedButton(
                             onPressed: () async {
-                              AuthMode.Logout;
+                              AuthNotifier authNotifier =
+                                  Provider.of<AuthNotifier>(context,
+                                      listen: false);
+                              await signout(authNotifier);
+                              // ignore: use_build_context_synchronously
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
