@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_null_comparison, avoid_print
+// ignore_for_file: unnecessary_null_comparison, avoid_print, no_leading_underscores_for_local_identifiers
 
 import 'dart:io';
 
@@ -16,12 +16,12 @@ getStudents(StudentNotifier studentNotifier) async {
       .orderBy("createdAt", descending: true)
       .get();
 
-  List<Student> studentList = [];
+  List<Student> _studentList = [];
 
   if (snapshot != null) {
     for (int i = 0; i < snapshot.docs.length; i++) {
       Student student = snapshot.docs as Student;
-      studentList.add(student);
+      _studentList.add(student);
     }
   } else {
     return "We are having problem loading your Information";
@@ -34,7 +34,7 @@ getStudents(StudentNotifier studentNotifier) async {
   //   _studentList.add(student);
   // });
 
-  studentNotifier.studentList = studentList;
+  studentNotifier.studentList = _studentList;
 }
 
 uploadStudentAndImage(Student student, bool isUpdating, File localFile,

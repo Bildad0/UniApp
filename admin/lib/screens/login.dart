@@ -213,7 +213,7 @@ class _LoginState extends State<Login> {
                     child: ElevatedButton(
                       style: const ButtonStyle(),
                       child: Text(
-                        'Switch to ${_authMode == AuthMode.Login ? 'Signup' : 'Login'}',
+                        'Create ${_authMode == AuthMode.Login ? 'Account' : 'Login'}',
                         style:
                             const TextStyle(fontSize: 20, color: Colors.white),
                       ),

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:admin/notifier/authentication_wrapper.dart';
 import 'package:flutter/foundation.dart';
 
 import './notifier/fee_notifier.dart';
@@ -8,7 +9,6 @@ import './screens/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import './screens/afterlogin.dart';
 import 'notifier/auth_notifier.dart';
 import 'firebase_options.dart';
 import 'notifier/student_notifier.dart';
@@ -58,7 +58,9 @@ class MyApp extends StatelessWidget {
       home: Consumer<AuthNotifier>(
         //AuthNotifier is here in order to  access the user which is in AuthNotifier
         builder: (context, notifier, child) {
-          return notifier.user == null ? const AfterLogin() : Login();
+          return notifier.user == null
+              ? const AuthenticationWrapper()
+              : const Login();
         },
       ),
     );
