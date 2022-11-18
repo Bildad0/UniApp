@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names, unnecessary_null_comparison, avoid_print
 
 import 'package:admin/screens/afterlogin.dart';
+import 'package:flutter/cupertino.dart';
 
 import '/api/teacher_api.dart';
 import '/model/user.dart';
@@ -39,7 +40,8 @@ class _LoginState extends State<Login> {
 
   _submitForm() {
     if (!_formKey.currentState!.validate()) {
-      return;
+      return Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const AfterLogin()));
     }
 
     _formKey.currentState?.save();
@@ -53,8 +55,45 @@ class _LoginState extends State<Login> {
       signup(_user, authNotifier);
     }
 
-    return Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const AfterLogin()));
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        content: const Text(
+          'Error !',
+          style: TextStyle(color: Colors.red),
+        ),
+        actions: [
+          CupertinoDialogAction(
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "Check your Details",
+                    style: TextStyle(color: Colors.black.withOpacity(0.7)),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional.bottomEnd,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Align(
+                        alignment: AlignmentDirectional.center,
+                        child: Text('Ok'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   Widget _buildDisplayNameField() {

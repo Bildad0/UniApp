@@ -96,7 +96,7 @@ class _ConversationPageState extends State<ConversationPage> {
           CupertinoDialogAction(
             child: Center(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   TextButton(
                     onPressed: () {
