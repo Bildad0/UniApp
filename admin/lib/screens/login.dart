@@ -40,8 +40,7 @@ class _LoginState extends State<Login> {
 
   _submitForm() {
     if (!_formKey.currentState!.validate()) {
-      return Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const AfterLogin()));
+      return;
     }
 
     _formKey.currentState?.save();
@@ -55,45 +54,8 @@ class _LoginState extends State<Login> {
       signup(_user, authNotifier);
     }
 
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) => CupertinoAlertDialog(
-        content: const Text(
-          'Error !',
-          style: TextStyle(color: Colors.red),
-        ),
-        actions: [
-          CupertinoDialogAction(
-            child: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "Check your Details",
-                    style: TextStyle(color: Colors.black.withOpacity(0.7)),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional.bottomEnd,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Align(
-                        alignment: AlignmentDirectional.center,
-                        child: Text('Ok'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
-    );
+    return Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const AfterLogin()));
   }
 
   Widget _buildDisplayNameField() {
@@ -166,7 +128,7 @@ class _LoginState extends State<Login> {
         contentPadding: const EdgeInsets.all(3),
       ),
       style: const TextStyle(fontSize: 15, color: Colors.black),
-      cursorColor: Colors.white,
+      cursorColor: Colors.black,
       obscureText: true,
       controller: _passwordController,
       validator: ((value) {
