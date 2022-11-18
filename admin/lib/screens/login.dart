@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
     super.initState();
   }
 
-  void _submitForm() {
+  _submitForm() {
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -52,6 +52,9 @@ class _LoginState extends State<Login> {
     } else {
       signup(_user, authNotifier);
     }
+
+    return Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const AfterLogin()));
   }
 
   Widget _buildDisplayNameField() {
@@ -220,10 +223,6 @@ class _LoginState extends State<Login> {
                         print(_passwordController.text),
                         print(_usernameController.text),
                         _submitForm(),
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => const AfterLogin()))
                       },
                       child: Text(
                         _authMode == AuthMode.Login ? 'Login' : 'Signup',

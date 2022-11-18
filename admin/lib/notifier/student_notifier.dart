@@ -28,6 +28,7 @@ class StudentNotifier with ChangeNotifier {
   }
 
   deleteStudent(Student student) {
+    // ignore: no_leading_underscores_for_local_identifiers
     _studentList.removeWhere((_student) => _student.id == student.id);
     notifyListeners();
   }

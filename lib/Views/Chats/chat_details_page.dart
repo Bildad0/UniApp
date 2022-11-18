@@ -89,48 +89,49 @@ class _ConversationPageState extends State<ConversationPage> {
 
   void _handleAttachmentPressed() {
     showDialog(
-        context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-              content: const Text('please choose file type'),
-              actions: <Widget>[
-                CupertinoDialogAction(
-                  child: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            _handleImageSelection();
-                          },
-                          child: const Align(
-                            alignment: AlignmentDirectional.centerStart,
-                            child: Text('Photo'),
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            _handleFileSelection();
-                          },
-                          child: const Align(
-                            alignment: AlignmentDirectional.centerStart,
-                            child: Text('File'),
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: const Align(
-                            alignment: AlignmentDirectional.centerStart,
-                            child: Text('Cancel'),
-                          ),
-                        ),
-                      ],
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        content: const Text('please choose file type'),
+        actions: <Widget>[
+          CupertinoDialogAction(
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      _handleImageSelection();
+                    },
+                    child: const Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Text('Photo'),
                     ),
                   ),
-                )
-              ],
-            ));
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      _handleFileSelection();
+                    },
+                    child: const Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Text('File'),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Text('Cancel'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
 
     // showModalBottomSheet<void>(
     //   backgroundColor: Colors.green.withOpacity(0.6),

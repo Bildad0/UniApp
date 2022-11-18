@@ -4,6 +4,7 @@ import 'package:admin/screens/login.dart';
 import 'package:provider/provider.dart';
 
 import '../api/teacher_api.dart';
+import '../model/user.dart';
 import '../notifier/auth_notifier.dart';
 import '/calendar_folder/model/screens/event_creator.dart';
 
@@ -23,6 +24,8 @@ class AfterLogin extends StatefulWidget {
 }
 
 class _AfterLoginState extends State<AfterLogin> {
+  MyUser user = MyUser();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -188,7 +191,7 @@ class _AfterLoginState extends State<AfterLogin> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          EventCreator(),
+                                          const EventCreator(),
                                     ),
                                   );
                                 }),
@@ -209,9 +212,11 @@ class _AfterLoginState extends State<AfterLogin> {
                               await signout(authNotifier);
                               // ignore: use_build_context_synchronously
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Login()));
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Login(),
+                                ),
+                              );
                             },
                             child: const Text("Logout"),
                           ),

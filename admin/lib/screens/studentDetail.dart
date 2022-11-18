@@ -1,18 +1,17 @@
-import '/api/teacher_api.dart';
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import '/api/student_api.dart';
 import '/model/allmodels.dart';
-import '/notifier/teacher_notifier.dart';
 import '/notifier/student_notifier.dart';
 import '/screens/student_form.dart';
 import '/screens/students.dart';
 
 import 'package:flutter/material.dart';
-import '/screens/professors.dart';
 import 'package:provider/provider.dart';
 
-import 'teacher_form.dart';
-
 class StudentDetail extends StatelessWidget {
+  const StudentDetail({super.key});
+
   @override
   Widget build(BuildContext context) {
     StudentNotifier studentNotifier = Provider.of<StudentNotifier>(context);
@@ -25,7 +24,7 @@ class StudentDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: new Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
             highlightColor: Colors.pink,
@@ -33,11 +32,11 @@ class StudentDetail extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => Students(),
+                  builder: (BuildContext context) => const Students(),
                 ),
               );
             }),
-        title: Text("Student"),
+        title: const Text("Student"),
         centerTitle: true,
         backgroundColor: Colors.brown,
       ),
@@ -46,62 +45,58 @@ class StudentDetail extends StatelessWidget {
         child: Card(
           child: SingleChildScrollView(
             child: Center(
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Image.network(
-                      studentNotifier.currentStudent.image != null
-                          ? studentNotifier.currentStudent.image
-                          : 'https://www.testingxperts.com/wp-content/uploads/2019/02/placeholder-img.jpg',
-                      width: MediaQuery.of(context).size.width,
-                      height: 250,
-                      fit: BoxFit.fitWidth,
+              child: Column(
+                children: <Widget>[
+                  Image.network(
+                    studentNotifier.currentStudent.image,
+                    width: MediaQuery.of(context).size.width,
+                    height: 250,
+                    fit: BoxFit.fitWidth,
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    studentNotifier.currentStudent.name,
+                    style: const TextStyle(
+                      fontSize: 40,
                     ),
-                    SizedBox(height: 24),
-                    Text(
-                      studentNotifier.currentStudent.name,
-                      style: TextStyle(
-                        fontSize: 40,
-                      ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'Father Name: ${studentNotifier.currentStudent.fName}',
+                    style: const TextStyle(
+                      fontSize: 18,
                     ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Father Name: ${studentNotifier.currentStudent.fName}',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Phone: ${studentNotifier.currentStudent.phone}',
+                    style: const TextStyle(
+                      fontSize: 18,
                     ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Phone: ${studentNotifier.currentStudent.phone}',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Roll No: ${studentNotifier.currentStudent.rollNo}',
+                    style: const TextStyle(
+                      fontSize: 18,
                     ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Roll No: ${studentNotifier.currentStudent.rollNo}',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Registration No: ${studentNotifier.currentStudent.registrationNo}',
+                    style: const TextStyle(
+                      fontSize: 18,
                     ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Registration No: ${studentNotifier.currentStudent.registrationNo}',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Address: ${studentNotifier.currentStudent.address}',
+                    style: const TextStyle(
+                      fontSize: 18,
                     ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Address: ${studentNotifier.currentStudent.address}',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
               ),
             ),
           ),
@@ -115,23 +110,23 @@ class StudentDetail extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (BuildContext context) {
-                  return StudentForm(
+                  return const StudentForm(
                     isUpdating: true,
                   );
                 }),
               );
             },
-            child: Icon(Icons.edit),
             foregroundColor: Colors.white,
+            child: const Icon(Icons.edit),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           FloatingActionButton(
             heroTag: 'button2',
             onPressed: () => deleteStudent(
                 studentNotifier.currentStudent, _onStudentDeleted),
-            child: Icon(Icons.delete),
             backgroundColor: Colors.brown,
             foregroundColor: Colors.white,
+            child: const Icon(Icons.delete),
           ),
         ],
       ),
