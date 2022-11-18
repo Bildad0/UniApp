@@ -190,10 +190,10 @@ class _LoginState extends State<Login> {
               padding: const EdgeInsets.fromLTRB(32, 96, 32, 0),
               child: Column(
                 children: <Widget>[
-                  const Text(
-                    "SignIn",
+                  Text(
+                    ' ${_authMode == AuthMode.Signup ? 'Sign Up' : 'Log In'}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 36, color: Colors.black),
+                    style: const TextStyle(fontSize: 36, color: Colors.black),
                   ),
                   const SizedBox(height: 32),
                   _authMode == AuthMode.Signup
@@ -211,28 +211,9 @@ class _LoginState extends State<Login> {
                   ButtonTheme(
                     minWidth: 200,
                     child: ElevatedButton(
-                      style: const ButtonStyle(),
-                      child: Text(
-                        'Create ${_authMode == AuthMode.Login ? 'Account' : 'Login'}',
-                        style:
-                            const TextStyle(fontSize: 20, color: Colors.white),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _authMode = _authMode == AuthMode.Login
-                              ? AuthMode.Signup
-                              : AuthMode.Login;
-                        });
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  ButtonTheme(
-                    minWidth: 200,
-                    child: ElevatedButton(
                       style: const ButtonStyle(
-                          //padding:,
-                          ),
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.green)),
                       //padding:
                       onPressed: () => {
                         print(_emailcontroler.text),
@@ -249,6 +230,30 @@ class _LoginState extends State<Login> {
                         style:
                             const TextStyle(fontSize: 20, color: Colors.white),
                       ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                    child: Text("OR"),
+                  ),
+                  ButtonTheme(
+                    minWidth: 200,
+                    child: ElevatedButton(
+                      style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(Colors.green),
+                      ),
+                      child: Text(
+                        ' ${_authMode == AuthMode.Signup ? 'Login' : ' Create Account'}',
+                        style:
+                            const TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _authMode = _authMode == AuthMode.Login
+                              ? AuthMode.Signup
+                              : AuthMode.Login;
+                        });
+                      },
                     ),
                   ),
                 ],
