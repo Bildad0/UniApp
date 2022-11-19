@@ -88,7 +88,9 @@ class _FeeFormState extends State<FeeForm> {
 
   _saveFee() {
     print('fee Called');
-    if (!_formKey.currentState!.validate()) {}
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
 
     _formKey.currentState?.save();
 

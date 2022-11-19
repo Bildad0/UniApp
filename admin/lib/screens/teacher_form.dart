@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_null_comparison, avoid_print
+// ignore_for_file: unnecessary_null_comparison, avoid_print, use_build_context_synchronously
 
 import 'dart:io';
 
@@ -30,6 +30,12 @@ class _TeacherFormState extends State<TeacherForm> {
   Teacher teacher = Teacher();
   File? _imageFile;
   TextEditingController subingredientController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController descController = TextEditingController();
+  TextEditingController skillsController = TextEditingController();
 
   _showImage() {
     if (_imageFile == null && _imageUrl == null) {
@@ -106,6 +112,7 @@ class _TeacherFormState extends State<TeacherForm> {
 
   Widget _buildNameField() {
     return TextFormField(
+      controller: nameController,
       decoration: InputDecoration(
         labelText: 'Name',
         fillColor: Colors.black,
@@ -126,13 +133,14 @@ class _TeacherFormState extends State<TeacherForm> {
         return 'Name is required';
       },
       onSaved: (value) {
-        teacher.name = value!;
+        teacher.name = nameController.text.trim();
       },
     );
   }
 
   Widget _buildPhoneField() {
     return TextFormField(
+      controller: phoneController,
       decoration: InputDecoration(
         labelText: 'Phone',
         fillColor: Colors.black,
@@ -154,13 +162,14 @@ class _TeacherFormState extends State<TeacherForm> {
         return 'Phone is required';
       },
       onSaved: (value) {
-        teacher.phone = value!;
+        teacher.phone = phoneController.text.trim();
       },
     );
   }
 
   Widget _buildAddressField() {
     return TextFormField(
+      controller: addressController,
       decoration: InputDecoration(
         labelText: 'Address',
         fillColor: Colors.black,
@@ -178,16 +187,17 @@ class _TeacherFormState extends State<TeacherForm> {
           return null;
         }
 
-        return 'Addressis required';
+        return 'Address is required';
       },
       onSaved: (value) {
-        teacher.address = value!;
+        teacher.address = addressController.text.trim();
       },
     );
   }
 
   Widget _buildEmailField() {
     return TextFormField(
+      controller: emailController,
       decoration: InputDecoration(
         labelText: 'Email',
         fillColor: Colors.black,
@@ -205,13 +215,14 @@ class _TeacherFormState extends State<TeacherForm> {
             : "Please Enter Correct Email";
       },
       onSaved: (value) {
-        teacher.email = value!;
+        teacher.email = emailController.text.trim();
       },
     );
   }
 
   Widget _buildCategoryField() {
     return TextFormField(
+      controller: descController,
       decoration: InputDecoration(
         labelText: 'Description',
         fillColor: Colors.black,
@@ -232,7 +243,7 @@ class _TeacherFormState extends State<TeacherForm> {
         return 'description is required';
       },
       onSaved: (value) {
-        teacher.category = value!;
+        teacher.category = descController.text.trim();
       },
     );
   }
@@ -269,7 +280,7 @@ class _TeacherFormState extends State<TeacherForm> {
     }
   }
 
-  _saveTeacher() async {
+  _saveTeacher() {
     print('save teacher Called');
     if (!_formKey.currentState!.validate()) {
       return;
@@ -279,31 +290,38 @@ class _TeacherFormState extends State<TeacherForm> {
 
     print('form saved');
 
-    teacher.subIngredients = _subingredients;
+    //teacher.subIngredients = _subingredients;
 
-    uploadTeacherAndImage(
-        teacher, widget.isUpdating, _imageFile!, _onTeacherUploaded);
+    // uploadTeacherAndImage(
+    //     teacher, widget.isUpdating, _imageFile!, _onTeacherUploaded);
     print("Sending to firebase");
-    await FirebaseFirestore.instance.collection('Teachers').doc().set({
-      'address': teacher.address,
-      'email': teacher.email,
-      'image': teacher.image,
+    FirebaseFirestore.instance.collection('Teachers').doc().set({
+      'address': addressController.text.trim(),
+      'email': emailController.text.trim(),
+      'category': descController.text.trim(),
+      //'image': teacher.image,
       'createdAt': DateTime.now(),
-      'name': teacher.name,
-      'phone': teacher.phone,
-      'subIngridients': teacher.subIngredients,
+      'name': nameController.text.trim(),
+      'phone': phoneController.text.trim(),
+      'subIngridients': subingredientController.text.trim(),
       'updatedAt': DateTime.now(),
     });
 
-    print("name: ${teacher.name}");
-    print("email: ${teacher.email}");
+    print("name: ${nameController.text}");
+    print("email: ${emailController.text}");
     print("phone: ${teacher.phone}");
-    print("address: ${teacher.address}");
+    print("address: ${addressController.text}");
 
-    print("category: ${teacher.category}");
-    print("subingredients: ${teacher.subIngredients.toString()}");
+    print("category: ${descController.text}");
+    print("subingredients: ${subingredientController.text}");
     print("_imageFile ${_imageFile.toString()}");
     print("_imageUrl $_imageUrl");
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => const Professors(),
+      ),
+    );
   }
 
   @override
@@ -315,7 +333,7 @@ class _TeacherFormState extends State<TeacherForm> {
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
-            highlightColor: Colors.pink,
+            //highlightColor: Colors.pink,
             onPressed: () {
               Navigator.push(
                 context,

@@ -36,9 +36,9 @@ class _FeesState extends State<Fees> {
       appBar: AppBar(
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: Colors.white,
+            color: Colors.green,
             iconSize: 40,
-            highlightColor: Colors.pink,
+            //highlightColor: Colors.pink,
             onPressed: () {
               Navigator.pushReplacement(
                 context,
@@ -47,9 +47,13 @@ class _FeesState extends State<Fees> {
                 ),
               );
             }),
-        title: const Text("Fee"),
+        elevation: 0,
+        title: const Text(
+          "Fee",
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.brown,
+        backgroundColor: const Color.fromARGB(255, 243, 241, 241),
       ),
 //body:_children[_currentIndex],
       body: Container(

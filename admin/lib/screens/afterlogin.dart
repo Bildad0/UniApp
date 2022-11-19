@@ -2,12 +2,8 @@
 
 import 'package:admin/screens/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:provider/provider.dart';
 
-import '../api/teacher_api.dart';
 import '../model/user.dart';
-import '../notifier/auth_notifier.dart';
-import '../notifier/teacher_notifier.dart';
 import '/calendar_folder/model/screens/event_creator.dart';
 
 import '/screens/fees.dart';
@@ -50,10 +46,13 @@ class _AfterLoginState extends State<AfterLogin> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        title: const Text("UniApp"),
+        title: const Text(
+          "UniApp",
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
         actions: const [],
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.white,
       ),
       body: Container(
         decoration: BoxDecoration(
