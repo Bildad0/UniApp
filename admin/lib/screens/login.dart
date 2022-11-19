@@ -52,55 +52,23 @@ class _LoginState extends State<Login> {
 
     if (_authMode == AuthMode.Login) {
       login(_user, authNotifier);
+      return Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => const AfterLogin(),
+        ),
+      );
     } else {
-      final FirebaseAuth auth = FirebaseAuth.instance;
-      User? currentUser = auth.currentUser;
-
-      if (currentUser == null && _formKey.currentState!.validate()) {
-        signup(_user, authNotifier);
-        FirebaseFirestore.instance.collection('Users').doc().set({
-          'displayName': _usernameController.text,
-          'email': _emailcontroler.text,
-          'password': _passwordController.text,
-        });
-      }
-      return showDialog(
-        context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-          content: const Text(
-            'Successfull',
-            style: TextStyle(color: Colors.green),
-          ),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              child: Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Welcome ${_usernameController.text}"),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const AfterLogin()));
-                      },
-                      child: Align(
-                        alignment: AlignmentDirectional.bottomCenter,
-                        child: Text(
-                          'Ok'.toUpperCase(),
-                          style: const TextStyle(color: Colors.green),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
-          ],
+      signup(_user, authNotifier);
+      FirebaseFirestore.instance.collection('Users').doc().set({
+        'displayName': _usernameController.text,
+        'email': _emailcontroler.text,
+        'password': _passwordController.text,
+      });
+      return Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => const AfterLogin(),
         ),
       );
     }

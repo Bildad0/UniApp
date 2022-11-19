@@ -24,16 +24,17 @@ class _TeacherFormState extends State<TeacherForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final List _subingredients = [];
-  Teacher teacher = Teacher();
   late String _imageUrl;
+  late Teacher teacher;
   late File _imageFile;
   TextEditingController subingredientController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+    //Teacher teacher = Teacher();
     final TeacherNotifier teacherNotifier =
-        Provider.of<TeacherNotifier>(context, listen: false);
+        Provider.of<TeacherNotifier>(context, listen: true);
     if (teacherNotifier.currentTeacher != null) {
       teacher = teacherNotifier.currentTeacher;
     } else {
@@ -52,7 +53,7 @@ class _TeacherFormState extends State<TeacherForm> {
 
       return Stack(
         alignment: AlignmentDirectional.bottomCenter,
-        children: <Widget>[
+        children: [
           Image.file(
             _imageFile,
             fit: BoxFit.cover,
@@ -272,7 +273,7 @@ class _TeacherFormState extends State<TeacherForm> {
     TeacherNotifier teacherNotifier =
         Provider.of<TeacherNotifier>(context, listen: false);
     teacherNotifier.addTeacher(teacher);
-    Navigator.pushReplacement(
+    Navigator.push(
       context,
       MaterialPageRoute(
         builder: (BuildContext context) => const Professors(),

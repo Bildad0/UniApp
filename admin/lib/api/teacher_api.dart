@@ -21,7 +21,7 @@ login(MyUser user, AuthNotifier authNotifier) async {
   User? firebaseUser = authResult.user;
   final userid = firebaseUser?.uid;
   final currentUser =
-      FirebaseFirestore.instance.collection("user").where("uid=$userid");
+      FirebaseFirestore.instance.collection("Users").where("uid=$userid");
   return currentUser;
 }
 
