@@ -49,7 +49,7 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
                     icon: Icon(Icons.search), hintText: 'Search by name'),
                 onChanged: (val) {
                   setState(() {
-                    name = val.trim();
+                    name = val.trim().toUpperCase();
                   });
                 },
               ),

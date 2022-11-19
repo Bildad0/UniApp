@@ -34,11 +34,12 @@ class _StudentsState extends State<Students> {
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: Colors.white,
+            color: Colors.green,
             iconSize: 40,
-            highlightColor: Colors.pink,
+            // highlightColor: Colors.pink,
             onPressed: () {
               Navigator.pushReplacement(
                 context,
@@ -47,9 +48,12 @@ class _StudentsState extends State<Students> {
                 ),
               );
             }),
-        title: const Text("Students"),
+        title: const Text(
+          "Students",
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.transparent,
       ),
       body: Container(
         decoration: BoxDecoration(

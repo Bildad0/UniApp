@@ -2,6 +2,8 @@
 
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '/api/student_api.dart';
 import '/model/allmodels.dart';
 import '/notifier/student_notifier.dart';
@@ -22,7 +24,12 @@ class StudentForm extends StatefulWidget {
 class _StudentFormState extends State<StudentForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController regnoController = TextEditingController();
+  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController rollNoController = TextEditingController();
   final Student _currentStudent = Student();
   String? _imageUrl;
   File? _imageFile;
@@ -99,6 +106,7 @@ class _StudentFormState extends State<StudentForm> {
 
   Widget _buildNameField() {
     return TextFormField(
+      controller: nameController,
       decoration: InputDecoration(
         labelText: 'Enter Name',
         fillColor: Colors.black,
@@ -120,13 +128,14 @@ class _StudentFormState extends State<StudentForm> {
         return null;
       },
       onSaved: (value) {
-        _currentStudent.name = value!;
+        _currentStudent.name = nameController.text.trim();
       },
     );
   } // _buildRollNoField()
 
   Widget _buildRollNoField() {
     return TextFormField(
+      controller: rollNoController,
       decoration: InputDecoration(
         labelText: 'Enter Roll Number',
         fillColor: Colors.black,
@@ -144,13 +153,14 @@ class _StudentFormState extends State<StudentForm> {
         return null;
       },
       onSaved: (value) {
-        _currentStudent.rollNo = value!;
+        _currentStudent.rollNo = rollNoController.text.trim();
       },
     );
   }
 
   Widget _buildRegisterationNoField() {
     return TextFormField(
+      controller: regnoController,
       decoration: InputDecoration(
         labelText: 'Enter Registration Number',
         fillColor: Colors.black,
@@ -168,13 +178,14 @@ class _StudentFormState extends State<StudentForm> {
         return null;
       },
       onSaved: (value) {
-        _currentStudent.registrationNo = value!;
+        _currentStudent.registrationNo = regnoController.text.trim();
       },
     );
   }
 
   Widget _buildPhoneField() {
     return TextFormField(
+      controller: phoneController,
       decoration: InputDecoration(
         labelText: 'Enter Phone Number',
         fillColor: Colors.black,
@@ -197,15 +208,16 @@ class _StudentFormState extends State<StudentForm> {
         return null;
       },
       onSaved: (value) {
-        _currentStudent.phone = value!;
+        _currentStudent.phone = phoneController.text.trim();
       },
     );
   }
 
   Widget _buildAddressField() {
     return TextFormField(
+      controller: addressController,
       decoration: InputDecoration(
-        labelText: 'Address',
+        labelText: 'Email Address',
         fillColor: Colors.black,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
@@ -215,25 +227,26 @@ class _StudentFormState extends State<StudentForm> {
       style: const TextStyle(fontSize: 15),
       validator: (value) {
         if (value == null) {
-          return 'Address is required';
+          return 'Email is required';
         }
-
-        if (value.length < 3 || value.length > 20) {
-          return 'Address must be more than 3 and less than 20';
+        if (!RegExp(
+                r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+            .hasMatch(value)) {
+          return 'Please enter a valid email address';
         }
-
         return null;
       },
       onSaved: (value) {
-        _currentStudent.address = value!;
+        _currentStudent.address = addressController.text.trim();
       },
     );
   }
 
   Widget _buildfNameField() {
     return TextFormField(
+      controller: fullNameController,
       decoration: InputDecoration(
-        labelText: 'Enter  Father name',
+        labelText: 'Enter  Full name',
         fillColor: Colors.white10,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
@@ -243,32 +256,26 @@ class _StudentFormState extends State<StudentForm> {
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
         if (value == null) {
-          return 'Father name is required';
+          return 'Full name is required';
         }
 
-        if (value.length < 3 || value.length > 20) {
-          return 'Father name must be more than 3 and less than 20';
+        if (value.length < 5 || value.length > 20) {
+          return 'Full name must be more than 5 and less than 20';
         }
 
         return null;
       },
       onSaved: (value) {
-        _currentStudent.fName = value!;
+        _currentStudent.fName = fullNameController.text.trim();
       },
     );
   }
 
-  _onStudentUploaded(Student student) {
-    StudentNotifier studentNotifier =
-        Provider.of<StudentNotifier>(context, listen: false);
-    studentNotifier.addStudent(student);
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext context) => const Students(),
-      ),
-    );
-  }
+  // _onStudentUploaded(Student student) {
+  //   StudentNotifier studentNotifier =
+  //       Provider.of<StudentNotifier>(context, listen: false);
+  //   studentNotifier.addStudent(student);
+  // }
 
   _saveStudent() {
     print('saveStudent Called');
@@ -280,32 +287,48 @@ class _StudentFormState extends State<StudentForm> {
 
     print('form saved');
 
-    uploadStudentAndImage(
-        _currentStudent, widget.isUpdating, _imageFile!, _onStudentUploaded);
+    // uploadStudentAndImage(
+    //     _currentStudent, widget.isUpdating, _imageFile!, _onStudentUploaded);
 
-    print("name: ${_currentStudent.name}");
+    FirebaseFirestore.instance.collection('Students').doc().set({
+      'address': addressController.text.trim(),
+      'createdAt': DateTime.now(),
+      'fName': fullNameController.text.trim(),
+      'name': nameController.text.trim().toUpperCase(),
+      'phone': phoneController.text.trim(),
+      'registrationNo': regnoController.text.toUpperCase().trim(),
+      'rollNo': rollNoController.text.trim(),
+      'updatedAt': DateTime.now()
+    });
 
-    print("phone: ${_currentStudent.phone}");
-    print("address: ${_currentStudent.address}");
+    print("name: ${nameController.text}");
 
-    print("category: ${_currentStudent.fName}");
+    print("phone: ${phoneController.text}");
+    print("address: ${addressController.text}");
 
-    print("_imageFile ${_imageFile.toString()}");
-    print("_imageUrl $_imageUrl");
+    print("Full Name: ${fullNameController.text}");
+    print("Registration No: ${regnoController.text}");
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => const Students(),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    StudentNotifier studentNotifier = Provider.of<StudentNotifier>(context);
+    //StudentNotifier studentNotifier = Provider.of<StudentNotifier>(context);
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
+        elevation: 0,
         automaticallyImplyLeading: false,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: Colors.white,
+            color: Colors.green,
             iconSize: 40,
-            highlightColor: Colors.pink,
+            //highlightColor: Colors.pink,
             onPressed: () {
               Navigator.pushReplacement(
                 context,
@@ -316,7 +339,7 @@ class _StudentFormState extends State<StudentForm> {
             }),
         title: const Text("Add Students"),
         centerTitle: true,
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.transparent,
       ),
       body: ListView(
         children: <Widget>[
@@ -387,12 +410,11 @@ class _StudentFormState extends State<StudentForm> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          studentNotifier.currentStudent;
-
+          //studentNotifier.currentStudent;
           _saveStudent();
         },
         foregroundColor: Colors.white,
-        backgroundColor: Colors.brown[400],
+        backgroundColor: Colors.green[400],
         child: const Icon(Icons.save),
       ),
     );
