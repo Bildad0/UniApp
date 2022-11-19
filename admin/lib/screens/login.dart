@@ -1,6 +1,8 @@
 // ignore_for_file: constant_identifier_names, unnecessary_null_comparison, avoid_print
 
 import 'package:admin/screens/afterlogin.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 import '/api/teacher_api.dart';
@@ -38,7 +40,7 @@ class _LoginState extends State<Login> {
     super.initState();
   }
 
-  _submitForm() {
+  _submitForm() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -51,11 +53,57 @@ class _LoginState extends State<Login> {
     if (_authMode == AuthMode.Login) {
       login(_user, authNotifier);
     } else {
-      signup(_user, authNotifier);
-    }
+      final FirebaseAuth auth = FirebaseAuth.instance;
+      User? currentUser = auth.currentUser;
 
-    return Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const AfterLogin()));
+      if (currentUser == null && _formKey.currentState!.validate()) {
+        signup(_user, authNotifier);
+        FirebaseFirestore.instance.collection('Users').doc().set({
+          'displayName': _usernameController.text,
+          'email': _emailcontroler.text,
+          'password': _passwordController.text,
+        });
+      }
+      return showDialog(
+        context: context,
+        builder: (BuildContext context) => CupertinoAlertDialog(
+          content: const Text(
+            'Successfull',
+            style: TextStyle(color: Colors.green),
+          ),
+          actions: <Widget>[
+            CupertinoDialogAction(
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("Welcome ${_usernameController.text}"),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AfterLogin()));
+                      },
+                      child: Align(
+                        alignment: AlignmentDirectional.bottomCenter,
+                        child: Text(
+                          'Ok'.toUpperCase(),
+                          style: const TextStyle(color: Colors.green),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+    }
   }
 
   Widget _buildDisplayNameField() {
@@ -137,7 +185,7 @@ class _LoginState extends State<Login> {
         }
 
         if (value.length < 6) {
-          return 'Password must be more than 6 and characters';
+          return 'Password must be more than 6 characters';
         }
 
         return null;
@@ -193,7 +241,7 @@ class _LoginState extends State<Login> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(32, 96, 32, 0),
               child: Column(
-                children: <Widget>[
+                children: [
                   Text(
                     ' ${_authMode == AuthMode.Signup ? 'Sign Up' : 'Log In'}',
                     textAlign: TextAlign.center,

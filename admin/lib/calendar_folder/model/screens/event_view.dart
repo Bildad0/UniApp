@@ -201,8 +201,8 @@ class EventsViewState extends State<EventsView> {
     //     document.data()['time'], document.id);
     Navigator.push(
         context,
-        new MaterialPageRoute(
-            builder: (BuildContext context) => new EventCreator()));
+        MaterialPageRoute(
+            builder: (BuildContext context) => const EventCreator()));
   }
 
   void _deleteEvent(DocumentSnapshot document) {
@@ -216,6 +216,6 @@ class EventsViewState extends State<EventsView> {
 
   void _onFabClicked() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => EventCreator()));
+        context, MaterialPageRoute(builder: (context) => const EventCreator()));
   }
 }

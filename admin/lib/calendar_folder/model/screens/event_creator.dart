@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,8 +7,6 @@ import '/notifier/auth_notifier.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import '/screens/afterlogin.dart';
 import 'package:intl/intl.dart';
-
-final AuthNotifier _auth = AuthNotifier();
 
 class EventData {
   String title = '';
@@ -101,7 +100,7 @@ class EventCreatorState extends State<EventCreator> {
             child: Container(
               padding: const EdgeInsets.all(10.0),
               child: Column(
-                children: <Widget>[
+                children: [
                   titleWidget,
                   const SizedBox(height: 16.0),
                   FormBuilderDateTimePicker(
@@ -174,8 +173,82 @@ class EventCreatorState extends State<EventCreator> {
         'time': _eventData.time,
         'email': currentUser.email
       });
+      return showDialog(
+        context: context,
+        builder: (BuildContext context) => CupertinoAlertDialog(
+          content: const Text(
+            'Successful',
+            style: TextStyle(color: Colors.green),
+          ),
+          actions: [
+            CupertinoDialogAction(
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("Event ${_eventData.title} created successfully"),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextButton(
+                      style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(Colors.green),
+                        elevation: MaterialStatePropertyAll(0),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Text('Ok'.toUpperCase()),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      );
     } else {
-      print('Error validating data and saving to firestore.');
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => CupertinoAlertDialog(
+          content: const Text(
+            'Error',
+            style: TextStyle(color: Colors.red),
+          ),
+          actions: [
+            CupertinoDialogAction(
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text(
+                        "Error validating data and saving to firestore."),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextButton(
+                      style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(Colors.green),
+                        elevation: MaterialStatePropertyAll(0),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Text('Ok'.toUpperCase()),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      );
     }
   }
 }

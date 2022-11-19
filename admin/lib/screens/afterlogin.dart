@@ -187,7 +187,7 @@ class _AfterLoginState extends State<AfterLogin> {
                                 iconSize: 40,
                                 highlightColor: Colors.pink,
                                 onPressed: () {
-                                  Navigator.pushReplacement(
+                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (BuildContext context) =>
