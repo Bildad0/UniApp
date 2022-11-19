@@ -1,17 +1,17 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import '/api/fee_api.dart';
-import '/api/teacher_api.dart';
 import '/model/allmodels.dart';
 import '/notifier/fee_notifier.dart';
-import '/notifier/teacher_notifier.dart';
 import '/screens/fee_form.dart';
 
 import 'package:flutter/material.dart';
 import '/screens/professors.dart';
 import 'package:provider/provider.dart';
 
-import 'teacher_form.dart';
-
 class FeeDetail extends StatelessWidget {
+  const FeeDetail({super.key});
+
   @override
   Widget build(BuildContext context) {
     FeeNotifier feeNotifier = Provider.of<FeeNotifier>(context);
@@ -24,7 +24,7 @@ class FeeDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: new Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
             highlightColor: Colors.pink,
@@ -32,60 +32,59 @@ class FeeDetail extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => Professors(),
+                  builder: (BuildContext context) => const Professors(),
                 ),
               );
             }),
-        title: Text("Details"),
+        title: const Text("Details"),
         centerTitle: true,
         backgroundColor: Colors.brown,
       ),
       body: SingleChildScrollView(
         child: Center(
-          child: Container(
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: 24),
-                Text(
-                  feeNotifier.currentFee.className,
-                  style: TextStyle(
-                    fontSize: 40,
-                  ),
+          child: Column(
+            children: <Widget>[
+              const SizedBox(height: 24),
+              Text(
+                feeNotifier.currentFee.className,
+                style: const TextStyle(
+                  fontSize: 40,
                 ),
-                Text(
-                  'Fee: ${feeNotifier.currentFee.fee}',
-                  style: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
-                ),
-                SizedBox(height: 20),
-              ],
-            ),
+              ),
+              Text(
+                'Fee: ${feeNotifier.currentFee.fee}',
+                style:
+                    const TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
+              ),
+              const SizedBox(height: 20),
+            ],
           ),
         ),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
+        children: [
           FloatingActionButton(
             heroTag: 'button1',
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (BuildContext context) {
-                  return FeeForm(
+                  return const FeeForm(
                     isUpdating: true,
                   );
                 }),
               );
             },
-            child: Icon(Icons.edit),
             foregroundColor: Colors.white,
+            child: const Icon(Icons.edit),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           FloatingActionButton(
             heroTag: 'button2',
             onPressed: () => deleteFee(feeNotifier.currentFee, _onFeeDeleted),
-            child: Icon(Icons.delete),
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
+            child: const Icon(Icons.delete),
           ),
         ],
       ),

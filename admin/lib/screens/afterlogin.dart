@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, no_leading_underscores_for_local_identifiers, avoid_print
+// ignore_for_file: library_private_types_in_public_api, no_leading_underscores_for_local_identifiers, avoid_print, use_build_context_synchronously
 
 import 'package:admin/screens/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,6 +30,22 @@ class _AfterLoginState extends State<AfterLogin> {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth auth = FirebaseAuth.instance;
+
+    void _signOut() async {
+      try {
+        await auth.signOut();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Login(),
+          ),
+        );
+      } catch (e) {
+        print(e);
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -207,19 +223,7 @@ class _AfterLoginState extends State<AfterLogin> {
                         padding: const EdgeInsets.fromLTRB(100, 110, 0, 20),
                         child: Center(
                           child: ElevatedButton(
-                            onPressed: () async {
-                              AuthNotifier authNotifier =
-                                  Provider.of<AuthNotifier>(context,
-                                      listen: false);
-                              await signout(authNotifier);
-                              // ignore: use_build_context_synchronously
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const Login(),
-                                ),
-                              );
-                            },
+                            onPressed: _signOut,
                             child: const Text("Logout"),
                           ),
                         ),

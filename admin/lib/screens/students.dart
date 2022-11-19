@@ -2,8 +2,6 @@ import '/api/student_api.dart';
 import '/notifier/student_notifier.dart';
 import '/screens/afterlogin.dart';
 
-import '/screens/search.dart';
-
 import '/screens/student_form.dart';
 import '/screens/view_students.dart';
 import 'package:flutter/material.dart';
@@ -28,16 +26,6 @@ class _StudentsState extends State<Students> {
 
   @override
   Widget build(BuildContext context) {
-    // void _signOut() async {
-    //   try {
-    //     await auth.signOut();
-    //     onSignOut();
-    //   } catch (e) {
-    //     print(e);
-    //   }
-
-    // }
-    // AuthNotifier authNotifier = Provider.of<AuthNotifier>(context);
     StudentNotifier studentNotifier = Provider.of<StudentNotifier>(context);
 
     Future<void> _refreshList() async {
@@ -99,7 +87,7 @@ class _StudentsState extends State<Students> {
                                         )),
                               );
                             }),
-                        Text("Add Students",
+                        const Text("Add Students",
                             style: TextStyle(color: Colors.white))
                       ],
                     )),
@@ -113,8 +101,8 @@ class _StudentsState extends State<Students> {
                     child: Column(
                       children: [
                         IconButton(
-                            icon: new Icon(Icons.view_column),
-                            color: Colors.white,
+                            icon: const Icon(Icons.view_column),
+                            color: const Color.fromARGB(255, 236, 5, 5),
                             iconSize: 20,
                             highlightColor: Colors.pink,
                             onPressed: () {
@@ -122,16 +110,16 @@ class _StudentsState extends State<Students> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      ViewStudents(),
+                                      const ViewStudents(),
                                 ),
                               );
                             }),
-                        Text("View Students",
+                        const Text("View Students",
                             style: TextStyle(color: Colors.white))
                       ],
                     )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
             ],

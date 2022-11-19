@@ -1,13 +1,10 @@
 // ignore_for_file: avoid_print, library_private_types_in_public_api
 
-import 'dart:io';
+import 'package:admin/screens/view_fee.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '/api/fee_api.dart';
-
-import '/api/teacher_api.dart';
 import '/model/allmodels.dart';
 import '/notifier/fee_notifier.dart';
-import '/notifier/teacher_notifier.dart';
 import '/screens/fees.dart';
 import 'package:flutter/material.dart';
 import '/screens/afterlogin.dart';
@@ -27,22 +24,14 @@ class _FeeFormState extends State<FeeForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  late Fee _currentFee;
+  final TextEditingController feeController = TextEditingController();
+  final TextEditingController classController = TextEditingController();
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   FeeNotifier feeNotifier = Provider.of<FeeNotifier>(context, listen: false);
-
-  //   if (feeNotifier.currentFee != null) {
-  //     _currentFee = feeNotifier.currentFee;
-  //   } else {
-  //     _currentFee = Fee();
-  //   }
-  // }
+  final Fee _currentFee = Fee();
 
   Widget _buildNameField() {
     return TextFormField(
+      controller: classController,
       decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Enter class",
@@ -63,14 +52,14 @@ class _FeeFormState extends State<FeeForm> {
         return null;
       },
       onSaved: (value) {
-        _currentFee.className = value!;
+        _currentFee.className = classController.text;
       },
     );
   }
 
   Widget _buildFeeField() {
     return TextFormField(
-      //initialValue: _currentFee.fee,
+      controller: feeController,
       keyboardType: TextInputType.text,
       // maxLength: 50,
       decoration: InputDecoration(
@@ -81,14 +70,13 @@ class _FeeFormState extends State<FeeForm> {
 
       style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
       validator: (value) {
-        if (value == null) {
-          return 'fee is required';
+        if (value != null) {
+          return null;
         }
-
-        return null;
+        return 'fee is required';
       },
       onSaved: (value) {
-        _currentFee.fee = value!;
+        value = feeController.text;
       },
     );
   }
@@ -105,11 +93,22 @@ class _FeeFormState extends State<FeeForm> {
     _formKey.currentState?.save();
 
     print('form saved');
+    FirebaseFirestore.instance.collection('Fees').doc().set({
+      'className': classController.text.trim(),
+      'fees': feeController.text.trim(),
+      'createdAt': DateTime.now(),
+      'updatedAt': DateTime.now(),
+    });
 
-    uploadFeeAndImage(_currentFee, widget.isUpdating, _onFeeUploaded);
-
-    print("name: ${_currentFee.className}");
-    print("category: ${_currentFee.fee}");
+    print("name: ${classController.text}");
+    print("category: ${feeController.text}");
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => const ViewFee(),
+      ),
+    );
+    //uploadFeeAndImage(_currentFee, widget.isUpdating, _onFeeUploaded);
   }
 
   @override
@@ -127,7 +126,7 @@ class _FeeFormState extends State<FeeForm> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => Fees(),
+                  builder: (BuildContext context) => const Fees(),
                 ),
               );
             }),
@@ -171,14 +170,8 @@ class _FeeFormState extends State<FeeForm> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          FocusScope.of(context).requestFocus(FocusNode());
+          //FocusScope.of(context).requestFocus(FocusNode());
           _saveFee();
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => const AfterLogin(),
-            ),
-          );
         },
         backgroundColor: Colors.brown,
         foregroundColor: Colors.white,

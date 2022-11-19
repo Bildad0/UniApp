@@ -1,17 +1,20 @@
+// ignore_for_file: library_private_types_in_public_api, no_leading_underscores_for_local_identifiers, avoid_print
+
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '/api/fee_api.dart';
 import '/api/teacher_api.dart';
 import '/model/allmodels.dart';
 import '/notifier/auth_notifier.dart';
 import '/notifier/fee_notifier.dart';
 import '/notifier/teacher_notifier.dart';
-import '/screens/detail.dart';
 import '/screens/fee_form.dart';
 import '/screens/fees.dart';
-import 'package:flutter/material.dart';
-import '/screens/professors.dart';
-import 'package:provider/provider.dart';
 
 class ViewFee extends StatefulWidget {
+  const ViewFee({super.key});
+
   @override
   _ViewFeeState createState() => _ViewFeeState();
 }
@@ -43,46 +46,47 @@ class _ViewFeeState extends State<ViewFee> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: new Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
-            highlightColor: Colors.pink,
+            // highlightColor: Colors.pink,
             onPressed: () {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => Fees(),
+                  builder: (BuildContext context) => const Fees(),
                 ),
               );
             }),
-        title: Text("Fee List"),
+        title: const Text("Fee List"),
         centerTitle: true,
         backgroundColor: Colors.brown,
       ),
-      body: new RefreshIndicator(
+      body: RefreshIndicator(
+        onRefresh: _refreshList,
         child: ListView.separated(
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
-              title: Text('Class:   ' + feeNotifier.feeList[index].className),
-              subtitle: Text('Fee:  ' + feeNotifier.feeList[index].fee),
+              title: Text('Class:   ${feeNotifier.feeList[index].className}'),
+              subtitle: Text('Fee:  ${feeNotifier.feeList[index].fee}'),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  new IconButton(
-                    icon: new Icon(Icons.edit),
+                  IconButton(
+                    icon: const Icon(Icons.edit),
                     highlightColor: Colors.pink,
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return FeeForm(
+                          return const FeeForm(
                             isUpdating: true,
                           );
                         }),
                       );
                     },
                   ),
-                  new IconButton(
-                    icon: new Icon(Icons.delete),
+                  IconButton(
+                    icon: const Icon(Icons.delete),
                     highlightColor: Colors.pink,
                     onPressed: () {
                       deleteFee(feeNotifier.currentFee, _onFeeDeleted);
@@ -94,12 +98,11 @@ class _ViewFeeState extends State<ViewFee> {
           },
           itemCount: feeNotifier.feeList.length,
           separatorBuilder: (BuildContext context, int index) {
-            return Divider(
+            return const Divider(
               color: Colors.black,
             );
           },
         ),
-        onRefresh: _refreshList,
       ),
     );
   }

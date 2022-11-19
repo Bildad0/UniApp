@@ -1,20 +1,17 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import '/api/fee_api.dart';
-import '/api/teacher_api.dart';
-import '/notifier/auth_notifier.dart';
 import '/notifier/fee_notifier.dart';
-import '/notifier/teacher_notifier.dart';
-import '/screens/detail.dart';
 import '/screens/fee_form.dart';
-import '/screens/feed.dart';
-import '/screens/teacher_form.dart';
 import '/screens/view_fee.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '/screens/teachercontact.dart';
 
 import 'afterlogin.dart';
 
 class Fees extends StatefulWidget {
+  const Fees({super.key});
+
   @override
   _FeesState createState() => _FeesState();
 }
@@ -38,7 +35,7 @@ class _FeesState extends State<Fees> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: new Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
             highlightColor: Colors.pink,
@@ -46,11 +43,11 @@ class _FeesState extends State<Fees> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => AfterLogin(),
+                  builder: (BuildContext context) => const AfterLogin(),
                 ),
               );
             }),
-        title: Text("Fee"),
+        title: const Text("Fee"),
         centerTitle: true,
         backgroundColor: Colors.brown,
       ),
@@ -58,9 +55,9 @@ class _FeesState extends State<Fees> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/school.jpg"),
+            image: const AssetImage("assets/school.jpg"),
             fit: BoxFit.cover,
-            colorFilter: new ColorFilter.mode(
+            colorFilter: ColorFilter.mode(
                 Colors.black.withOpacity(0.2), BlendMode.dstATop),
           ),
         ),
@@ -68,79 +65,72 @@ class _FeesState extends State<Fees> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+            children: [
               SingleChildScrollView(
-                child: Container(
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        height: 200,
-                        child: GridView.count(
-                          scrollDirection: Axis.vertical,
-                          crossAxisCount: 2,
-                          children: <Widget>[
-                            Container(
-                              child: Card(
-                                color: Colors.deepPurple,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    IconButton(
-                                        icon: new Icon(Icons.person_add),
-                                        color: Colors.white,
-                                        iconSize: 20,
-                                        highlightColor: Colors.pink,
-                                        onPressed: () {
-                                          Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        FeeForm(
-                                                          isUpdating: false,
-                                                        )),
-                                          );
-                                        }),
-                                    Text("Add Fee",
-                                        style: TextStyle(color: Colors.white))
-                                  ],
-                                ),
-                              ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 200,
+                      child: GridView.count(
+                        scrollDirection: Axis.vertical,
+                        crossAxisCount: 2,
+                        children: [
+                          Card(
+                            color: Colors.deepPurple,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                IconButton(
+                                    icon: const Icon(Icons.person_add),
+                                    color: Colors.white,
+                                    iconSize: 20,
+                                    highlightColor: Colors.pink,
+                                    onPressed: () {
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                const FeeForm(
+                                                  isUpdating: false,
+                                                )),
+                                      );
+                                    }),
+                                const Text("Add Fee",
+                                    style: TextStyle(color: Colors.white))
+                              ],
                             ),
-                            Container(
-                              child: Card(
-                                color: Colors.blue,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    IconButton(
-                                        icon: new Icon(Icons.view_column),
-                                        color: Colors.white,
-                                        iconSize: 20,
-                                        highlightColor: Colors.pink,
-                                        onPressed: () {
-                                          Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  ViewFee(),
-                                            ),
-                                          );
-                                        }),
-                                    Text("View Fee",
-                                        style: TextStyle(color: Colors.white))
-                                  ],
-                                ),
-                              ),
+                          ),
+                          Card(
+                            color: Colors.blue,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                IconButton(
+                                    icon: const Icon(Icons.view_column),
+                                    color: Colors.white,
+                                    iconSize: 20,
+                                    highlightColor: Colors.pink,
+                                    onPressed: () {
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              const ViewFee(),
+                                        ),
+                                      );
+                                    }),
+                                const Text("View Fee",
+                                    style: TextStyle(color: Colors.white))
+                              ],
                             ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
             ],
