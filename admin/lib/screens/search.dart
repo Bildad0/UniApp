@@ -28,7 +28,6 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
-            highlightColor: Colors.pink,
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const AfterLogin()));
@@ -48,11 +47,10 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
             child: Card(
               child: TextField(
                 decoration: const InputDecoration(
-                    icon: Icon(Icons.search),
-                    hintText: 'Search by registration no'),
+                    icon: Icon(Icons.search), hintText: 'Search by name'),
                 onChanged: (val) {
                   setState(() {
-                    name = val;
+                    name = val.trim();
                   });
                 },
               ),
@@ -60,11 +58,11 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
           ),
           Flexible(
             child: StreamBuilder<QuerySnapshot>(
+              // ignore: unnecessary_null_comparison
               stream: (name != "" && name != null)
                   ? FirebaseFirestore.instance
                       .collection('Students')
-                      .where("registrationNo", isEqualTo: name)
-                      .orderBy("id", descending: false)
+                      .where("name", isEqualTo: name)
                       .snapshots()
                   : FirebaseFirestore.instance
                       .collection("Students")
@@ -79,7 +77,7 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
                           DocumentSnapshot data = snapshot.data!.docs[index];
                           return Card(
                             child: Row(
-                              children: <Widget>[
+                              children: [
                                 GestureDetector(
                                   onTap: () => Navigator.of(context).push(
                                     MaterialPageRoute(

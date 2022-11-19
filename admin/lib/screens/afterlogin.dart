@@ -1,6 +1,7 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, no_leading_underscores_for_local_identifiers, avoid_print
 
 import 'package:admin/screens/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 
 import '../api/teacher_api.dart';
@@ -109,7 +110,7 @@ class _AfterLoginState extends State<AfterLogin> {
                         color: Colors.pink[400],
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
+                          children: [
                             IconButton(
                                 icon: const Icon(Icons.person_add),
                                 color: Colors.white,
@@ -133,7 +134,7 @@ class _AfterLoginState extends State<AfterLogin> {
                         color: Colors.orange,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
+                          children: [
                             IconButton(
                                 icon: const Icon(Icons.money),
                                 color: Colors.white,
@@ -156,7 +157,7 @@ class _AfterLoginState extends State<AfterLogin> {
                         color: Colors.blue[400],
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
+                          children: [
                             IconButton(
                                 icon: const Icon(Icons.image),
                                 color: Colors.white,
@@ -167,7 +168,7 @@ class _AfterLoginState extends State<AfterLogin> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          MyGallery(),
+                                          const MyGallery(),
                                     ),
                                   );
                                 }),
