@@ -31,7 +31,7 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const AfterLogin()));
             }),
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.grey,
         title: const Text("Search Students"),
         centerTitle: true,
       ),
@@ -39,7 +39,7 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
         children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.07,
-            color: Colors.brown,
+            color: Colors.grey,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -65,7 +65,7 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
                       .snapshots()
                   : FirebaseFirestore.instance
                       .collection("Students")
-                      .orderBy("id", descending: false)
+                      .orderBy("name", descending: false)
                       .snapshots(),
               builder: (context, snapshot) {
                 return (snapshot.connectionState == ConnectionState.waiting)
@@ -86,13 +86,13 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
                                   child: Row(
                                     children: [
                                       const SizedBox(
-                                        width: 25,
+                                        width: 15,
                                       ),
                                       Text(
-                                        "${data['id']} .",
+                                        data['name'],
                                         style: const TextStyle(
                                           fontWeight: FontWeight.w700,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                         ),
                                       ),
                                       const SizedBox(
@@ -109,11 +109,13 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
                                         width: 25,
                                       ),
                                       Text(
-                                        data['registrationNo'],
+                                        "${data['registrationNo']}",
                                         style: const TextStyle(
                                           fontWeight: FontWeight.w700,
                                           fontSize: 20,
                                         ),
+                                        softWrap: true,
+                                        //overflow: TextOverflow.visible,
                                       ),
                                     ],
                                   ),

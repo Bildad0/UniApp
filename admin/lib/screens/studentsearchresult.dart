@@ -31,9 +31,9 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
         automaticallyImplyLeading: false,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: Colors.white,
+            color: Colors.green,
             iconSize: 40,
-            highlightColor: Colors.pink,
+            //highlightColor: Colors.pink,
             onPressed: () {
               Navigator.push(
                 context,
@@ -43,9 +43,12 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
                 ),
               );
             }),
-        title: const Text("Student"),
+        title: const Text(
+          "Student",
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -55,12 +58,6 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
               child: Container(
                 child: Column(
                   children: [
-                    Image.network(
-                      widget.data['image'] ?? '',
-                      width: MediaQuery.of(context).size.width,
-                      height: 250,
-                      fit: BoxFit.fitWidth,
-                    ),
                     const SizedBox(height: 24),
                     Text(
                       widget.data['name'],
@@ -140,7 +137,7 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Address:",
+                        const Text("Email:",
                             style: TextStyle(
                               fontSize: 18,
                             )),
