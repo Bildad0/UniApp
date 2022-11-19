@@ -52,10 +52,10 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
             child: Center(
               child: Container(
                 child: Column(
-                  children: <Widget>[
+                  children: [
                     Image.network(
                       widget.data['image'] ??
-                          'https://www.testingxperts.com/wp-content/uploads/2019/02/placeholder-img.jpg',
+                          'https://img.freepik.com/premium-photo/astronaut-outer-open-space-planet-earth-stars-provide-background-erforming-space-planet-earth-sunrise-sunset-our-home-iss-elements-this-image-furnished-by-nasa_150455-16829.jpg',
                       width: MediaQuery.of(context).size.width,
                       height: 250,
                       fit: BoxFit.fitWidth,
@@ -128,7 +128,7 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
                             )),
                         const SizedBox(width: 6),
                         Text(
-                          widget.data['phone'],
+                          widget.data['phone'].toString(),
                           style: const TextStyle(
                             fontSize: 18,
                           ),

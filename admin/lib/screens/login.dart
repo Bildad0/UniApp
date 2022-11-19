@@ -50,7 +50,7 @@ class _LoginState extends State<Login> {
     AuthNotifier authNotifier =
         Provider.of<AuthNotifier>(context, listen: false);
 
-    if (_authMode == AuthMode.Login) {
+    if (_authMode == AuthMode.Login && _user.password != null) {
       login(_user, authNotifier);
       return Navigator.push(
         context,

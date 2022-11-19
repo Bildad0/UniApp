@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, invalid_return_type_for_catch_error, avoid_print
+// ignore_for_file: deprecated_member_use, invalid_return_type_for_catch_error, avoid_print, depend_on_referenced_packages, unnecessary_null_comparison
 
 import 'dart:io';
 
@@ -19,9 +19,9 @@ login(MyUser user, AuthNotifier authNotifier) async {
       .catchError((error) => print(error.code));
 
   User? firebaseUser = authResult.user;
-  final userid = firebaseUser?.uid;
+  final userid = firebaseUser?.email;
   final currentUser =
-      FirebaseFirestore.instance.collection("Users").where("uid=$userid");
+      FirebaseFirestore.instance.collection("Users").where("email=$userid");
   return currentUser;
 }
 
@@ -94,7 +94,7 @@ uploadTeacherAndImage(Teacher teacher, bool isUpdating, File localFile,
   if (localFile != null) {
     var fileExtension = path.extension(localFile.path);
 
-    var uuid = Uuid().v4();
+    var uuid = const Uuid().v4();
 
     final Reference firebaseStorageRef = FirebaseStorage.instance
         .ref()
