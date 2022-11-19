@@ -64,9 +64,11 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
                   ? FirebaseFirestore.instance
                       .collection('Students')
                       .where("registrationNo", isEqualTo: name)
+                      .orderBy("id", descending: false)
                       .snapshots()
                   : FirebaseFirestore.instance
                       .collection("Students")
+                      .orderBy("id", descending: false)
                       .snapshots(),
               builder: (context, snapshot) {
                 return (snapshot.connectionState == ConnectionState.waiting)
@@ -86,6 +88,26 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
                                   ),
                                   child: Row(
                                     children: [
+                                      const SizedBox(
+                                        width: 25,
+                                      ),
+                                      Text(
+                                        "${data['id']} .",
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        data['fName'],
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 20,
+                                        ),
+                                      ),
                                       const SizedBox(
                                         width: 25,
                                       ),

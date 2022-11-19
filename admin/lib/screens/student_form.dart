@@ -32,11 +32,11 @@ class _StudentFormState extends State<StudentForm> {
     super.initState();
     StudentNotifier studentNotifier =
         Provider.of<StudentNotifier>(context, listen: false);
-
+    late Student currentStudent = Student();
     if (studentNotifier.currentStudent != null) {
       _currentStudent = studentNotifier.currentStudent;
     } else {
-      _currentStudent = Student();
+      _currentStudent = currentStudent;
     }
 
     _imageUrl = _currentStudent!.image;
@@ -50,7 +50,7 @@ class _StudentFormState extends State<StudentForm> {
 
       return Stack(
         alignment: AlignmentDirectional.bottomCenter,
-        children: <Widget>[
+        children: [
           Image.file(
             _imageFile,
             fit: BoxFit.cover,
@@ -78,7 +78,7 @@ class _StudentFormState extends State<StudentForm> {
 
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
-      children: <Widget>[
+      children: [
         Image.network(
           _imageUrl,
           width: MediaQuery.of(context).size.width,
@@ -280,7 +280,7 @@ class _StudentFormState extends State<StudentForm> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => Students(),
+        builder: (BuildContext context) => const Students(),
       ),
     );
   }
@@ -315,6 +315,7 @@ class _StudentFormState extends State<StudentForm> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,
