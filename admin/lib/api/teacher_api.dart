@@ -78,14 +78,6 @@ getTeachers(TeacherNotifier teacherNotifier) async {
   } else {
     return "We are having problem loading your Information";
   }
-
-  // List<Teacher> _teacherList = [];
-
-  // snapshot.docs.forEach((document) {
-  //   Teacher teacher = Teacher.fromMap(document.data());
-  //   _teacherList.add(teacher);
-  // });
-
   teacherNotifier.teacherList = teacherList;
 }
 

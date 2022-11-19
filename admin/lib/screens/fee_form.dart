@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, library_private_types_in_public_api
+
 import 'dart:io';
 
 import '/api/fee_api.dart';
@@ -15,7 +17,7 @@ import 'package:provider/provider.dart';
 class FeeForm extends StatefulWidget {
   final bool isUpdating;
 
-  FeeForm({required this.isUpdating});
+  const FeeForm({super.key, required this.isUpdating});
 
   @override
   _FeeFormState createState() => _FeeFormState();
@@ -27,67 +29,67 @@ class _FeeFormState extends State<FeeForm> {
 
   late Fee _currentFee;
 
-  @override
-  void initState() {
-    super.initState();
-    FeeNotifier feeNotifier = Provider.of<FeeNotifier>(context, listen: false);
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   FeeNotifier feeNotifier = Provider.of<FeeNotifier>(context, listen: false);
 
-    if (feeNotifier.currentFee != null) {
-      _currentFee = feeNotifier.currentFee;
-    } else {
-      _currentFee = Fee();
-    }
-  }
+  //   if (feeNotifier.currentFee != null) {
+  //     _currentFee = feeNotifier.currentFee;
+  //   } else {
+  //     _currentFee = Fee();
+  //   }
+  // }
 
   Widget _buildNameField() {
     return TextFormField(
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Enter class",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-      initialValue: _currentFee.className,
+      //initialValue: _currentFee.className,
       keyboardType: TextInputType.text,
-      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-      // validator: (String value) {
-      //   if (value.isEmpty) {
-      //     return 'Name is required';
-      //   }
+      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+      validator: (value) {
+        if (value == null) {
+          return 'Name is required';
+        }
 
-      //   if (value.length < 3 || value.length > 20) {
-      //     return 'Name must be more than 3 and less than 20';
-      //   }
+        if (value.length < 3 || value.length > 20) {
+          return 'Name must be more than 3 and less than 20';
+        }
 
-      //   return null;
-      // },
-      // onSaved: (String value) {
-      //   _currentFee.className = value;
-      // },
+        return null;
+      },
+      onSaved: (value) {
+        _currentFee.className = value!;
+      },
     );
   }
 
   Widget _buildFeeField() {
     return TextFormField(
-      initialValue: _currentFee.fee,
+      //initialValue: _currentFee.fee,
       keyboardType: TextInputType.text,
       // maxLength: 50,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Enter Fee",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
 
-      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-      // validator: (String value) {
-      //   if (value.isEmpty) {
-      //     return 'fee is required';
-      //   }
+      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+      validator: (value) {
+        if (value == null) {
+          return 'fee is required';
+        }
 
-      //   return null;
-      // },
-      // onSaved: (String value) {
-      //   _currentFee.fee = value;
-      // },
+        return null;
+      },
+      onSaved: (value) {
+        _currentFee.fee = value!;
+      },
     );
   }
 
@@ -115,11 +117,12 @@ class _FeeFormState extends State<FeeForm> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
+        elevation: 0,
+        automaticallyImplyLeading: false,
         leading: IconButton(
-            icon: new Icon(Icons.arrow_back),
-            color: Colors.white,
+            icon: const Icon(Icons.arrow_back),
+            color: Colors.green,
             iconSize: 40,
-            highlightColor: Colors.pink,
             onPressed: () {
               Navigator.pushReplacement(
                 context,
@@ -128,20 +131,20 @@ class _FeeFormState extends State<FeeForm> {
                 ),
               );
             }),
-        title: Text("Add Fee"),
+        title: const Text("Add Fee"),
         centerTitle: true,
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.white,
       ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/school.jpg"),
+            image: const AssetImage("assets/school.jpg"),
             fit: BoxFit.cover,
-            colorFilter: new ColorFilter.mode(
+            colorFilter: ColorFilter.mode(
                 Colors.black.withOpacity(0.2), BlendMode.dstATop),
           ),
         ),
-        padding: EdgeInsets.all(32),
+        padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -149,17 +152,18 @@ class _FeeFormState extends State<FeeForm> {
               autovalidateMode: AutovalidateMode.onUserInteraction,
               key: _formKey,
               child: Column(children: <Widget>[
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Text(
                   widget.isUpdating ? "Edit Fee" : "Create Fee",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 30, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 _buildNameField(),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 _buildFeeField(),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
               ]),
             ),
           ],
@@ -167,18 +171,18 @@ class _FeeFormState extends State<FeeForm> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          FocusScope.of(context).requestFocus(new FocusNode());
+          FocusScope.of(context).requestFocus(FocusNode());
           _saveFee();
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) => AfterLogin(),
+              builder: (BuildContext context) => const AfterLogin(),
             ),
           );
         },
-        child: Icon(Icons.save),
         backgroundColor: Colors.brown,
         foregroundColor: Colors.white,
+        child: const Icon(Icons.save),
       ),
     );
   }

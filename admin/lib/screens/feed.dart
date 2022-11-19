@@ -40,7 +40,6 @@ class _FeedState extends State<Feed> {
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
-            highlightColor: Colors.pink,
             onPressed: () {
               Navigator.pushReplacement(
                 context,

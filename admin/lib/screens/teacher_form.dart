@@ -2,6 +2,8 @@
 
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '/api/teacher_api.dart';
 import '/model/allmodels.dart';
 import '/notifier/teacher_notifier.dart';
@@ -224,11 +226,10 @@ class _TeacherFormState extends State<TeacherForm> {
           if (value.isEmpty || value.length > 20) {
             return 'description must be more than 3 and less than 20';
           }
-
-          return 'description is required';
+          return null;
         }
 
-        return null;
+        return 'description is required';
       },
       onSaved: (value) {
         teacher.category = value!;
@@ -257,12 +258,6 @@ class _TeacherFormState extends State<TeacherForm> {
     TeacherNotifier teacherNotifier =
         Provider.of<TeacherNotifier>(context, listen: false);
     teacherNotifier.addTeacher(teacher);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext context) => const Professors(),
-      ),
-    );
   }
 
   _addSubingredient(String text) {
@@ -274,8 +269,8 @@ class _TeacherFormState extends State<TeacherForm> {
     }
   }
 
-  _saveTeacher() {
-    print('saveteacher Called');
+  _saveTeacher() async {
+    print('save teacher Called');
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -288,6 +283,17 @@ class _TeacherFormState extends State<TeacherForm> {
 
     uploadTeacherAndImage(
         teacher, widget.isUpdating, _imageFile!, _onTeacherUploaded);
+    print("Sending to firebase");
+    await FirebaseFirestore.instance.collection('Teachers').doc().set({
+      'address': teacher.address,
+      'email': teacher.email,
+      'image': teacher.image,
+      'createdAt': DateTime.now(),
+      'name': teacher.name,
+      'phone': teacher.phone,
+      'subIngridients': teacher.subIngredients,
+      'updatedAt': DateTime.now(),
+    });
 
     print("name: ${teacher.name}");
     print("email: ${teacher.email}");
@@ -302,7 +308,6 @@ class _TeacherFormState extends State<TeacherForm> {
 
   @override
   Widget build(BuildContext context) {
-    TeacherNotifier teacherNotifier = Provider.of<TeacherNotifier>(context);
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -420,12 +425,20 @@ class _TeacherFormState extends State<TeacherForm> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          teacherNotifier.currentTeacher;
+          //teacherNotifier.currentTeacher;
           _saveTeacher();
         },
         foregroundColor: Colors.white,
         backgroundColor: Colors.brown[400],
-        child: const Icon(Icons.save),
+        child: Column(
+          children: const [
+            SizedBox(
+              height: 10,
+            ),
+            Icon(Icons.save),
+            Text("Save"),
+          ],
+        ),
       ),
     );
   }

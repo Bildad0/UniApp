@@ -108,7 +108,7 @@ class _ProfessorsState extends State<Professors> {
                           color: Colors.blue[400],
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
+                            children: [
                               IconButton(
                                   icon: const Icon(Icons.view_column),
                                   color: Colors.white,
