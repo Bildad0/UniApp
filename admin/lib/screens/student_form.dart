@@ -23,24 +23,9 @@ class _StudentFormState extends State<StudentForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Student? _currentStudent;
-  late String _imageUrl;
-  late File _imageFile;
-
-  @override
-  void initState() {
-    super.initState();
-    StudentNotifier studentNotifier =
-        Provider.of<StudentNotifier>(context, listen: false);
-    late Student currentStudent = Student();
-    if (studentNotifier.currentStudent != null) {
-      _currentStudent = studentNotifier.currentStudent;
-    } else {
-      _currentStudent = currentStudent;
-    }
-
-    _imageUrl = _currentStudent!.image;
-  }
+  final Student _currentStudent = Student();
+  String? _imageUrl;
+  File? _imageFile;
 
   _showImage() {
     if (_imageFile == null && _imageUrl == null) {
@@ -52,7 +37,7 @@ class _StudentFormState extends State<StudentForm> {
         alignment: AlignmentDirectional.bottomCenter,
         children: [
           Image.file(
-            _imageFile,
+            _imageFile!,
             fit: BoxFit.cover,
             height: 250,
           ),
@@ -80,7 +65,7 @@ class _StudentFormState extends State<StudentForm> {
       alignment: AlignmentDirectional.bottomCenter,
       children: [
         Image.network(
-          _imageUrl,
+          _imageUrl!,
           width: MediaQuery.of(context).size.width,
           fit: BoxFit.cover,
           height: 250,
@@ -120,7 +105,7 @@ class _StudentFormState extends State<StudentForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: _currentStudent!.name,
+      //initialValue: _currentStudent!.name,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
@@ -135,7 +120,7 @@ class _StudentFormState extends State<StudentForm> {
         return null;
       },
       onSaved: (value) {
-        _currentStudent!.name = value!;
+        _currentStudent.name = value!;
       },
     );
   } // _buildRollNoField()
@@ -148,7 +133,7 @@ class _StudentFormState extends State<StudentForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: _currentStudent!.rollNo,
+      //initialValue: _currentStudent.rollNo,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
@@ -159,7 +144,7 @@ class _StudentFormState extends State<StudentForm> {
         return null;
       },
       onSaved: (value) {
-        _currentStudent!.rollNo = value!;
+        _currentStudent.rollNo = value!;
       },
     );
   }
@@ -172,7 +157,7 @@ class _StudentFormState extends State<StudentForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: _currentStudent!.registrationNo,
+      //initialValue: _currentStudent.registrationNo,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
@@ -183,7 +168,7 @@ class _StudentFormState extends State<StudentForm> {
         return null;
       },
       onSaved: (value) {
-        _currentStudent!.registrationNo = value!;
+        _currentStudent.registrationNo = value!;
       },
     );
   }
@@ -196,7 +181,7 @@ class _StudentFormState extends State<StudentForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: _currentStudent!.phone,
+      //initialValue: _currentStudent.phone,
       keyboardType: TextInputType.text,
       maxLength: 13,
       style: const TextStyle(fontSize: 15, color: Colors.black),
@@ -212,7 +197,7 @@ class _StudentFormState extends State<StudentForm> {
         return null;
       },
       onSaved: (value) {
-        _currentStudent!.phone = value!;
+        _currentStudent.phone = value!;
       },
     );
   }
@@ -225,7 +210,7 @@ class _StudentFormState extends State<StudentForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: _currentStudent!.address,
+      //initialValue: _currentStudent.address,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15),
       validator: (value) {
@@ -240,7 +225,7 @@ class _StudentFormState extends State<StudentForm> {
         return null;
       },
       onSaved: (value) {
-        _currentStudent!.address = value!;
+        _currentStudent.address = value!;
       },
     );
   }
@@ -253,7 +238,7 @@ class _StudentFormState extends State<StudentForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: _currentStudent!.fName,
+      //initialValue: _currentStudent.fName,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
@@ -268,7 +253,7 @@ class _StudentFormState extends State<StudentForm> {
         return null;
       },
       onSaved: (value) {
-        _currentStudent!.fName = value!;
+        _currentStudent.fName = value!;
       },
     );
   }
@@ -296,14 +281,14 @@ class _StudentFormState extends State<StudentForm> {
     print('form saved');
 
     uploadStudentAndImage(
-        _currentStudent!, widget.isUpdating, _imageFile, _onStudentUploaded);
+        _currentStudent, widget.isUpdating, _imageFile!, _onStudentUploaded);
 
-    print("name: ${_currentStudent!.name}");
+    print("name: ${_currentStudent.name}");
 
-    print("phone: ${_currentStudent!.phone}");
-    print("address: ${_currentStudent!.address}");
+    print("phone: ${_currentStudent.phone}");
+    print("address: ${_currentStudent.address}");
 
-    print("category: ${_currentStudent!.fName}");
+    print("category: ${_currentStudent.fName}");
 
     print("_imageFile ${_imageFile.toString()}");
     print("_imageUrl $_imageUrl");

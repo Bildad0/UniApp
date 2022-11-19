@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../api/teacher_api.dart';
 import '../model/user.dart';
 import '../notifier/auth_notifier.dart';
+import '../notifier/teacher_notifier.dart';
 import '/calendar_folder/model/screens/event_creator.dart';
 
 import '/screens/fees.dart';

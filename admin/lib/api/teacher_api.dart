@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, invalid_return_type_for_catch_error, avoid_print, depend_on_referenced_packages, unnecessary_null_comparison
+// ignore_for_file: deprecated_member_use, invalid_return_type_for_catch_error, avoid_print, depend_on_referenced_packages, unnecessary_null_comparison, duplicate_ignore
 
 import 'dart:io';
 

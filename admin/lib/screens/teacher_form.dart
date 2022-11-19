@@ -24,25 +24,10 @@ class _TeacherFormState extends State<TeacherForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final List _subingredients = [];
-  late String _imageUrl;
-  Teacher? teacher;
-  late File _imageFile;
+  String? _imageUrl;
+  Teacher teacher = Teacher();
+  File? _imageFile;
   TextEditingController subingredientController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    final TeacherNotifier teacherNotifier =
-        Provider.of<TeacherNotifier>(context, listen: false);
-    if (teacherNotifier.currentTeacher == null) {
-      teacher = Teacher();
-    } else {
-      teacher = teacherNotifier.currentTeacher;
-    }
-
-    _subingredients.addAll(teacher!.subIngredients);
-    _imageUrl = teacher!.image;
-  }
 
   _showImage() {
     if (_imageFile == null && _imageUrl == null) {
@@ -54,7 +39,7 @@ class _TeacherFormState extends State<TeacherForm> {
         alignment: AlignmentDirectional.bottomCenter,
         children: [
           Image.file(
-            _imageFile,
+            _imageFile!,
             fit: BoxFit.cover,
             height: 250,
           ),
@@ -80,9 +65,9 @@ class _TeacherFormState extends State<TeacherForm> {
 
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
-      children: <Widget>[
+      children: [
         Image.network(
-          _imageUrl,
+          _imageUrl!,
           width: MediaQuery.of(context).size.width,
           fit: BoxFit.cover,
           height: 250,
@@ -125,7 +110,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: teacher?.name,
+      //initialValue: teacher.name,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
@@ -139,7 +124,7 @@ class _TeacherFormState extends State<TeacherForm> {
         return 'Name is required';
       },
       onSaved: (value) {
-        teacher?.name = value!;
+        teacher.name = value!;
       },
     );
   }
@@ -152,7 +137,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: teacher?.phone,
+      //initialValue: teacher.phone,
       keyboardType: TextInputType.text,
       maxLength: 13,
       style: const TextStyle(fontSize: 15, color: Colors.black),
@@ -167,7 +152,7 @@ class _TeacherFormState extends State<TeacherForm> {
         return 'Phone is required';
       },
       onSaved: (value) {
-        teacher?.phone = value!;
+        teacher.phone = value!;
       },
     );
   }
@@ -180,7 +165,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: teacher?.address,
+      //initialValue: teacher.address,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
@@ -194,7 +179,7 @@ class _TeacherFormState extends State<TeacherForm> {
         return 'Addressis required';
       },
       onSaved: (value) {
-        teacher?.address = value!;
+        teacher.address = value!;
       },
     );
   }
@@ -207,7 +192,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: teacher?.email,
+      //initialValue: teacher.email,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (val) {
@@ -218,7 +203,7 @@ class _TeacherFormState extends State<TeacherForm> {
             : "Please Enter Correct Email";
       },
       onSaved: (value) {
-        teacher?.email = value!;
+        teacher.email = value!;
       },
     );
   }
@@ -231,7 +216,7 @@ class _TeacherFormState extends State<TeacherForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      initialValue: teacher?.category,
+      //initialValue: teacher.category,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
@@ -246,7 +231,7 @@ class _TeacherFormState extends State<TeacherForm> {
         return null;
       },
       onSaved: (value) {
-        teacher?.category = value!;
+        teacher.category = value!;
       },
     );
   }
@@ -299,18 +284,18 @@ class _TeacherFormState extends State<TeacherForm> {
 
     print('form saved');
 
-    teacher?.subIngredients = _subingredients;
+    teacher.subIngredients = _subingredients;
 
     uploadTeacherAndImage(
-        teacher!, widget.isUpdating, _imageFile, _onTeacherUploaded);
+        teacher, widget.isUpdating, _imageFile!, _onTeacherUploaded);
 
-    print("name: ${teacher?.name}");
-    print("email: ${teacher?.email}");
-    print("phone: ${teacher?.phone}");
-    print("address: ${teacher?.address}");
+    print("name: ${teacher.name}");
+    print("email: ${teacher.email}");
+    print("phone: ${teacher.phone}");
+    print("address: ${teacher.address}");
 
-    print("category: ${teacher?.category}");
-    print("subingredients: ${teacher?.subIngredients.toString()}");
+    print("category: ${teacher.category}");
+    print("subingredients: ${teacher.subIngredients.toString()}");
     print("_imageFile ${_imageFile.toString()}");
     print("_imageUrl $_imageUrl");
   }

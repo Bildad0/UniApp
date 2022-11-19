@@ -1,5 +1,4 @@
 import '/model/allmodels.dart';
-import '/screens/detail.dart';
 import '/screens/studentsearchresult.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

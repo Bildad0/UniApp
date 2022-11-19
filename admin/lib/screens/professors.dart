@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import '/api/teacher_api.dart';
 import '/notifier/teacher_notifier.dart';
 import '/screens/feed.dart';
@@ -70,18 +72,18 @@ class _ProfessorsState extends State<Professors> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Column(
-                children: <Widget>[
+                children: [
                   SizedBox(
                     height: 200,
                     child: GridView.count(
                       scrollDirection: Axis.vertical,
                       crossAxisCount: 2,
-                      children: <Widget>[
+                      children: [
                         Card(
                           color: Colors.green[400],
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
+                            children: [
                               IconButton(
                                   icon: const Icon(Icons.person_add),
                                   color: Colors.white,
