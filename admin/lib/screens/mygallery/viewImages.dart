@@ -6,6 +6,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 class ViewImages extends StatelessWidget {
   List<NetworkImage> _listOfImages = <NetworkImage>[];
 
+  ViewImages({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,7 +18,7 @@ class ViewImages extends StatelessWidget {
         Flexible(
             child: StreamBuilder<QuerySnapshot>(
                 stream:
-                    FirebaseFirestore.instance.collection('images').snapshots(),
+                    FirebaseFirestore.instance.collection('files').snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return ListView.builder(
@@ -42,7 +44,7 @@ class ViewImages extends StatelessWidget {
                                     width: MediaQuery.of(context).size.width,
                                     child: CarouselSlider(
                                       options: CarouselOptions(height: 400.0),
-                                      items: [],
+                                      items: const [],
                                       // boxFit: BoxFit.cover,
                                       // images: ,
                                       // autoplay: false,

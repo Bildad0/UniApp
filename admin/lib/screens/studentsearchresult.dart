@@ -27,6 +27,8 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        automaticallyImplyLeading: false,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,
@@ -71,7 +73,7 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Father Name:",
+                        const Text("Student's Name:",
                             style: TextStyle(
                               fontSize: 18,
                             )),
@@ -153,6 +155,16 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
                       ],
                     ),
                     const SizedBox(height: 20),
+                    ElevatedButton(
+                        style: const ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(Colors.red)),
+                        onPressed: () => {_onStudentDeleted(widget.data.doc)},
+                        //,
+                        child: Text(
+                          "Delete".toUpperCase(),
+                          style: const TextStyle(color: Colors.white),
+                        ))
                   ],
                 ),
               ),

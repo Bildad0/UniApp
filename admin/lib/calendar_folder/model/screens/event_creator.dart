@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,12 +33,14 @@ class EventCreatorState extends State<EventCreator> {
   final EventData _eventData = EventData();
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _notesControler = TextEditingController();
+  final TextEditingController _dateControler = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     // ignore: unnecessary_new
-    final titleWidget = new TextFormField(
+    final titleWidget = TextFormField(
       keyboardType: TextInputType.text,
+      controller: _titleController,
       decoration: InputDecoration(
           hintText: 'Event Name',
           labelText: 'Event Title',
@@ -45,13 +49,14 @@ class EventCreatorState extends State<EventCreator> {
             borderRadius: BorderRadius.circular(8.0),
           )),
       style: Theme.of(context).textTheme.bodyText1,
-      validator: _validateTitle(_titleController.text),
+      validator: _validateTitle(_eventData.title),
       onSaved: (value) => _eventData.title = _titleController.text,
     );
 
     final notesWidget = TextFormField(
       keyboardType: TextInputType.multiline,
       maxLines: 4,
+      controller: _notesControler,
       decoration: InputDecoration(
           hintText: 'Detail',
           labelText: 'Enter detail here',
@@ -105,6 +110,7 @@ class EventCreatorState extends State<EventCreator> {
                   const SizedBox(height: 16.0),
                   FormBuilderDateTimePicker(
                     name: "date",
+                    controller: _dateControler,
                     initialValue: DateTime.now(),
                     initialDate: DateTime.now(),
                     fieldHintText: "Add Date",
@@ -141,8 +147,8 @@ class EventCreatorState extends State<EventCreator> {
     );
   }
 
-  _validateTitle(String value) {
-    if (value.isEmpty) {
+  _validateTitle(String? value) {
+    if (value!.isEmpty) {
       return 'Please enter a valid title.';
     } else {
       return null;
@@ -164,14 +170,14 @@ class EventCreatorState extends State<EventCreator> {
     User? currentUser = _auth.currentUser;
     print('current user: $currentUser');
 
-    if (currentUser != null && _formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       _formKey.currentState?.save(); // Save our form now.
 
       FirebaseFirestore.instance.collection('calendar_events').doc().set({
         'name': _eventData.title,
-        'summary': _eventData.summary,
-        'time': _eventData.time,
-        'email': currentUser.email
+        'summary': _notesControler.text,
+        'time': _dateControler.text,
+        'email': currentUser!.email
       });
       return showDialog(
         context: context,

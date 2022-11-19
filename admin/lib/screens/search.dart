@@ -22,13 +22,16 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        automaticallyImplyLeading: false,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             iconSize: 40,
             highlightColor: Colors.pink,
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AfterLogin()));
             }),
         backgroundColor: Colors.brown,
         title: const Text("Search Students"),

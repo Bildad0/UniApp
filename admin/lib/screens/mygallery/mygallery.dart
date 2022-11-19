@@ -1,9 +1,13 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import '/screens/afterlogin.dart';
 import '/screens/mygallery/uploadImages.dart';
 import '/screens/mygallery/viewImages.dart';
 import 'package:flutter/material.dart';
 
 class MyGallery extends StatefulWidget {
+  const MyGallery({super.key});
+
   @override
   _MyGalleryState createState() => _MyGalleryState();
 }
@@ -18,8 +22,9 @@ class _MyGalleryState extends State<MyGallery> {
         key: _globalKey,
         backgroundColor: Colors.black38,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           leading: IconButton(
-              icon: new Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               color: Colors.white,
               iconSize: 40,
               highlightColor: Colors.pink,
@@ -27,21 +32,21 @@ class _MyGalleryState extends State<MyGallery> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (BuildContext context) => AfterLogin(),
+                    builder: (BuildContext context) => const AfterLogin(),
                   ),
                 );
               }),
-          title: Text('Gallery'),
+          title: const Text('Files'),
           centerTitle: true,
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
               Tab(
-                icon: Icon(Icons.image),
-                text: 'Images',
+                icon: Icon(Icons.file_open),
+                text: 'Files',
               ),
               Tab(
                 icon: Icon(Icons.cloud_upload),
-                text: "Upload Images",
+                text: "Upload Files",
               ),
             ],
             indicatorColor: Colors.red,
