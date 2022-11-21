@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:admin/screens/search.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 
 import '/model/allmodels.dart';
 import '/screens/students.dart';
@@ -298,6 +299,47 @@ class _StudentFormState extends State<StudentForm> {
       'rollNo': rollNoController.text.trim(),
       'updatedAt': DateTime.now()
     });
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        content: const Text(
+          'Successful',
+          style: TextStyle(color: Colors.green),
+        ),
+        actions: [
+          CupertinoDialogAction(
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text("Student Saved"),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextButton(
+                    style: const ButtonStyle(
+                      //backgroundColor: MaterialStatePropertyAll(Colors.green),
+                      elevation: MaterialStatePropertyAll(0),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Align(
+                      alignment: AlignmentDirectional.bottomEnd,
+                      child: Text(
+                        'Ok'.toUpperCase(),
+                        style: const TextStyle(
+                            fontSize: 50, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
 
     print("name: ${nameController.text}");
 
@@ -306,12 +348,6 @@ class _StudentFormState extends State<StudentForm> {
 
     print("Full Name: ${fullNameController.text}");
     print("Registration No: ${regnoController.text}");
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext context) => const CloudFirestoreSearch(),
-      ),
-    );
   }
 
   @override

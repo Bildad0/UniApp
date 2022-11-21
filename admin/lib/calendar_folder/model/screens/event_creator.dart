@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
-import '/notifier/auth_notifier.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import '/screens/afterlogin.dart';
 import 'package:intl/intl.dart';
