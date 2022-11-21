@@ -44,6 +44,7 @@ class ResetPasswordState extends State<ResetPassword> {
                     height: 300,
                     width: 300,
                     child: Form(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       child: Column(
                         children: [
                           const SizedBox(
@@ -54,6 +55,16 @@ class ResetPasswordState extends State<ResetPassword> {
                             child: TextFormField(
                               controller: emailcontroler,
                               textAlign: TextAlign.start,
+                              validator: (value) {
+                                if (value != null) {
+                                  if (!RegExp(
+                                          r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                                      .hasMatch(value)) {
+                                    return 'Please enter a valid email address';
+                                  }
+                                }
+                                return 'Email is required';
+                              },
                               decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   icon: Icon(Icons.email),

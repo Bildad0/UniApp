@@ -122,8 +122,8 @@ class _FeeFormState extends State<FeeForm> {
         automaticallyImplyLeading: false,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: Colors.green,
-            iconSize: 40,
+            color: Colors.white,
+            iconSize: 20,
             onPressed: () {
               Navigator.pushReplacement(
                 context,
@@ -134,7 +134,8 @@ class _FeeFormState extends State<FeeForm> {
             }),
         title: const Text("Add Fee"),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.green.withOpacity(0.5),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -175,7 +176,7 @@ class _FeeFormState extends State<FeeForm> {
           //FocusScope.of(context).requestFocus(FocusNode());
           _saveFee();
         },
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.green.withOpacity(0.5),
         foregroundColor: Colors.white,
         child: const Icon(Icons.save),
       ),

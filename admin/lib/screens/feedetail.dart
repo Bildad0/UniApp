@@ -23,11 +23,12 @@ class FeeDetail extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,
-            iconSize: 40,
-            highlightColor: Colors.pink,
+            iconSize: 20,
+            // highlightColor: Colors.pink,
             onPressed: () {
               Navigator.pushReplacement(
                 context,
@@ -38,7 +39,8 @@ class FeeDetail extends StatelessWidget {
             }),
         title: const Text("Details"),
         centerTitle: true,
-        backgroundColor: Colors.brown,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.green[400],
       ),
       body: SingleChildScrollView(
         child: Center(

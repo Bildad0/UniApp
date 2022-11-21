@@ -27,8 +27,8 @@ class StudentDetail extends StatelessWidget {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,
-            iconSize: 40,
-            highlightColor: Colors.pink,
+            iconSize: 20,
+            //highlightColor: Colors.pink,
             onPressed: () {
               Navigator.pushReplacement(
                 context,
@@ -39,7 +39,8 @@ class StudentDetail extends StatelessWidget {
             }),
         title: const Text("Student"),
         centerTitle: true,
-        backgroundColor: Colors.brown,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.green[400],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -63,7 +64,7 @@ class StudentDetail extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    'Father Name: ${studentNotifier.currentStudent.fName}',
+                    'Full Name: ${studentNotifier.currentStudent.fName}',
                     style: const TextStyle(
                       fontSize: 18,
                     ),

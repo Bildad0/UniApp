@@ -41,8 +41,8 @@ class _ViewStudentsState extends State<ViewStudents> {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,
-            iconSize: 40,
-            highlightColor: Colors.pink,
+            iconSize: 20,
+            //highlightColor: Colors.pink,
             onPressed: () {
               Navigator.pushReplacement(
                 context,
@@ -51,9 +51,13 @@ class _ViewStudentsState extends State<ViewStudents> {
                 ),
               );
             }),
-        title: const Text("List of Students"),
+        title: const Text(
+          "List of Students",
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.brown,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.green[400],
       ),
       body: RefreshIndicator(
         onRefresh: refreshList,

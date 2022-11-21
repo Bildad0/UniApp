@@ -23,18 +23,19 @@ class _FoodDetailState extends State<FoodDetail> {
   Widget build(BuildContext context) {
     TeacherNotifier teacherNotifier = Provider.of<TeacherNotifier>(context);
 
-    _onTeacherDeleted(Teacher teacher) {
+    _onTeacherDeleted(data) {
       Navigator.pop(context);
-      teacherNotifier.deleteTeacher(teacher);
+      teacherNotifier.deleteTeacher(data);
     }
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,
-            iconSize: 40,
-            highlightColor: Colors.pink,
+            iconSize: 20,
+            // highlightColor: Colors.pink,
             onPressed: () {
               Navigator.pushReplacement(
                 context,
@@ -43,9 +44,13 @@ class _FoodDetailState extends State<FoodDetail> {
                 ),
               );
             }),
-        title: const Text("Details"),
+        title: const Text(
+          "Details",
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.green.withOpacity(0.5),
+        foregroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -53,80 +58,43 @@ class _FoodDetailState extends State<FoodDetail> {
           child: SingleChildScrollView(
             child: Center(
               child: Column(
-                children: <Widget>[
-                  Image.network(
-                    teacherNotifier.currentTeacher.image,
-                    width: MediaQuery.of(context).size.width,
-                    height: 250,
-                    fit: BoxFit.fitWidth,
-                  ),
+                children: [
                   const SizedBox(height: 24),
                   Text(
-                    teacherNotifier.currentTeacher.name,
+                    widget.data['name'],
                     style: const TextStyle(
                       fontSize: 40,
                     ),
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    'Description: ${teacherNotifier.currentTeacher.category}',
+                    'Description: ${widget.data['category']}',
                     style: const TextStyle(
                       fontSize: 18,
                     ),
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    'phone: ${teacherNotifier.currentTeacher.phone}',
+                    'Phone: ${widget.data['phone']}',
                     style: const TextStyle(
                       fontSize: 18,
                     ),
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    'Email: ${teacherNotifier.currentTeacher.email}',
+                    'Email: ${widget.data['email']}',
                     style: const TextStyle(
                       fontSize: 18,
                     ),
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    'Address: ${teacherNotifier.currentTeacher.address}',
+                    'Address: ${widget.data['address']}',
                     style: const TextStyle(
                       fontSize: 18,
                     ),
                   ),
                   const SizedBox(height: 20),
-
-                  const Text(
-                    "Skills",
-                    style: TextStyle(
-                        fontSize: 18, decoration: TextDecoration.underline),
-                  ),
-                  const SizedBox(height: 16),
-                  GridView.count(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    padding: const EdgeInsets.all(8),
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 4,
-                    mainAxisSpacing: 4,
-                    children: teacherNotifier.currentTeacher.subIngredients
-                        .map(
-                          (ingredient) => Card(
-                            color: Colors.black54,
-                            child: Center(
-                              child: Text(
-                                ingredient,
-                                style: const TextStyle(
-                                    color: Colors.white, fontSize: 16),
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  ),
-
-                  //   Text(widget.data['name']),
                 ],
               ),
             ),
@@ -135,9 +103,9 @@ class _FoodDetailState extends State<FoodDetail> {
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
+        children: [
           FloatingActionButton(
-            heroTag: 'button1',
+            heroTag: 'Edit',
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (BuildContext context) {
@@ -147,16 +115,15 @@ class _FoodDetailState extends State<FoodDetail> {
                 }),
               );
             },
-            backgroundColor: Colors.green,
+            backgroundColor: Colors.green.withOpacity(0.5),
             foregroundColor: Colors.white,
             child: const Icon(Icons.edit),
           ),
           const SizedBox(height: 20),
           FloatingActionButton(
-            heroTag: 'button2',
-            onPressed: () => deleteTeacher(
-                teacherNotifier.currentTeacher, _onTeacherDeleted),
-            backgroundColor: Colors.green,
+            heroTag: 'Delete',
+            onPressed: () => deleteTeacher(widget.data, _onTeacherDeleted),
+            backgroundColor: Colors.green.withOpacity(0.5),
             foregroundColor: Colors.white,
             child: const Icon(Icons.delete),
           ),

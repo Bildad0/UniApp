@@ -20,14 +20,14 @@ class _MyGalleryState extends State<MyGallery> {
       length: 2,
       child: Scaffold(
         key: _globalKey,
-        backgroundColor: Colors.black38,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               color: Colors.white,
-              iconSize: 40,
-              highlightColor: Colors.pink,
+              iconSize: 20,
+              //highlightColor: Colors.pink,
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
@@ -37,6 +37,8 @@ class _MyGalleryState extends State<MyGallery> {
                 );
               }),
           title: const Text('Files'),
+          backgroundColor: Colors.green.withOpacity(0.5),
+          foregroundColor: Colors.white,
           centerTitle: true,
           bottom: const TabBar(
             tabs: [
@@ -49,7 +51,7 @@ class _MyGalleryState extends State<MyGallery> {
                 text: "Upload Files",
               ),
             ],
-            indicatorColor: Colors.red,
+            indicatorColor: Colors.green,
             indicatorWeight: 5.0,
           ),
         ),

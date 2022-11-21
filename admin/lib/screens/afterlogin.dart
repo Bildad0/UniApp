@@ -46,12 +46,29 @@ class _AfterLoginState extends State<AfterLogin> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        title: const Text(
-          "UniApp",
-          style: TextStyle(color: Colors.black),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              "UniApp",
+              style: TextStyle(color: Colors.black),
+            ),
+            const SizedBox(
+              width: 30,
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                  elevation: const MaterialStatePropertyAll(0),
+                  backgroundColor:
+                      MaterialStatePropertyAll(Colors.red.withOpacity(0.2)),
+                  foregroundColor: const MaterialStatePropertyAll(Colors.red)),
+              onPressed: _signOut,
+              child: const Text("Logout"),
+            ),
+          ],
         ),
         centerTitle: true,
-        actions: const [],
+        //actions: const [],
         backgroundColor: Colors.white,
       ),
       body: Container(
@@ -75,15 +92,15 @@ class _AfterLoginState extends State<AfterLogin> {
                     ),
                     children: [
                       Card(
-                        color: Colors.red[400],
+                        color: Colors.blueGrey.withOpacity(0.5),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
+                          children: [
                             IconButton(
                                 icon: const Icon(Icons.person_add),
                                 color: Colors.white,
-                                iconSize: 40,
-                                highlightColor: Colors.pink,
+                                iconSize: 20,
+                                //highlightColor: Colors.pink,
                                 onPressed: () {
                                   Navigator.pushReplacement(
                                     context,
@@ -99,15 +116,15 @@ class _AfterLoginState extends State<AfterLogin> {
                         ),
                       ),
                       Card(
-                        color: Colors.green[400],
+                        color: Colors.green.withOpacity(0.5),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             IconButton(
                                 icon: const Icon(Icons.book),
                                 color: Colors.white,
-                                iconSize: 40,
-                                highlightColor: Colors.pink,
+                                iconSize: 20,
+                                //highlightColor: Colors.pink,
                                 onPressed: () {
                                   Navigator.pushReplacement(
                                     context,
@@ -117,21 +134,22 @@ class _AfterLoginState extends State<AfterLogin> {
                                     ),
                                   );
                                 }),
-                            const Text("Search students",
+                            const Text("Edit Students",
                                 style: TextStyle(color: Colors.white))
                           ],
                         ),
                       ),
                       Card(
-                        color: Colors.pink[400],
+                        color: const Color.fromARGB(255, 207, 195, 199)
+                            .withOpacity(0.5),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
                                 icon: const Icon(Icons.person_add),
                                 color: Colors.white,
-                                iconSize: 40,
-                                highlightColor: Colors.pink,
+                                iconSize: 20,
+                                //highlightColor: Colors.pink,
                                 onPressed: () {
                                   Navigator.pushReplacement(
                                     context,
@@ -147,20 +165,21 @@ class _AfterLoginState extends State<AfterLogin> {
                         ),
                       ),
                       Card(
-                        color: Colors.orange,
+                        color: Colors.blueAccent.withOpacity(0.5),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
                                 icon: const Icon(Icons.money),
                                 color: Colors.white,
-                                iconSize: 40,
-                                highlightColor: Colors.pink,
+                                iconSize: 20,
+                                //highlightColor: Colors.pink,
                                 onPressed: () {
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (BuildContext context) => Fees(),
+                                      builder: (BuildContext context) =>
+                                          const Fees(),
                                     ),
                                   );
                                 }),
@@ -170,15 +189,15 @@ class _AfterLoginState extends State<AfterLogin> {
                         ),
                       ),
                       Card(
-                        color: Colors.blue[400],
+                        color: Colors.blue.withOpacity(0.5),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
                                 icon: const Icon(Icons.image),
                                 color: Colors.white,
-                                iconSize: 40,
-                                highlightColor: Colors.pink,
+                                iconSize: 20,
+                                // highlightColor: Colors.pink,
                                 onPressed: () {
                                   Navigator.pushReplacement(
                                     context,
@@ -188,21 +207,21 @@ class _AfterLoginState extends State<AfterLogin> {
                                     ),
                                   );
                                 }),
-                            const Text("Media Gallery",
+                            const Text("Files",
                                 style: TextStyle(color: Colors.white))
                           ],
                         ),
                       ),
                       Card(
-                        color: Colors.brown[400],
+                        color: Colors.brown.withOpacity(0.5),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             IconButton(
                                 icon: const Icon(Icons.list),
                                 color: Colors.white,
-                                iconSize: 40,
-                                highlightColor: Colors.pink,
+                                iconSize: 20,
+                                //highlightColor: Colors.pink,
                                 onPressed: () {
                                   Navigator.push(
                                     context,
@@ -215,16 +234,6 @@ class _AfterLoginState extends State<AfterLogin> {
                             const Text("Events",
                                 style: TextStyle(color: Colors.white))
                           ],
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.all(8.0),
-                        padding: const EdgeInsets.fromLTRB(100, 110, 0, 20),
-                        child: Center(
-                          child: ElevatedButton(
-                            onPressed: _signOut,
-                            child: const Text("Logout"),
-                          ),
                         ),
                       ),
                     ],

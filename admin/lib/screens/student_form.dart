@@ -2,15 +2,13 @@
 
 import 'dart:io';
 
+import 'package:admin/screens/search.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '/api/student_api.dart';
 import '/model/allmodels.dart';
-import '/notifier/student_notifier.dart';
 import '/screens/students.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 
 class StudentForm extends StatefulWidget {
   final bool isUpdating;
@@ -161,6 +159,7 @@ class _StudentFormState extends State<StudentForm> {
   Widget _buildRegisterationNoField() {
     return TextFormField(
       controller: regnoController,
+      //initialValue: widget.data.data['registrationNo'],
       decoration: InputDecoration(
         labelText: 'Enter Registration Number',
         fillColor: Colors.black,
@@ -251,7 +250,6 @@ class _StudentFormState extends State<StudentForm> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
         contentPadding: const EdgeInsets.all(3),
       ),
-      //initialValue: _currentStudent.fName,
       keyboardType: TextInputType.text,
       style: const TextStyle(fontSize: 15, color: Colors.black),
       validator: (value) {
@@ -311,7 +309,7 @@ class _StudentFormState extends State<StudentForm> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => const Students(),
+        builder: (BuildContext context) => const CloudFirestoreSearch(),
       ),
     );
   }
@@ -326,8 +324,8 @@ class _StudentFormState extends State<StudentForm> {
         automaticallyImplyLeading: false,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: Colors.green,
-            iconSize: 40,
+            color: Colors.white,
+            iconSize: 20,
             //highlightColor: Colors.pink,
             onPressed: () {
               Navigator.pushReplacement(
@@ -337,12 +335,17 @@ class _StudentFormState extends State<StudentForm> {
                 ),
               );
             }),
-        title: const Text("Add Students"),
+        title: Text(
+          widget.isUpdating ? "Edit Student" : "Add Student",
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 25, color: Colors.black),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.green[400],
       ),
       body: ListView(
-        children: <Widget>[
+        children: [
           Padding(
               padding: const EdgeInsets.all(16.0),
               child: Card(
@@ -350,7 +353,7 @@ class _StudentFormState extends State<StudentForm> {
                     padding: const EdgeInsets.all(16.0),
                     child: SingleChildScrollView(
                         child: Column(
-                      children: <Widget>[
+                      children: [
                         const SizedBox(height: 20),
                         Form(
                             autovalidateMode: AutovalidateMode.always,

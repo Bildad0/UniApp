@@ -1,3 +1,5 @@
+import 'package:admin/screens/search.dart';
+
 import '/api/student_api.dart';
 import '/notifier/student_notifier.dart';
 import '/screens/afterlogin.dart';
@@ -37,11 +39,11 @@ class _StudentsState extends State<Students> {
         elevation: 0,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: Colors.green,
-            iconSize: 40,
+            color: Colors.white,
+            iconSize: 20,
             // highlightColor: Colors.pink,
             onPressed: () {
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) => const AfterLogin(),
@@ -50,10 +52,14 @@ class _StudentsState extends State<Students> {
             }),
         title: const Text(
           "Students",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+          ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.green.withOpacity(0.5),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -73,14 +79,15 @@ class _StudentsState extends State<Students> {
                 child: Container(
                     height: 90,
                     width: double.infinity,
-                    decoration: BoxDecoration(color: Colors.pink[300]),
+                    decoration:
+                        BoxDecoration(color: Colors.grey.withOpacity(0.5)),
                     child: Column(
                       children: [
                         IconButton(
                             icon: const Icon(Icons.person_add),
                             color: Colors.white,
                             iconSize: 20,
-                            highlightColor: Colors.pink,
+                            //highlightColor: Colors.blue,
                             onPressed: () {
                               Navigator.pushReplacement(
                                 context,
@@ -96,25 +103,29 @@ class _StudentsState extends State<Students> {
                       ],
                     )),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               Padding(
                 padding: const EdgeInsets.all(0.0),
                 child: Container(
                     height: 90,
                     width: double.infinity,
-                    decoration: BoxDecoration(color: Colors.green[300]),
+                    decoration:
+                        BoxDecoration(color: Colors.green.withOpacity(0.5)),
                     child: Column(
                       children: [
                         IconButton(
                             icon: const Icon(Icons.view_column),
-                            color: const Color.fromARGB(255, 236, 5, 5),
+                            color: const Color.fromARGB(255, 255, 255, 255),
                             iconSize: 20,
-                            highlightColor: Colors.pink,
+                            //highlightColor: Colors.pink,
                             onPressed: () {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      const ViewStudents(),
+                                      const CloudFirestoreSearch(),
                                 ),
                               );
                             }),

@@ -26,21 +26,21 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,
-            iconSize: 40,
+            iconSize: 20,
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const AfterLogin()));
             }),
-        backgroundColor: Colors.grey,
-        title: const Text("Search Students"),
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.green.withOpacity(0.5),
+        title: const Text(
+          "Students",
+          style: TextStyle(color: Colors.black, fontSize: 20),
+        ),
         centerTitle: true,
       ),
       body: Column(
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.07,
-            color: Colors.grey,
-          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
@@ -75,6 +75,7 @@ class _CloudFirestoreSearchState extends State<CloudFirestoreSearch> {
                         itemBuilder: (context, index) {
                           DocumentSnapshot data = snapshot.data!.docs[index];
                           return Card(
+                            elevation: 0,
                             child: Row(
                               children: [
                                 GestureDetector(

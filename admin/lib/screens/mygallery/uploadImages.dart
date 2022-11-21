@@ -33,12 +33,12 @@ class _UploadImagesState extends State<UploadImages> {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: ThreeDContainer(
-            backgroundColor: MultiPickerApp.darker,
-            backgroundDarkerColor: MultiPickerApp.darker,
+            backgroundColor: MultiPickerApp.background,
+            backgroundDarkerColor: MultiPickerApp.background,
             height: 50,
             width: 50,
-            borderDarkerColor: MultiPickerApp.pauseButton,
-            borderColor: MultiPickerApp.pauseButtonDarker,
+            borderDarkerColor: MultiPickerApp.background,
+            borderColor: MultiPickerApp.background,
             key: null,
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(15)),
@@ -71,10 +71,10 @@ class _UploadImagesState extends State<UploadImages> {
                   child: ThreeDContainer(
                     width: 130,
                     height: 50,
-                    backgroundColor: MultiPickerApp.navigateButton,
+                    backgroundColor: MultiPickerApp.background,
                     backgroundDarkerColor: MultiPickerApp.background,
                     borderColor: MultiPickerApp.background,
-                    borderDarkerColor: MultiPickerApp.navigateButton,
+                    borderDarkerColor: MultiPickerApp.background,
                     child: const Center(
                         child: Text(
                       "Pick file",
@@ -101,13 +101,12 @@ class _UploadImagesState extends State<UploadImages> {
                                   child: ThreeDContainer(
                                     width: 80,
                                     height: 30,
-                                    backgroundColor:
-                                        MultiPickerApp.navigateButton,
+                                    backgroundColor: MultiPickerApp.background,
                                     backgroundDarkerColor:
                                         MultiPickerApp.background,
                                     borderDarkerColor:
-                                        MultiPickerApp.navigateButton,
-                                    borderColor: MultiPickerApp.navigateButton,
+                                        MultiPickerApp.background,
+                                    borderColor: MultiPickerApp.background,
                                     child: const Center(
                                         child: Text(
                                       "Ok",
@@ -126,13 +125,14 @@ class _UploadImagesState extends State<UploadImages> {
                     }
                   },
                   child: ThreeDContainer(
+                    offset: 0,
                     width: 130,
                     height: 50,
-                    backgroundColor: MultiPickerApp.navigateButton,
+                    backgroundColor: MultiPickerApp.background,
                     backgroundDarkerColor: MultiPickerApp.background,
                     key: null,
-                    borderDarkerColor: MultiPickerApp.navigateButton,
-                    borderColor: MultiPickerApp.navigateButton,
+                    borderDarkerColor: MultiPickerApp.background,
+                    borderColor: MultiPickerApp.background,
                     child: const Center(
                         child: Text(
                       "Upload Files",

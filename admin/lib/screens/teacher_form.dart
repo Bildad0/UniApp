@@ -301,7 +301,7 @@ class _TeacherFormState extends State<TeacherForm> {
       'category': descController.text.trim(),
       //'image': teacher.image,
       'createdAt': DateTime.now(),
-      'name': nameController.text.trim(),
+      'name': nameController.text.trim().toUpperCase(),
       'phone': phoneController.text.trim(),
       'subIngridients': subingredientController.text.trim(),
       'updatedAt': DateTime.now(),
@@ -332,7 +332,7 @@ class _TeacherFormState extends State<TeacherForm> {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,
-            iconSize: 40,
+            iconSize: 20,
             //highlightColor: Colors.pink,
             onPressed: () {
               Navigator.push(
@@ -342,9 +342,13 @@ class _TeacherFormState extends State<TeacherForm> {
                 ),
               );
             }),
-        title: const Text("Professors"),
+        title: const Text(
+          "Professors",
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.brown,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.green.withOpacity(0.5),
       ),
       body: ListView(
         children: [
@@ -369,13 +373,21 @@ class _TeacherFormState extends State<TeacherForm> {
                                   ? "Edit Professor"
                                   : "Add Teachers",
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 30, color: Colors.brown[400]),
+                              style: const TextStyle(
+                                  fontSize: 30, color: Colors.black),
                             ),
                             const SizedBox(height: 12),
                             _imageFile == null && _imageUrl == null
                                 ? ButtonTheme(
                                     child: ElevatedButton(
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStatePropertyAll(Colors
+                                                  .green
+                                                  .withOpacity(0.5)),
+                                          foregroundColor:
+                                              const MaterialStatePropertyAll(
+                                                  Colors.white)),
                                       onPressed: () => _getLocalImage(),
                                       child: const Text(
                                         'Add Image',
@@ -400,6 +412,13 @@ class _TeacherFormState extends State<TeacherForm> {
                                 _buildSubingredientField(),
                                 ButtonTheme(
                                   child: ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStatePropertyAll(
+                                                Colors.green.withOpacity(0.5)),
+                                        foregroundColor:
+                                            const MaterialStatePropertyAll(
+                                                Colors.white)),
                                     child: const Text('Add',
                                         style: TextStyle(color: Colors.white)),
                                     onPressed: () => _addSubingredient(
@@ -447,7 +466,7 @@ class _TeacherFormState extends State<TeacherForm> {
           _saveTeacher();
         },
         foregroundColor: Colors.white,
-        backgroundColor: Colors.brown[400],
+        backgroundColor: Colors.green,
         child: Column(
           children: const [
             SizedBox(

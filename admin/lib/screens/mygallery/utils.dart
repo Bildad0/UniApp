@@ -5,7 +5,7 @@ class MultiPickerApp {
   static Color pauseButton = const Color(0xffF41F00);
   static Color pauseButtonDarker = const Color(0xff9B1400);
   static Color background = Colors.brown;
-  static Color brighter = const Color(0xff353235);
+  static Color brighter = const Color.fromARGB(255, 98, 201, 132);
   static Color darker = Colors.black;
 }
 

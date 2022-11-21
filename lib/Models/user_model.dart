@@ -6,11 +6,7 @@ import 'package:cloud_functions/cloud_functions.dart';
 
 final storage = FirebaseStorage.instance;
 
-FirebaseApp secondaryApp = Firebase.app('UniApp');
-FirebaseDatabase database = FirebaseDatabase.instanceFor(app: secondaryApp);
-
-DatabaseReference ref = FirebaseDatabase.instance
-    .ref('https://uniapp-bacf3-default-rtdb.firebaseio.com/');
+DatabaseReference ref = FirebaseDatabase.instance.ref('Students');
 
 class Students {
   final int studentId;
@@ -33,6 +29,5 @@ class Students {
   }
   static fromJson(json) async {
     //returns body from firebase api call
-   
   }
 }

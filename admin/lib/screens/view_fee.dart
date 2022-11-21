@@ -48,7 +48,7 @@ class _ViewFeeState extends State<ViewFee> {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,
-            iconSize: 40,
+            iconSize: 20,
             // highlightColor: Colors.pink,
             onPressed: () {
               Navigator.pushReplacement(
@@ -60,7 +60,9 @@ class _ViewFeeState extends State<ViewFee> {
             }),
         title: const Text("Fee List"),
         centerTitle: true,
-        backgroundColor: Colors.brown,
+        elevation: 0,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.green.withOpacity(0.5),
       ),
       body: RefreshIndicator(
         onRefresh: _refreshList,
@@ -74,7 +76,6 @@ class _ViewFeeState extends State<ViewFee> {
                 children: [
                   IconButton(
                     icon: const Icon(Icons.edit),
-                    highlightColor: Colors.pink,
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
@@ -87,7 +88,6 @@ class _ViewFeeState extends State<ViewFee> {
                   ),
                   IconButton(
                     icon: const Icon(Icons.delete),
-                    highlightColor: Colors.pink,
                     onPressed: () {
                       deleteFee(feeNotifier.currentFee, _onFeeDeleted);
                     },

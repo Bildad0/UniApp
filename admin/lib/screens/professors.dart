@@ -37,11 +37,12 @@ class _ProfessorsState extends State<Professors> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        automaticallyImplyLeading: false,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: Colors.green,
-            iconSize: 40,
-            highlightColor: Colors.green.withOpacity(0.6),
+            color: Colors.white,
+            iconSize: 20,
+            //highlightColor: Colors.green.withOpacity(0.6),
             onPressed: () {
               Navigator.push(
                 context,
@@ -55,7 +56,8 @@ class _ProfessorsState extends State<Professors> {
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white10,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.green.withOpacity(0.5),
       ),
 //body:_children[_currentIndex],
       body: Container(
@@ -80,7 +82,7 @@ class _ProfessorsState extends State<Professors> {
                       crossAxisCount: 2,
                       children: [
                         Card(
-                          color: Colors.green[400],
+                          color: Colors.green.withOpacity(0.5),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -88,7 +90,7 @@ class _ProfessorsState extends State<Professors> {
                                   icon: const Icon(Icons.person_add),
                                   color: Colors.white,
                                   iconSize: 20,
-                                  highlightColor: Colors.pink,
+                                  //highlightColor: Colors.pink,
                                   onPressed: () {
                                     Navigator.pushReplacement(
                                       context,
@@ -105,7 +107,7 @@ class _ProfessorsState extends State<Professors> {
                           ),
                         ),
                         Card(
-                          color: Colors.blue[400],
+                          color: Colors.blue.withOpacity(0.5),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -113,7 +115,7 @@ class _ProfessorsState extends State<Professors> {
                                   icon: const Icon(Icons.view_column),
                                   color: Colors.white,
                                   iconSize: 20,
-                                  highlightColor: Colors.pink,
+                                  //highlightColor: Colors.pink,
                                   onPressed: () {
                                     Navigator.pushReplacement(
                                       context,

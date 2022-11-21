@@ -24,17 +24,6 @@ class CustomFormState extends State<CustomForm> {
 
   late bool isLoading = false;
 
-  String? get _errorText {
-    final mailtext = emailcontroler.text;
-    final passtext = passwordcontroler.text;
-    if (passtext == '' || mailtext == '') {
-      return 'can\'t be empty';
-    } else if (passtext.length < 6) {
-      return 'Password is too short';
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +46,7 @@ class CustomFormState extends State<CustomForm> {
               margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               elevation: 5,
               child: Form(
-                autovalidateMode: AutovalidateMode.disabled,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -67,7 +56,16 @@ class CustomFormState extends State<CustomForm> {
                     Neumorphic(
                       margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                       child: TextFormField(
-                        validator: (value) => _errorText,
+                        validator: (value) {
+                          if (value != null) {
+                            if (!RegExp(
+                                    r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                                .hasMatch(value)) {
+                              return 'Please enter a valid email address';
+                            }
+                          }
+                          return 'Email is required';
+                        },
                         controller: emailcontroler,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -83,7 +81,15 @@ class CustomFormState extends State<CustomForm> {
                       margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: TextFormField(
                         obscureText: true,
-                        validator: (value) => _errorText,
+                        validator: (value) {
+                          if (value != null) {
+                            if (value.length < 6) {
+                              return 'password must be six or more characters';
+                            }
+                            return null;
+                          }
+                          return "Password is required";
+                        },
                         controller: passwordcontroler,
                         decoration: const InputDecoration(
                           border: InputBorder.none,

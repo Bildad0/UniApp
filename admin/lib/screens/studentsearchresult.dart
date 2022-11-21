@@ -1,5 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api, no_leading_underscores_for_local_identifiers, avoid_unnecessary_containers
 
+import 'package:admin/screens/student_form.dart';
+
 import '/model/allmodels.dart';
 import '/notifier/student_notifier.dart';
 import '/screens/search.dart';
@@ -31,8 +33,8 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
         automaticallyImplyLeading: false,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: Colors.green,
-            iconSize: 40,
+            color: Colors.white,
+            iconSize: 20,
             //highlightColor: Colors.pink,
             onPressed: () {
               Navigator.push(
@@ -48,7 +50,8 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.green.withOpacity(0.5),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -151,22 +154,40 @@ class _StudentSearchResultState extends State<StudentSearchResult> {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    ElevatedButton(
-                        style: const ButtonStyle(
-                            backgroundColor:
-                                MaterialStatePropertyAll(Colors.red)),
-                        onPressed: () => {_onStudentDeleted(widget.data.doc)},
-                        //,
-                        child: Text(
-                          "Delete".toUpperCase(),
-                          style: const TextStyle(color: Colors.white),
-                        ))
                   ],
                 ),
               ),
             ),
           ),
         ),
+      ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: 'Edit',
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (BuildContext context) {
+                  return const StudentForm(
+                    isUpdating: true,
+                  );
+                }),
+              );
+            },
+            backgroundColor: Colors.green,
+            foregroundColor: Colors.white,
+            child: const Icon(Icons.edit),
+          ),
+          const SizedBox(height: 20),
+          FloatingActionButton(
+            heroTag: 'Delete',
+            onPressed: () => {},
+            backgroundColor: Colors.red,
+            foregroundColor: Colors.white,
+            child: const Icon(Icons.delete),
+          ),
+        ],
       ),
     );
   }
